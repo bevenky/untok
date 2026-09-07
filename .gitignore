@@ -216,3 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Downloaded inputs, generated artifacts, and local reports
+.cache/
+artifacts/
+reports/
+.venv/
+*.nemo
+*.safetensors
+*.ckpt

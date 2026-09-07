@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "bhasha.zip",
+      "url": "https://github.com/AI4Bharat/IndicLID/releases/download/v1.0/bhasha-abhijnaanam_test_set.zip",
+      "sha256": "be4bd82c5b9b54528393bcbf4542a4f7f2ac9ee4fc1a3609f0ed685a1d252c19",
+      "owner": "AI4Bharat",
+      "revision": "v1.0"
+    }
+  ]
+}

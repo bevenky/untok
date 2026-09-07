@@ -1,0 +1,233 @@
+{
+  "files": [
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/as.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "4371952807f7378dd07253e6ccc4007cecd6927952b4a09abce68760c3f96511",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/as_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/bn.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "2635df3cbda9e9dc2b71145141478c0d45f8acda657692693d1854fc2e46045e",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/bn_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/brx.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "ca58c812c596f212a0dfcad1a3a5afe869e208497b89751622e6dc29ae8861e4",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/brx_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/doi.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "286eb07f44cf58b778ada00cf90b7ead56763af107b0032de397182620411309",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/doi_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/gu.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "4e1148e4cc113b26f075960adfeb2a875806ffed7b70571c8de673680df24297",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/gu_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/hi.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "e6b66ffd63ffdf4700680297aea6d477f33f59e78354c4b7c72d3337396c8efd",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/hi_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/kn.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "8f898792f7ce5ca19d9e0588a7d6cb8889a4e95fd10207228f7823cdb3905bdd",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/kn_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/kok.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "17ba3194ea4dc4926d7339e7ff1ef5f6c1c849d9a48174662917d091ddbbf8bf",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/kok_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/ks.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "eb070f56dd4b8239f8dacb17a99ef1933eccf62c785ddad21d8588f1ec2af213",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/ks_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/mai.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "5a1eeae3a0bf3d8eb6a71f2fd5b9a2650572387993538bdadbd828ad11129ba0",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/mai_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/ml.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "87b88c9e54326e4cfcbb1c16d3258ec54f3d970b93aa3def9ac4d2c914e891cb",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/ml_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/mni.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "8eff02ebdf71a3a6110e17d6b5cbddc4a8eb6cc76aa885515f5cc132b53e5d66",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/mni_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/mr.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "45462af2e805cbcacce8715df67e3bf6806a0f69303a6fde5f23db26b781c5b1",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/mr_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/ne.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "441979921c460476a11f67c775a44a7f956df5d2beb6a260bf2f94a6c3eaf64e",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/ne_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/or.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "98de4084ada7c75e4e7df8c043fa19e3ff2822d3c0ca4a4739bbc2c1de6f4113",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/or_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/pa.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "a4d3d0bb69c2e25f37aac9dab1975302da4b9fc82d29d17724d26d313d21c86b",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/pa_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/sa.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "93b075649353443ee158386199b8765cb9deeb1541771cfef4eac31283cf12dd",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/sa_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/sat.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "72e29e96aaafc65e7d065511d3eaf0a275c8a81858f4aaf223787927ca7faf05",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/sat_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/sd.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "c0ea66172eed631c2b9db095265bb44a1fe72e92b4435a986e9f1d5848aabca7",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/sd_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/ta.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "aa3d0faad52f823fbde45f10be5104dd96cf42670d27bbadefb9d64638c6dddf",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/ta_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/te.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "d7f03945b4c14de3ebdf57e7657a185cddd220ffb19dc12c8b4d4191b93ddfb5",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/te_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "AI4Bharat",
+      "path": "donors/ur.model",
+      "revision": "d50726d3123bc5066994b94bf6c0cfbc5ab961d8",
+      "sha256": "ff52e01271f37fd87976b04c4757a55ba5e9b390a7192566ac1f66872456e439",
+      "url": "https://raw.githubusercontent.com/AI4Bharat/IndicVoices/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers/ur_256/tokenizer_spe_bpe_v256/tokenizer.model"
+    },
+    {
+      "owner": "Meta",
+      "path": "meta/omniASR_tokenizer_written_v2.model",
+      "revision": "sha256-pinned",
+      "sha256": "8aa11a1092142ef472537476ef6e76541123e2f0d789b79f3ebd119008240b1e",
+      "url": "https://dl.fbaipublicfiles.com/mms/omniASR_tokenizer_written_v2.model"
+    },
+    {
+      "owner": "NVIDIA",
+      "path": "nvidia/config.json",
+      "revision": "1c8deaecc64b91f034d73e08dd8b64625eb3395d",
+      "sha256": "62d186fd91f518e00e7867500f1f5819225e8ee95ea3e21b546514bf2048e845",
+      "url": "https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b/resolve/1c8deaecc64b91f034d73e08dd8b64625eb3395d/config.json"
+    },
+    {
+      "owner": "NVIDIA",
+      "path": "nvidia/generation_config.json",
+      "revision": "1c8deaecc64b91f034d73e08dd8b64625eb3395d",
+      "sha256": "993e5d4cb74a6fe9d6e7084a76b3313c1446740679be4676570c23b664fdc07e",
+      "url": "https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b/resolve/1c8deaecc64b91f034d73e08dd8b64625eb3395d/generation_config.json"
+    },
+    {
+      "owner": "NVIDIA",
+      "path": "nvidia/processor_config.json",
+      "revision": "1c8deaecc64b91f034d73e08dd8b64625eb3395d",
+      "sha256": "ec47870f1091ea4f25539208387b45b902c92d0e3f997a30061ef88f73437ab0",
+      "url": "https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b/resolve/1c8deaecc64b91f034d73e08dd8b64625eb3395d/processor_config.json"
+    },
+    {
+      "owner": "NVIDIA",
+      "path": "nvidia/tokenizer.json",
+      "revision": "1c8deaecc64b91f034d73e08dd8b64625eb3395d",
+      "sha256": "3f3d481deb073b64c2082e8c7860d487a3a62774bf4e9e4faac83007e181f246",
+      "url": "https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b/resolve/1c8deaecc64b91f034d73e08dd8b64625eb3395d/tokenizer.json"
+    },
+    {
+      "owner": "NVIDIA",
+      "path": "nvidia/tokenizer_config.json",
+      "revision": "1c8deaecc64b91f034d73e08dd8b64625eb3395d",
+      "sha256": "5c641c5b3f50702a60082690d27c1ce7fcb5a92c4a624793bcae0f21eda3d6e0",
+      "url": "https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b/resolve/1c8deaecc64b91f034d73e08dd8b64625eb3395d/tokenizer_config.json"
+    },
+    {
+      "owner": "Unicode",
+      "path": "unicode/Scripts.txt",
+      "revision": "17.0.0",
+      "sha256": "9f5e50d3abaee7d6ce09480f325c706f485ae3240912527e651954d2d6b035bf",
+      "url": "https://www.unicode.org/Public/17.0.0/ucd/Scripts.txt"
+    },
+    {
+      "owner": "Unicode",
+      "path": "unicode/UnicodeData.txt",
+      "revision": "17.0.0",
+      "sha256": "2e1efc1dcb59c575eedf5ccae60f95229f706ee6d031835247d843c11d96470c",
+      "url": "https://www.unicode.org/Public/17.0.0/ucd/UnicodeData.txt"
+    },
+    {
+      "path": "cldr/bn.xml",
+      "purpose": "CLDR48 standard exemplar coverage",
+      "sha256": "bac59264993110a47ca53b92357352bdc23f2ca0a9bb66ec48609c4c174ef68b",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/bn.xml"
+    },
+    {
+      "path": "cldr/kn.xml",
+      "purpose": "CLDR48 standard exemplar coverage",
+      "sha256": "913971145002f04c35fa0f8a439c11be7d761d5fc766462f8f829c2541a392af",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/kn.xml"
+    },
+    {
+      "path": "cldr/te.xml",
+      "purpose": "CLDR48 standard exemplar coverage",
+      "sha256": "d429759810b8f472242ca348eeabf8541da7c48c56c81bd43ec5009790efba9a",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/te.xml"
+    }
+  ],
+  "schema_version": 1
+}

@@ -1,0 +1,16 @@
+{
+  "corpora": [
+    {
+      "path": "../.cache/corpora/sindhi/sindhi-devanagari-blog.jsonl",
+      "format": "jsonl",
+      "language": "sd",
+      "script": "Devanagari",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "c51ee55952e7d711792f41c3d8e0406ccc73752b82278d29f72bef20e56d7829",
+      "source": "Independent Devanagari Sindhi author blog"
+    }
+  ],
+  "source_manifest_sha256": "7e60e62209d9212f86fe91c68facec5c6ec02e81dc18070dee6ba9b4968c2517",
+  "source_notes": "Single-author published Sindhi prose, not representative ASR transcripts. Language identified from author/publisher context and inspected prose; no independent native-speaker correctness review. Formatting and cross-language quotations can remain. PDF samples rejected because unreliable text extraction. No copyrighted full text is included in user-facing evidence bundle."
+}

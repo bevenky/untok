@@ -1,0 +1,226 @@
+{
+  "corpora": [
+    {
+      "path": "../.cache/corpora/independent/wikimedia-as.jsonl",
+      "format": "jsonl",
+      "language": "as",
+      "script": "Bengali",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "2b58df8b8982b2ae4dc2e0192d84434d4cf41f7fd1cf6984e0c5d456ca570705",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-bn.jsonl",
+      "format": "jsonl",
+      "language": "bn",
+      "script": "Bengali",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "4d0b131ef2a9ed3a83b2676a70b821e409a5ba6f61db8de5e5ea2a8d2be86e27",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-brx.jsonl",
+      "format": "jsonl",
+      "language": "brx",
+      "script": "Devanagari",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "3a2a0c66820d1686ac9fc7ff53f8c31ecf993ca90bb869f340b42a6c904c65c0",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-doi.jsonl",
+      "format": "jsonl",
+      "language": "doi",
+      "script": "Devanagari",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "b0d3f71d18401b72c44a1181962f1a267ffafcd18fc053e7fb7b203554bb2a36",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-gu.jsonl",
+      "format": "jsonl",
+      "language": "gu",
+      "script": "Gujarati",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "6853e8a1c073774039d35b6d80e860d6716b62e710df5839fe1c7ddd38a798b3",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-hi.jsonl",
+      "format": "jsonl",
+      "language": "hi",
+      "script": "Devanagari",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "a8b2b333ab89272196150b4aea0600346f108e0f1406e55c9f1262ca6efc04a8",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/udhr-kn.jsonl",
+      "format": "jsonl",
+      "language": "kn",
+      "script": "Kannada",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "8c5a9ae36d1fa7cf8bea44cc4ba1c1b0bbd7f2522c861a25fe89b7181963f369",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-kok.jsonl",
+      "format": "jsonl",
+      "language": "kok",
+      "script": "Devanagari",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "b7e9eebd091c6fb3e5475517e9a68dfe1dd83b06f91ea20a0290958b887e1864",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-ks.jsonl",
+      "format": "jsonl",
+      "language": "ks",
+      "script": "Arabic",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "d9e32188c89afd68c6d08498cf80db688c07f0bdda17128e9dc2c2c1733f9c80",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/udhr-mai.jsonl",
+      "format": "jsonl",
+      "language": "mai",
+      "script": "Devanagari",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "420b1b78e3d56fd0e4cc985f70506299565ce298f5bf65c652fac378a3de7e75",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/udhr-ml.jsonl",
+      "format": "jsonl",
+      "language": "ml",
+      "script": "Malayalam",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "b9276e9b8e21f66474c61677d851bcd6815e1544f42390f2c7cdf67e5420783e",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-mni.jsonl",
+      "format": "jsonl",
+      "language": "mni",
+      "script": "Meetei Mayek",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "bc34bb52b23a941ea4f226cdbf349881a50c152ec2539ec7a51a6c440217e79a",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/udhr-mr.jsonl",
+      "format": "jsonl",
+      "language": "mr",
+      "script": "Devanagari",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "e03eb38e396abdc98ac2889097a30f22294c953ccec749f079672bfb09d372c4",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-ne.jsonl",
+      "format": "jsonl",
+      "language": "ne",
+      "script": "Devanagari",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "2f30a8a513b10b88c2d8f3a2749b4b8ccfb626e50a447fb5e509b69190382e64",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-or.jsonl",
+      "format": "jsonl",
+      "language": "or",
+      "script": "Odia",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "0d0fbfbced0f5fa6710c5dbf7ff04148ea6f91980477377c5fcc695ab707a120",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-pa.jsonl",
+      "format": "jsonl",
+      "language": "pa",
+      "script": "Gurmukhi",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "debd8df6b7f83e04ae75fbc339c60c8bd6acbe3fda04f80a69e57c74c47f22ac",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-sa.jsonl",
+      "format": "jsonl",
+      "language": "sa",
+      "script": "Devanagari",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "ca67ddc7941566fa29062450f52d4e9eeea6142f6f93530ba407db4678103e19",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/wikimedia-sat.jsonl",
+      "format": "jsonl",
+      "language": "sat",
+      "script": "Ol Chiki",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "13999a499554ba8e4d94d0fa4ec49c8dd6052e6ddd7f2420880f489f9a1f745d",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/udhr-ta.jsonl",
+      "format": "jsonl",
+      "language": "ta",
+      "script": "Tamil",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "990ade7e309f2134dc72973fd4f6329ce82b7a750a77cb5091c69632cb826f30",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/udhr-te.jsonl",
+      "format": "jsonl",
+      "language": "te",
+      "script": "Telugu",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "ffdb8589f1105572172d082b2b86cafb6024cb2e456aee775f8b22454ea39842",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/independent/udhr-ur.jsonl",
+      "format": "jsonl",
+      "language": "ur",
+      "script": "Arabic",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "08641a3cab2cc6ff32132269bae95f544830acad44aba71c974053ee03c5f68a",
+      "source": "Independent Wikimedia and Unicode UDHR samples"
+    },
+    {
+      "path": "../.cache/corpora/sindhi/sindhi-devanagari-blog.jsonl",
+      "format": "jsonl",
+      "language": "sd",
+      "script": "Devanagari",
+      "language_field": null,
+      "script_field": null,
+      "sha256": "c51ee55952e7d711792f41c3d8e0406ccc73752b82278d29f72bef20e56d7829",
+      "source": "Independent Devanagari Sindhi author blog"
+    }
+  ],
+  "source_manifest_sha256": "2851cd5bf3f20e99bc6ead7c999acaf34ae29ce8e8218471ac5c7d22c4d43740",
+  "source_notes": "Wikimedia is also an upstream source of some AI4Bharat datasets. This is independent collection/selection from primary publishers, not proof of wholly independent authorship. Exact/whitespace-equivalent overlaps excluded; partial overlaps and near duplicates may remain. Samples are unequal and small: especially Bodo/Dogri, Kashmiri, Manipuri, Santali. No native orthographic validation or speech/acoustic evaluation. Sindhi in this manifest is Arabic only; separate Devanagari Sindhi source required. Unicode UDHR is archival legal text and may contain legacy orthography."
+}
