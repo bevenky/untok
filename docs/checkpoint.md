@@ -1,4 +1,7 @@
-# Checkpoint integration and its verification boundary
+# BPE checkpoint integration
+
+This page documents the BPE variant. Native Unigram checkpoint integration is
+still pending; see [native Unigram details](native-unigram.md).
 
 The canonical artifact is the approved HF BPE `tokenizer.json`. The runtime
 adapter keeps this artifact intact and maps its IDs into native NeMo RNNT's
@@ -111,6 +114,7 @@ does not establish that this NeMo stack works. Provision the complete original
 the migration does not infer a complete checkpoint from an archive header.
 
 The `checkpoint` package extra supplies PyTorch helpers, not NeMo itself.
+Install the `legacy-bpe` extra for this historical BPE workflow as well.
 Migration restores, expands and verifies the checkpoint on CPU. Small offline
 audio comparisons can also run on CPU with a compatible runtime. CUDA is needed
 for testing GPU behavior and is recommended for substantial training and speech
@@ -119,8 +123,8 @@ evaluation workloads.
 From the repository root, after building the tokenizer, ID map and prompts:
 
 ```sh
-sttok migrate --source /models/original.nemo --output /models/indic-expanded.nemo --prompts artifacts/nemotron-indic-v1/prompts.json
-sttok verify-checkpoint --source /models/original.nemo --expanded /models/indic-expanded.nemo --manifest /data/migration-check.json --output reports/migration-audio.json --device cpu
+sttok legacy-bpe migrate --source /models/original.nemo --output /models/indic-expanded.nemo --prompts artifacts/nemotron-indic-v1/prompts.json
+sttok legacy-bpe verify-checkpoint --source /models/original.nemo --expanded /models/indic-expanded.nemo --manifest /data/migration-check.json --output reports/migration-audio.json --device cpu
 ```
 
 Use the same device in the audio manifest. The manifest format and verification

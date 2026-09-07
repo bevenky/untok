@@ -1,4 +1,7 @@
-# Runpod validation results
+# BPE Runpod validation results
+
+These results apply to the BPE variant. They do not validate a checkpoint using
+the new native Unigram tokenizer.
 
 Run date: 7 September 2026. Hardware: NVIDIA H100 NVL. Runtime and repeatable
 commands are in [runtime validation](runtime-validation.md).

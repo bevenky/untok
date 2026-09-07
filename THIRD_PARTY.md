@@ -1,9 +1,9 @@
 # Source provenance
 
-Exact tokenizer/data URLs, revisions and SHA-256 values are in
-`configs/sources.lock.json` and `configs/corpora.lock.json`. Build manifests
-record the consumed hashes. This project does not assert NVIDIA, AI4Bharat or
-Meta endorsement.
+BPE input pins are in `configs/sources.lock.json` and `configs/corpora.lock.json`.
+Native input pins are recorded in its generated selection, frozen corpus
+manifest and study reports. Build manifests record consumed hashes. This
+project does not assert NVIDIA, AI4Bharat or Meta endorsement.
 
 | Input | Source and published license information |
 | --- | --- |
@@ -14,6 +14,11 @@ Meta endorsement.
 | Public primary audit | [Bhasha-Abhijnaanam v1.0](https://github.com/AI4Bharat/IndicLID/releases/tag/v1.0); source-specific provenance retained in records |
 | Independent text samples | Wikimedia revision links, Unicode UDHR and author-published Devanagari Sindhi prose; raw snapshots remain local and are not redistributed in the candidate bundle |
 | Development speech checks | [Google FLEURS pinned revision](https://huggingface.co/datasets/google/fleurs/blob/70bb2e84b976b7e960aa89f1c648e09c59f894dd/README.md), CC-BY-4.0; per-clip hashes and source transcripts remain in local run evidence |
+| Native Unigram donor strings | [IndicBARTSS](https://huggingface.co/ai4bharat/IndicBARTSS/tree/4b2669d25bc24a46ad2501c2b759451b7a4a1a26) and [IndicBART](https://huggingface.co/ai4bharat/IndicBART/tree/78466a0c0e29f9229f7005623ecd6bc4243c0ae0), MIT; candidate strings only, with scores fitted against the native model |
+| Primary Unigram transcript corpus | [IndicVoices](https://huggingface.co/datasets/ai4bharat/IndicVoices/tree/c96f9088f138cf89d419da7e8e643e1f05c00a87), CC-BY-4.0 |
+| Additional Bodo, Konkani and Kashmiri transcripts | [Omnilingual ASR corpus](https://huggingface.co/datasets/facebook/omnilingual-asr-corpus/tree/8648ba8946377697b427ae952076e49fc0e5e44d), CC-BY-4.0 |
+| Additional Urdu transcripts | [UrduSpeech](https://huggingface.co/datasets/ASLP-lab/UrduSpeech/tree/16dd380cfd9049a3db7f06a98e878086916bf833), publisher-declared CC-BY-4.0 |
+| Additional SPRING R1 transcripts | [Primary author release](https://github.com/Speech-Lab-IITM/SPRING_INX_ESPnet_Recipe/blob/6e30c6ab949211bb573ac9bc034f61eb5114db28/README.md) describes the original audio and manually transcribed text as public domain; the recipe's MIT license is not treated as the data license |
 
 Before distribution, carry the applicable upstream license/notice files with
 derived artifacts and set the distribution metadata accordingly. The source
@@ -23,4 +28,11 @@ project-wide license is inferred merely from a donor's license.
 No upstream model weights or third-party corpus text are committed here.
 The selected 190-character list is a finite repertoire; it is not universal
 Unicode fallback. The IndicConformer donor normalizers are not imported into
-the final tokenizer: the selected NVIDIA HF normalizer remains exact.
+the final tokenizer. The BPE variant retains the published JSON normalizer;
+the native Unigram variant retains the embedded SentencePiece normalizer.
+
+See [native corpus preparation](docs/native-unigram-data.md) for sampling,
+split checks, source-specific annotation cleanup and exclusions. Corpus text
+is not included in tokenizer bundles. Vaani was downloaded for inspection
+but excluded from native fitting because its lexical extraction policy is
+unresolved. IN22-Conv was unavailable to the supplied account and is excluded.

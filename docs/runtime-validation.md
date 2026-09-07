@@ -1,4 +1,7 @@
-# Real checkpoint validation
+# Legacy BPE checkpoint validation
+
+These commands and scripts use the BPE adapter. Native Unigram checkpoint
+integration and speech tests remain pending.
 
 These checks use the complete NVIDIA checkpoint and real FLEURS recordings.
 They test migration and training integration. They do not measure whether the
@@ -12,7 +15,7 @@ of GPU memory, PyTorch 2.8.0 with CUDA 12.8, and NeMo Speech revision
 `ca4daa1470f6c01068c4e6a9a73b19b9a91dc366`.
 
 Use an isolated environment with this NeMo revision and install this repository
-with `python -m pip install -e '.[test,checkpoint]'`. The tested loss backend
+with `python -m pip install -e '.[legacy-bpe,test,checkpoint]'`. The tested loss backend
 was NeMo's native Numba RNNT loss with its original FastEmit configuration.
 The runtime used numba 0.67.0, numba-cuda 0.13.0, cuda-python 12.8.0,
 SoundFile 0.14.0 and lhotse 2.0.0a3. The checkpoint extra alone does not

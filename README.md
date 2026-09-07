@@ -1,115 +1,109 @@
 # sttok
 
-Extend the BPE tokenizer from
+Extend the native SentencePiece Unigram tokenizer in
 [NVIDIA Nemotron 3.5 ASR streaming 0.6B](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b)
-with selected AI4Bharat IndicConformer pieces. The repository also includes
-NeMo checkpoint migration and speech validation tools. The output is a
-`tokenizer.json` file for the Hugging Face `tokenizers` library.
+with Indic characters and subwords.
 
-The current tokenizer has **16,481 IDs**. Original IDs `0` through `13,088`
-are preserved, and additions start at `13,089`. It keeps NVIDIA's normalizer
-and original merge rules, with 103 additional Hindi pieces and 190 rare Latin
-characters. No Latin subword merges are added.
+The current candidate has **20,550 native text IDs**, including **7,463
+additions**. It preserves all 13,087 original entries, their scores and the
+native normalizer. Public padding and blank bring the public inventory to
+20,552 IDs.
 
-The tokenizer is built and text-tested. Real checkpoint migration, 12 paired
-audio checks, a small streaming check and seven-language gradient checks pass.
-See [measured results](docs/runtime-results.md). Fine-tuning and multilingual
-speech accuracy validation remain pending. Adding tokens alone does not teach
-the model to recognize new languages.
+Tokenizer validation is complete. Native checkpoint migration, fine-tuning
+and speech accuracy tests are still pending. New pieces can change Hindi
+segmentation; preserved IDs alone do not guarantee unchanged recognition.
+See [validation results](docs/native-unigram-results.md).
 
-## Build
+## Install
 
-Use Python 3.11 or later. Run these commands from the repository root:
+Use Python 3.11 or later, from the repository root:
 
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e .
-sttok fetch
-sttok build
-sttok id-map
-sttok prompts
 ```
-
-`fetch` downloads the pinned tokenizer inputs and checks their SHA-256 hashes.
-The remaining commands write the tokenizer, build manifest, NeMo ID mapping
-and language prompt registry to `artifacts/nemotron-indic-v1/`.
 
 ## Use the tokenizer
 
-```python
-from tokenizers import Tokenizer
+Generated tokenizer files are excluded from Git. A clean clone needs the
+candidate bundle separately. Copy the six files from its `tokenizer/` folder
+into `artifacts/nemotron-indic-unigram-v1/`, then verify them:
 
-tokenizer = Tokenizer.from_file("artifacts/nemotron-indic-v1/tokenizer.json")
-encoded = tokenizer.encode("நான் office போகிறேன்")
-print(encoded.ids)
-print(tokenizer.decode(encoded.ids))
+```sh
+sttok check --bundle artifacts/nemotron-indic-unigram-v1
 ```
+
+```python
+from sttok.unigram import NativeTokenizerAdapter
+
+tokenizer = NativeTokenizerAdapter("artifacts/nemotron-indic-unigram-v1")
+ids = tokenizer.text_to_ids("நான் office போகிறேன்")
+print(ids)
+print(tokenizer.ids_to_text(ids))
+```
+
+These are native text IDs. Use `text_to_public_ids()` and
+`public_ids_to_text()` for the public layout, which reserves padding and blank
+at 13,087 and 13,088. New public IDs start at 13,089.
+
+Rebuild the same tokenizer from the bundle's original model and scored
+selection, writing to a new directory:
+
+```sh
+sttok build \
+  --base artifacts/nemotron-indic-unigram-v1/base-tokenizer.model \
+  --selection artifacts/nemotron-indic-unigram-v1/selection.json \
+  --output artifacts/rebuilt-native
+```
+
+This packages the selected pieces and scores. It does not repeat corpus
+selection or train an acoustic model.
+
+## Language coverage
 
 The 22 target text profiles are Assamese, Bengali, Bodo, Dogri, Gujarati,
 Hindi, Kannada, Konkani, Kashmiri (Arabic), Maithili, Malayalam, Manipuri
 (Meetei Mayek), Marathi, Nepali, Odia, Punjabi (Gurmukhi), Sanskrit, Santali
-(Ol Chiki), Sindhi (Devanagari), Tamil, Telugu and Urdu. Alternate scripts
-and arbitrary Unicode coverage are not implied.
+(Ol Chiki), Sindhi (Devanagari), Tamil, Telugu and Urdu.
 
-The base normalizer is unchanged, including its ZWNJ-to-space behavior.
-Added Hindi pieces can change segmentation in Hindi and other Devanagari
-languages. Preserving old IDs does not guarantee unchanged recognition accuracy.
+The selected banks use 1,400 memberships for shared Devanagari, 500 for shared
+Bengali/Assamese and 500 for each remaining language, including separate
+Kashmiri and Urdu quotas. Shared strings and native overlap reduce new IDs.
+Text coverage does not imply trained speech support or every alternate script.
 
 ## Files and folders
 
 | Path | Contents |
 | --- | --- |
-| `src/sttok/` | Tokenizer builder, CLI, checkpoint adapter and validation code |
-| `configs/` | Source hashes, build settings, character lists and corpus manifests |
-| `tests/` | Tokenizer, migration and evaluation tests |
-| `scripts/` | Small real-audio training and streaming checks |
-| `docs/` | Validation results, data formats and checkpoint instructions |
-| `.github/workflows/` | Automated CPU tests |
-| `artifacts/nemotron-indic-v1/` | Generated tokenizer and integration files |
-| `.cache/` | Downloaded inputs and local corpus snapshots |
-| `reports/` | Generated validation reports |
+| `src/sttok/unigram*.py` | Native builder, fitter, adapter and validator |
+| `configs/` | Pinned inputs, approved pieces and validation policy |
+| `tests/` | Native tests and retained legacy regression checks |
+| `docs/` | Methods, measured results and checkpoint work still pending |
+| `artifacts/` | Generated bundles, excluded from Git |
+| `.cache/` | Local source snapshots, excluded from Git |
+| `reports/` | Generated validation reports, excluded from Git |
+| `scripts/` | Legacy BPE audio probes |
 
-The generated artifact folder contains:
+See [native usage and validation](docs/native-unigram.md),
+[data preparation](docs/native-unigram-data.md) and
+[source provenance](THIRD_PARTY.md).
 
-- `tokenizer.json`: the extended NVIDIA BPE tokenizer used in the example above.
-- `manifest.json`: source hashes, token provenance and build checks.
-- `nemo-id-map.json`: mapping from tokenizer IDs to NeMo model IDs.
-- `prompts.json`: existing and added language prompt assignments.
-
-Generated artifacts, caches, reports and model weights are excluded from Git.
-Some corpus manifests refer to local audit snapshots that are not bundled.
-See [source provenance](THIRD_PARTY.md) for upstream sources and licenses.
-
-## Validate and integrate
-
-To run the full local test suite, install the test and checkpoint dependencies:
+## Tests
 
 ```sh
-python -m pip install -e '.[test,checkpoint]'
-python -m pytest -q
+python -m pip install -e '.[test]'
+python -m pytest tests/test_unigram.py tests/test_unigram_fit.py tests/test_unigram_validation.py -q
 ```
 
-The recorded build passes standard-alphabet checks for all 22 profiles. The
-latest complete test run passed 171 tests, including the optional check against
-the actual native tokenizer artifact. See [build evidence](docs/build-evidence.md) for corpus counts,
-exclusions and remaining work, and [text validation](docs/validation.md)
-for corpus commands and checks before extending a previous release.
+`sttok validate` runs the native checks against an explicit policy and corpus
+manifest. Missing corpus evidence is reported as incomplete. Reserved text
+requires a receipt binding the finalized model and evaluation inputs.
 
-To use the tokenizer with Nemotron, follow the
-[checkpoint migration instructions](docs/checkpoint.md). The native model
-uses a different padding/blank layout, so replacing its tokenizer file alone
-is insufficient. Migration needs the complete checkpoint and a compatible
-NeMo installation, which the `checkpoint` extra does not install. Migration
-and small inference checks can run on CPU; substantial training should use GPU.
+## Earlier BPE work
 
-[Checkpoint verification](docs/checkpoint-validation.md) compares weights and
-real audio outputs. [Speech evaluation](docs/evaluation.md) describes
-per-language accuracy checks. See [real runtime checks](docs/runtime-validation.md)
-for the development audio, training and streaming probes. The general inference
-command is offline.
-
-NVIDIA's published JSON uses BPE; the native `.nemo` embeds a SentencePiece
-Unigram tokenizer. They share old piece IDs but can produce different training
-labels. This project keeps BPE encoding and preserves native text decoding in
-the migrated checkpoint. Continued training must account for that difference.
+Unigram is the active workflow. Earlier BPE code remains in this repository
+for reproducing past experiments and reusing tested checkpoint utilities.
+Its commands require `sttok legacy-bpe`; see [legacy BPE notes](docs/legacy-bpe.md).
+BPE and Unigram must each use a matching checkpoint, not an interchangeable
+runtime setting.

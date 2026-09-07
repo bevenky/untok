@@ -1,14 +1,17 @@
-# Tokenizer validation contract
+# Legacy BPE tokenizer validation
+
+These instructions reproduce the BPE experiment. For the active native
+tokenizer, see [Unigram usage and validation](native-unigram.md).
 
 ## Run the text audit
 
-After `sttok fetch` and `sttok build`, run from the repository root:
+After `sttok legacy-bpe fetch` and `sttok legacy-bpe build`, run from the repository root:
 
 ```sh
-sttok fetch-corpora
-sttok validate --corpora .cache/bhasha/manifest.json --output reports/bhasha-full.json
-sttok scope-corpora --corpora .cache/bhasha/manifest.json --output .cache/scoped-bhasha
-sttok validate --corpora .cache/scoped-bhasha/manifest.json --output reports/bhasha-scoped.json
+sttok legacy-bpe fetch-corpora
+sttok legacy-bpe validate --corpora .cache/bhasha/manifest.json --output reports/bhasha-full.json
+sttok legacy-bpe scope-corpora --corpora .cache/bhasha/manifest.json --output .cache/scoped-bhasha
+sttok legacy-bpe validate --corpora .cache/scoped-bhasha/manifest.json --output reports/bhasha-scoped.json
 ```
 
 Keep both the full and scoped reports. The full audit exposes unsupported
@@ -31,9 +34,9 @@ results, exclusions and limitations of the current candidate.
 Preserve the previous artifact directory and pass it to the builder:
 
 ```sh
-sttok build --previous /path/to/previous-release --output /path/to/new-release
-sttok id-map --tokenizer /path/to/new-release/tokenizer.json --output /path/to/new-release/nemo-id-map.json
-sttok prompts --previous /path/to/previous-release/prompts.json --output /path/to/new-release/prompts.json
+sttok legacy-bpe build --previous /path/to/previous-release --output /path/to/new-release
+sttok legacy-bpe id-map --tokenizer /path/to/new-release/tokenizer.json --output /path/to/new-release/nemo-id-map.json
+sttok legacy-bpe prompts --previous /path/to/previous-release/prompts.json --output /path/to/new-release/prompts.json
 ```
 
 Existing IDs and merges are validated before additions are appended. The

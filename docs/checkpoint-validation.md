@@ -1,5 +1,8 @@
 # Run checkpoint compatibility checks on real audio
 
+The current runner uses the BPE adapter. Native Unigram checkpoint integration
+and its paired speech tests are still pending.
+
 `validate_checkpoint_pair()` restores a local original `.nemo` and a local
 expanded `.nemo`. It verifies all old tensors and model/tokenizer mappings,
 transcribes the same audio with the same existing language prompts, and records
