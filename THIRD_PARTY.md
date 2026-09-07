@@ -36,3 +36,20 @@ split checks, source-specific annotation cleanup and exclusions. Corpus text
 is not included in tokenizer bundles. Vaani was downloaded for inspection
 but excluded from native fitting because its lexical extraction policy is
 unresolved. IN22-Conv was unavailable to the supplied account and is excluded.
+
+Script-limited native bundles use the generated Unicode 17.0.0 table in
+`src/sttok/_bundle_script_ranges.py`. The table includes the Unicode License V3
+notice and ships as a Python module with the wheel. Regenerate it with
+`scripts/generate_bundle_script_ranges.py`; its inputs must match these hashes:
+
+| Unicode 17 input | SHA-256 |
+| --- | --- |
+| Scripts.txt | `9f5e50d3abaee7d6ce09480f325c706f485ae3240912527e651954d2d6b035bf` |
+| ScriptExtensions.txt | `ec2107e58825a1586acee8e0911ce18260394ac8b87e535ca325f1ccbeb06bc6` |
+| PropertyValueAliases.txt | `64e9a5f76f7a1e8b5a47d6a1f9a26522a251208f5276bdfa1559dac7cf2e827a` |
+| UnicodeData.txt | `2e1efc1dcb59c575eedf5ccae60f95229f706ee6d031835247d843c11d96470c` |
+
+The files are published in the [Unicode 17 UCD directory](https://www.unicode.org/Public/17.0.0/ucd/).
+The policy retains Common punctuation, but checks restricted Script_Extensions
+for other Common and Inherited characters. It does not classify by Unicode
+block or by a character's name.
