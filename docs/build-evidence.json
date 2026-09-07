@@ -1,0 +1,4606 @@
+{
+  "actual_checkpoint_migrated": false,
+  "asr_inference_executed": false,
+  "byte_identical_second_build": true,
+  "candidate_manifest_sha256": "7ceb7107120ef13b971588f778fe2070de89bb7d37231b49e48b62ba9ab04554",
+  "candidate_tokenizer_sha256": "ef619be3ac1f85de60a3e9ab8c9f2deaddcbcfd71c8c9f1a55d9a9fc26d6a9c4",
+  "corpora": {
+    "raw-bhasha": {
+      "lost_normalized_characters": 25,
+      "missing_targets": [
+        {
+          "language": "sd",
+          "script": "Deva"
+        }
+      ],
+      "per_language": [
+        {
+          "base_token_lengths": {
+            "max": 218,
+            "mean": 38.84055118110236,
+            "p50": 36,
+            "p95": 69,
+            "p99": 106
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 1524,
+          "language": "as",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 1524,
+          "roundtrip_checked": 1524,
+          "roundtrip_failures": 0,
+          "script": "Beng",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 367,
+            "mean": 67.248687664042,
+            "p50": 62,
+            "p95": 117,
+            "p99": 176
+          },
+          "tokens_per_character": {
+            "max": 1.0526315789473684,
+            "mean": 0.5779201791106525,
+            "p50": 0.5734265734265734,
+            "p95": 0.6588235294117647,
+            "p99": 0.71
+          },
+          "tokens_per_word": {
+            "max": 16.0,
+            "mean": 3.827940567578797,
+            "p50": 3.736842105263158,
+            "p95": 4.8125,
+            "p99": 5.7
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 246,
+            "mean": 30.33464005702067,
+            "p50": 27,
+            "p95": 60,
+            "p99": 82
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5612,
+          "language": "bn",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5612,
+          "roundtrip_checked": 5612,
+          "roundtrip_failures": 0,
+          "script": "Beng",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 473,
+            "mean": 53.64504632929437,
+            "p50": 49,
+            "p95": 106,
+            "p99": 146
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.5702636467438799,
+            "p50": 0.5670995670995671,
+            "p95": 0.6578947368421053,
+            "p99": 0.7142857142857143
+          },
+          "tokens_per_word": {
+            "max": 10.5,
+            "mean": 3.859780887028292,
+            "p50": 3.7857142857142856,
+            "p95": 5.037037037037037,
+            "p99": 6.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 328,
+            "mean": 98.68974700399467,
+            "p50": 93,
+            "p95": 172,
+            "p99": 219
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 1502,
+          "language": "brx",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 1502,
+          "roundtrip_checked": 1502,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 265,
+            "mean": 82.97936085219708,
+            "p50": 77,
+            "p95": 143,
+            "p99": 188
+          },
+          "tokens_per_character": {
+            "max": 0.8709677419354839,
+            "mean": 0.7285749566013406,
+            "p50": 0.7278911564625851,
+            "p95": 0.7843137254901961,
+            "p99": 0.8083333333333333
+          },
+          "tokens_per_word": {
+            "max": 8.0,
+            "mean": 5.404414248729181,
+            "p50": 5.363636363636363,
+            "p95": 6.5625,
+            "p99": 7.25
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 353,
+            "mean": 103.29933333333334,
+            "p50": 94,
+            "p95": 191,
+            "p99": 257
+          },
+          "changed_sequence_fraction": 0.9986666666666667,
+          "changed_sequences": 1498,
+          "language": "doi",
+          "lost_normalized_characters": 2,
+          "missing_characters": [
+            {
+              "character": "­",
+              "codepoint": "U+00AD",
+              "occurrences": 2
+            }
+          ],
+          "normalized_unknown_spans": 2,
+          "protected_failures": 0,
+          "records": 1500,
+          "roundtrip_checked": 1498,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 278,
+            "mean": 83.47733333333333,
+            "p50": 75,
+            "p95": 154,
+            "p99": 213
+          },
+          "tokens_per_character": {
+            "max": 1.3333333333333333,
+            "mean": 0.6642290268056781,
+            "p50": 0.6612244897959184,
+            "p95": 0.723404255319149,
+            "p99": 0.759493670886076
+          },
+          "tokens_per_word": {
+            "max": 6.25,
+            "mean": 3.309463342818649,
+            "p50": 3.269230769230769,
+            "p95": 3.9411764705882355,
+            "p99": 4.3076923076923075
+          },
+          "unknown_records": 2,
+          "unknown_tokens": 2
+        },
+        {
+          "base_token_lengths": {
+            "max": 477,
+            "mean": 36.1186002413377,
+            "p50": 33,
+            "p95": 73,
+            "p99": 102
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5801,
+          "language": "gu",
+          "lost_normalized_characters": 8,
+          "missing_characters": [
+            {
+              "character": "૤",
+              "codepoint": "U+0AE4",
+              "occurrences": 8
+            }
+          ],
+          "normalized_unknown_spans": 8,
+          "protected_failures": 0,
+          "records": 5801,
+          "roundtrip_checked": 5800,
+          "roundtrip_failures": 0,
+          "script": "Gujr",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 777,
+            "mean": 59.49077745216342,
+            "p50": 53,
+            "p95": 119,
+            "p99": 180
+          },
+          "tokens_per_character": {
+            "max": 1.5,
+            "mean": 0.5838325046988334,
+            "p50": 0.5783132530120482,
+            "p95": 0.6829268292682927,
+            "p99": 0.7567567567567568
+          },
+          "tokens_per_word": {
+            "max": 10.0,
+            "mean": 3.6239842586629534,
+            "p50": 3.533333333333333,
+            "p95": 4.875,
+            "p99": 6.0
+          },
+          "unknown_records": 1,
+          "unknown_tokens": 8
+        },
+        {
+          "base_token_lengths": {
+            "max": 743,
+            "mean": 85.33475479744136,
+            "p50": 76,
+            "p95": 176,
+            "p99": 253
+          },
+          "changed_sequence_fraction": 0.9992892679459844,
+          "changed_sequences": 5624,
+          "language": "hi",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5628,
+          "roundtrip_checked": 5628,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 595,
+            "mean": 66.24307036247335,
+            "p50": 59,
+            "p95": 136,
+            "p99": 200
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.6417274598501455,
+            "p50": 0.6363636363636364,
+            "p95": 0.725,
+            "p99": 0.7927927927927928
+          },
+          "tokens_per_word": {
+            "max": 13.0,
+            "mean": 3.4181866146392577,
+            "p50": 3.3,
+            "p95": 4.545454545454546,
+            "p99": 5.8
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 192,
+            "mean": 27.237672752090088,
+            "p50": 24,
+            "p95": 56,
+            "p99": 81
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5861,
+          "language": "kn",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5861,
+          "roundtrip_checked": 5861,
+          "roundtrip_failures": 0,
+          "script": "Knda",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 444,
+            "mean": 58.64289370414605,
+            "p50": 53,
+            "p95": 119,
+            "p99": 174
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.5697351761081297,
+            "p50": 0.5644171779141104,
+            "p95": 0.6666666666666666,
+            "p99": 0.7407407407407407
+          },
+          "tokens_per_word": {
+            "max": 14.0,
+            "mean": 4.80951408105644,
+            "p50": 4.7272727272727275,
+            "p95": 6.2,
+            "p99": 7.333333333333333
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 409,
+            "mean": 89.55466666666666,
+            "p50": 83,
+            "p95": 154,
+            "p99": 208
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 1500,
+          "language": "kok",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 1500,
+          "roundtrip_checked": 1500,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 348,
+            "mean": 75.302,
+            "p50": 69,
+            "p95": 129,
+            "p99": 175
+          },
+          "tokens_per_character": {
+            "max": 0.8372093023255814,
+            "mean": 0.6835655912099704,
+            "p50": 0.6823529411764706,
+            "p95": 0.7397260273972602,
+            "p99": 0.7790697674418605
+          },
+          "tokens_per_word": {
+            "max": 7.0,
+            "mean": 4.652778396297539,
+            "p50": 4.625,
+            "p95": 5.625,
+            "p99": 6.166666666666667
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 268,
+            "mean": 94.39356632247815,
+            "p50": 90,
+            "p95": 159,
+            "p99": 208
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 2518,
+          "language": "ks",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 2518,
+          "roundtrip_checked": 2518,
+          "roundtrip_failures": 0,
+          "script": "Arab",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 226,
+            "mean": 82.4614773629865,
+            "p50": 79,
+            "p95": 140,
+            "p99": 181
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.7103159880833447,
+            "p50": 0.7090909090909091,
+            "p95": 0.7868852459016393,
+            "p99": 0.828125
+          },
+          "tokens_per_word": {
+            "max": 7.5,
+            "mean": 3.999693765049871,
+            "p50": 3.9642857142857144,
+            "p95": 4.785714285714286,
+            "p99": 5.212121212121212
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 350,
+            "mean": 93.65433571996817,
+            "p50": 88,
+            "p95": 161,
+            "p99": 221
+          },
+          "changed_sequence_fraction": 0.9992044550517104,
+          "changed_sequences": 2512,
+          "language": "mai",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 2514,
+          "roundtrip_checked": 2514,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 297,
+            "mean": 75.87987271280828,
+            "p50": 72,
+            "p95": 130,
+            "p99": 179
+          },
+          "tokens_per_character": {
+            "max": 1.0033783783783783,
+            "mean": 0.6872730843439057,
+            "p50": 0.6859504132231405,
+            "p95": 0.75,
+            "p99": 0.7954545454545454
+          },
+          "tokens_per_word": {
+            "max": 7.142857142857143,
+            "mean": 3.8079740744671042,
+            "p50": 3.75,
+            "p95": 4.764705882352941,
+            "p99": 5.3
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 128,
+            "mean": 22.859726901932966,
+            "p50": 20,
+            "p95": 46,
+            "p99": 64
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5639,
+          "language": "ml",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5639,
+          "roundtrip_checked": 5639,
+          "roundtrip_failures": 0,
+          "script": "Mlym",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 265,
+            "mean": 57.14577052668913,
+            "p50": 51,
+            "p95": 116,
+            "p99": 155
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.5656312728941539,
+            "p50": 0.5593869731800766,
+            "p95": 0.664179104477612,
+            "p99": 0.7777777777777778
+          },
+          "tokens_per_word": {
+            "max": 14.0,
+            "mean": 5.6715486738710865,
+            "p50": 5.529411764705882,
+            "p95": 7.625,
+            "p99": 9.2
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 117,
+            "mean": 34.26964047936085,
+            "p50": 32,
+            "p95": 59,
+            "p99": 76
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 1502,
+          "language": "mni",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 1502,
+          "roundtrip_checked": 1502,
+          "roundtrip_failures": 0,
+          "script": "Mtei",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 238,
+            "mean": 61.74367509986684,
+            "p50": 58,
+            "p95": 107,
+            "p99": 131
+          },
+          "tokens_per_character": {
+            "max": 0.875,
+            "mean": 0.5884436225194736,
+            "p50": 0.5844155844155844,
+            "p95": 0.6847826086956522,
+            "p99": 0.7317073170731707
+          },
+          "tokens_per_word": {
+            "max": 7.714285714285714,
+            "mean": 3.8081258970541154,
+            "p50": 3.75,
+            "p95": 4.866666666666666,
+            "p99": 5.666666666666667
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 436,
+            "mean": 66.2863741339492,
+            "p50": 59,
+            "p95": 142,
+            "p99": 188
+          },
+          "changed_sequence_fraction": 0.992893942085628,
+          "changed_sequences": 5589,
+          "language": "mr",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5629,
+          "roundtrip_checked": 5629,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 359,
+            "mean": 56.006217800675074,
+            "p50": 49,
+            "p95": 120,
+            "p99": 159
+          },
+          "tokens_per_character": {
+            "max": 1.1666666666666667,
+            "mean": 0.687232597557383,
+            "p50": 0.6811594202898551,
+            "p95": 0.7777777777777778,
+            "p99": 0.875
+          },
+          "tokens_per_word": {
+            "max": 18.0,
+            "mean": 4.78103867182211,
+            "p50": 4.7,
+            "p95": 6.130434782608695,
+            "p99": 7.5
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 303,
+            "mean": 93.86396181384248,
+            "p50": 89,
+            "p95": 156,
+            "p99": 203
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 2514,
+          "language": "ne",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 2514,
+          "roundtrip_checked": 2514,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 244,
+            "mean": 76.1722354813047,
+            "p50": 73,
+            "p95": 127,
+            "p99": 165
+          },
+          "tokens_per_character": {
+            "max": 0.8333333333333334,
+            "mean": 0.682668797679578,
+            "p50": 0.6811594202898551,
+            "p95": 0.7415730337078652,
+            "p99": 0.7714285714285715
+          },
+          "tokens_per_word": {
+            "max": 7.333333333333333,
+            "mean": 4.620951379511894,
+            "p50": 4.583333333333333,
+            "p95": 5.636363636363637,
+            "p99": 6.166666666666667
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 199,
+            "mean": 37.27755905511811,
+            "p50": 35,
+            "p95": 64,
+            "p99": 89
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 1524,
+          "language": "or",
+          "lost_normalized_characters": 2,
+          "missing_characters": [
+            {
+              "character": "⦁",
+              "codepoint": "U+2981",
+              "occurrences": 1
+            },
+            {
+              "character": "",
+              "codepoint": "U+F0B7",
+              "occurrences": 1
+            }
+          ],
+          "normalized_unknown_spans": 2,
+          "protected_failures": 0,
+          "records": 1524,
+          "roundtrip_checked": 1522,
+          "roundtrip_failures": 0,
+          "script": "Orya",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 376,
+            "mean": 67.05183727034121,
+            "p50": 64,
+            "p95": 115,
+            "p99": 163
+          },
+          "tokens_per_character": {
+            "max": 0.7727272727272727,
+            "mean": 0.5720738380484299,
+            "p50": 0.5691056910569106,
+            "p95": 0.6578947368421053,
+            "p99": 0.703125
+          },
+          "tokens_per_word": {
+            "max": 6.2,
+            "mean": 3.890842365865502,
+            "p50": 3.8333333333333335,
+            "p95": 4.833333333333333,
+            "p99": 5.375
+          },
+          "unknown_records": 2,
+          "unknown_tokens": 2
+        },
+        {
+          "base_token_lengths": {
+            "max": 551,
+            "mean": 42.44615119088712,
+            "p50": 38,
+            "p95": 87,
+            "p99": 134
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5794,
+          "language": "pa",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5794,
+          "roundtrip_checked": 5794,
+          "roundtrip_failures": 0,
+          "script": "Guru",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 728,
+            "mean": 56.75043148084225,
+            "p50": 51,
+            "p95": 117,
+            "p99": 184
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.5631717628819484,
+            "p50": 0.5566037735849056,
+            "p95": 0.6666666666666666,
+            "p99": 0.7777777777777778
+          },
+          "tokens_per_word": {
+            "max": 8.0,
+            "mean": 2.906277277873679,
+            "p50": 2.8260869565217392,
+            "p95": 3.857142857142857,
+            "p99": 5.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 296,
+            "mean": 100.3977047882865,
+            "p50": 96,
+            "p95": 174,
+            "p99": 226
+          },
+          "changed_sequence_fraction": 0.999208547685002,
+          "changed_sequences": 2525,
+          "language": "sa",
+          "lost_normalized_characters": 4,
+          "missing_characters": [
+            {
+              "character": "⁣",
+              "codepoint": "U+2063",
+              "occurrences": 4
+            }
+          ],
+          "normalized_unknown_spans": 3,
+          "protected_failures": 0,
+          "records": 2527,
+          "roundtrip_checked": 2524,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 262,
+            "mean": 84.67510882469331,
+            "p50": 81,
+            "p95": 147,
+            "p99": 194
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.6972715237575604,
+            "p50": 0.6966292134831461,
+            "p95": 0.7543859649122807,
+            "p99": 0.782608695652174
+          },
+          "tokens_per_word": {
+            "max": 12.0,
+            "mean": 5.923817704581597,
+            "p50": 5.769230769230769,
+            "p95": 8.333333333333334,
+            "p99": 10.0
+          },
+          "unknown_records": 3,
+          "unknown_tokens": 3
+        },
+        {
+          "base_token_lengths": {
+            "max": 181,
+            "mean": 47.42874203821656,
+            "p50": 45,
+            "p95": 83,
+            "p99": 116
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 2512,
+          "language": "sat",
+          "lost_normalized_characters": 9,
+          "missing_characters": [
+            {
+              "character": "⁣",
+              "codepoint": "U+2063",
+              "occurrences": 9
+            }
+          ],
+          "normalized_unknown_spans": 8,
+          "protected_failures": 0,
+          "records": 2512,
+          "roundtrip_checked": 2504,
+          "roundtrip_failures": 0,
+          "script": "Olck",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 244,
+            "mean": 67.17396496815287,
+            "p50": 63,
+            "p95": 118,
+            "p99": 162
+          },
+          "tokens_per_character": {
+            "max": 0.7166666666666667,
+            "mean": 0.5075996430368671,
+            "p50": 0.5059523809523809,
+            "p95": 0.5846153846153846,
+            "p99": 0.6266666666666667
+          },
+          "tokens_per_word": {
+            "max": 6.090909090909091,
+            "mean": 2.93111092590082,
+            "p50": 2.8823529411764706,
+            "p95": 3.6923076923076925,
+            "p99": 4.217391304347826
+          },
+          "unknown_records": 8,
+          "unknown_tokens": 8
+        },
+        {
+          "base_token_lengths": {
+            "max": 156,
+            "mean": 24.515135878912968,
+            "p50": 22,
+            "p95": 52,
+            "p99": 71
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5814,
+          "language": "ta",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5814,
+          "roundtrip_checked": 5814,
+          "roundtrip_failures": 0,
+          "script": "Taml",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 311,
+            "mean": 50.1546267629859,
+            "p50": 46,
+            "p95": 103,
+            "p99": 149
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.500316067256655,
+            "p50": 0.49193548387096775,
+            "p95": 0.6049382716049383,
+            "p99": 0.7142857142857143
+          },
+          "tokens_per_word": {
+            "max": 24.0,
+            "mean": 4.622243195394951,
+            "p50": 4.5,
+            "p95": 6.0,
+            "p99": 7.333333333333333
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 433,
+            "mean": 24.946409989594173,
+            "p50": 21,
+            "p95": 56,
+            "p99": 79
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5766,
+          "language": "te",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5766,
+          "roundtrip_checked": 5766,
+          "roundtrip_failures": 0,
+          "script": "Telu",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 888,
+            "mean": 51.82223378425252,
+            "p50": 45,
+            "p95": 113,
+            "p99": 166
+          },
+          "tokens_per_character": {
+            "max": 1.3333333333333333,
+            "mean": 0.5964786907446232,
+            "p50": 0.5882352941176471,
+            "p95": 0.7016129032258065,
+            "p99": 0.8
+          },
+          "tokens_per_word": {
+            "max": 15.0,
+            "mean": 4.730237335929013,
+            "p50": 4.6,
+            "p95": 6.4,
+            "p99": 8.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 7155,
+            "mean": 80.01476762704503,
+            "p50": 70,
+            "p95": 161,
+            "p99": 248
+          },
+          "changed_sequence_fraction": 0.9927609671347908,
+          "changed_sequences": 6857,
+          "language": "ur",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 6907,
+          "roundtrip_checked": 6907,
+          "roundtrip_failures": 0,
+          "script": "Arab",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 5577,
+            "mean": 64.4812509048791,
+            "p50": 56,
+            "p95": 129,
+            "p99": 198
+          },
+          "tokens_per_character": {
+            "max": 1.3333333333333333,
+            "mean": 0.6628874734125274,
+            "p50": 0.6527777777777778,
+            "p95": 0.782608695652174,
+            "p99": 1.0
+          },
+          "tokens_per_word": {
+            "max": 9.5,
+            "mean": 3.128171803488404,
+            "p50": 3.0285714285714285,
+            "p95": 4.019607843137255,
+            "p99": 5.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        }
+      ],
+      "profiles": 21,
+      "records": 80088,
+      "report_sha256": "fb5fffcf84f2ee367a166b5ec4f89516739fb1f51fbae0c3fdfd04e9edd62deb",
+      "roundtrip_failures": 0,
+      "status": "failed",
+      "structural_passed": true,
+      "unknown_records": 16
+    },
+    "raw-independent": {
+      "lost_normalized_characters": 117,
+      "missing_targets": [],
+      "per_language": [
+        {
+          "base_token_lengths": {
+            "max": 529,
+            "mean": 142.16666666666666,
+            "p50": 132,
+            "p95": 287,
+            "p99": 529
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 72,
+          "language": "as",
+          "lost_normalized_characters": 31,
+          "missing_characters": [
+            {
+              "character": "ᬤ",
+              "codepoint": "U+1B24",
+              "occurrences": 1
+            },
+            {
+              "character": "ᬭ",
+              "codepoint": "U+1B2D",
+              "occurrences": 1
+            },
+            {
+              "character": "ᬯ",
+              "codepoint": "U+1B2F",
+              "occurrences": 1
+            },
+            {
+              "character": "ᬲ",
+              "codepoint": "U+1B32",
+              "occurrences": 1
+            },
+            {
+              "character": "ᬶ",
+              "codepoint": "U+1B36",
+              "occurrences": 2
+            },
+            {
+              "character": "ᬾ",
+              "codepoint": "U+1B3E",
+              "occurrences": 1
+            },
+            {
+              "character": "᭄",
+              "codepoint": "U+1B44",
+              "occurrences": 1
+            },
+            {
+              "character": "ᮀ",
+              "codepoint": "U+1B80",
+              "occurrences": 2
+            },
+            {
+              "character": "ᮃ",
+              "codepoint": "U+1B83",
+              "occurrences": 1
+            },
+            {
+              "character": "ᮄ",
+              "codepoint": "U+1B84",
+              "occurrences": 1
+            },
+            {
+              "character": "ᮎ",
+              "codepoint": "U+1B8E",
+              "occurrences": 1
+            },
+            {
+              "character": "ᮑ",
+              "codepoint": "U+1B91",
+              "occurrences": 1
+            },
+            {
+              "character": "ᮕ",
+              "codepoint": "U+1B95",
+              "occurrences": 1
+            },
+            {
+              "character": "ᮞ",
+              "codepoint": "U+1B9E",
+              "occurrences": 2
+            },
+            {
+              "character": "ᮠ",
+              "codepoint": "U+1BA0",
+              "occurrences": 2
+            },
+            {
+              "character": "ᮡ",
+              "codepoint": "U+1BA1",
+              "occurrences": 1
+            },
+            {
+              "character": "ᮢ",
+              "codepoint": "U+1BA2",
+              "occurrences": 1
+            },
+            {
+              "character": "ᮤ",
+              "codepoint": "U+1BA4",
+              "occurrences": 2
+            },
+            {
+              "character": "ᮧ",
+              "codepoint": "U+1BA7",
+              "occurrences": 1
+            },
+            {
+              "character": "ꦢ",
+              "codepoint": "U+A9A2",
+              "occurrences": 1
+            },
+            {
+              "character": "ꦮ",
+              "codepoint": "U+A9AE",
+              "occurrences": 1
+            },
+            {
+              "character": "ꦱ",
+              "codepoint": "U+A9B1",
+              "occurrences": 1
+            },
+            {
+              "character": "ꦶ",
+              "codepoint": "U+A9B6",
+              "occurrences": 2
+            },
+            {
+              "character": "ꦺ",
+              "codepoint": "U+A9BA",
+              "occurrences": 1
+            },
+            {
+              "character": "ꦿ",
+              "codepoint": "U+A9BF",
+              "occurrences": 1
+            }
+          ],
+          "normalized_unknown_spans": 6,
+          "protected_failures": 0,
+          "records": 72,
+          "roundtrip_checked": 71,
+          "roundtrip_failures": 0,
+          "script": "Beng",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 958,
+            "mean": 254.41666666666666,
+            "p50": 233,
+            "p95": 509,
+            "p99": 958
+          },
+          "tokens_per_character": {
+            "max": 0.6703296703296703,
+            "mean": 0.5864921264296706,
+            "p50": 0.5882352941176471,
+            "p95": 0.6322869955156951,
+            "p99": 0.6703296703296703
+          },
+          "tokens_per_word": {
+            "max": 4.779661016949152,
+            "mean": 3.9709700914793995,
+            "p50": 3.9714285714285715,
+            "p95": 4.46,
+            "p99": 4.779661016949152
+          },
+          "unknown_records": 1,
+          "unknown_tokens": 6
+        },
+        {
+          "base_token_lengths": {
+            "max": 265,
+            "mean": 88.76543209876543,
+            "p50": 69,
+            "p95": 231,
+            "p99": 265
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 81,
+          "language": "bn",
+          "lost_normalized_characters": 3,
+          "missing_characters": [
+            {
+              "character": "ː",
+              "codepoint": "U+02D0",
+              "occurrences": 1
+            },
+            {
+              "character": "̞",
+              "codepoint": "U+031E",
+              "occurrences": 2
+            }
+          ],
+          "normalized_unknown_spans": 2,
+          "protected_failures": 0,
+          "records": 81,
+          "roundtrip_checked": 80,
+          "roundtrip_failures": 0,
+          "script": "Beng",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 476,
+            "mean": 162.1358024691358,
+            "p50": 135,
+            "p95": 420,
+            "p99": 476
+          },
+          "tokens_per_character": {
+            "max": 0.7142857142857143,
+            "mean": 0.5780472235949458,
+            "p50": 0.5738396624472574,
+            "p95": 0.6375,
+            "p99": 0.7142857142857143
+          },
+          "tokens_per_word": {
+            "max": 5.6923076923076925,
+            "mean": 4.152986703725401,
+            "p50": 4.090909090909091,
+            "p95": 5.142857142857143,
+            "p99": 5.6923076923076925
+          },
+          "unknown_records": 1,
+          "unknown_tokens": 2
+        },
+        {
+          "base_token_lengths": {
+            "max": 407,
+            "mean": 163.47619047619048,
+            "p50": 135,
+            "p95": 329,
+            "p99": 407
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 21,
+          "language": "brx",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 21,
+          "roundtrip_checked": 21,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 342,
+            "mean": 139.23809523809524,
+            "p50": 109,
+            "p95": 289,
+            "p99": 342
+          },
+          "tokens_per_character": {
+            "max": 0.8,
+            "mean": 0.72735845795633,
+            "p50": 0.7219251336898396,
+            "p95": 0.7613636363636364,
+            "p99": 0.8
+          },
+          "tokens_per_word": {
+            "max": 6.666666666666667,
+            "mean": 5.220949220024944,
+            "p50": 5.15625,
+            "p95": 5.6875,
+            "p99": 6.666666666666667
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 640,
+            "mean": 410.375,
+            "p50": 371,
+            "p95": 640,
+            "p99": 640
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 8,
+          "language": "doi",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 8,
+          "roundtrip_checked": 8,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 530,
+            "mean": 341.5,
+            "p50": 306,
+            "p95": 530,
+            "p99": 530
+          },
+          "tokens_per_character": {
+            "max": 0.6965174129353234,
+            "mean": 0.6751200166003265,
+            "p50": 0.6719022687609075,
+            "p95": 0.6965174129353234,
+            "p99": 0.6965174129353234
+          },
+          "tokens_per_word": {
+            "max": 4.08,
+            "mean": 3.625186946633724,
+            "p50": 3.5604395604395602,
+            "p95": 4.08,
+            "p99": 4.08
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 431,
+            "mean": 140.71830985915494,
+            "p50": 150,
+            "p95": 265,
+            "p99": 431
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 71,
+          "language": "gu",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 71,
+          "roundtrip_checked": 71,
+          "roundtrip_failures": 0,
+          "script": "Gujr",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 658,
+            "mean": 223.74647887323943,
+            "p50": 238,
+            "p95": 420,
+            "p99": 658
+          },
+          "tokens_per_character": {
+            "max": 0.7532467532467533,
+            "mean": 0.575132009416845,
+            "p50": 0.5636363636363636,
+            "p95": 0.6567796610169492,
+            "p99": 0.7532467532467533
+          },
+          "tokens_per_word": {
+            "max": 4.269230769230769,
+            "mean": 3.5239258876098507,
+            "p50": 3.4711538461538463,
+            "p95": 4.071428571428571,
+            "p99": 4.269230769230769
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 1312,
+            "mean": 274.56410256410254,
+            "p50": 158,
+            "p95": 755,
+            "p99": 1312
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 78,
+          "language": "hi",
+          "lost_normalized_characters": 3,
+          "missing_characters": [
+            {
+              "character": "ˈ",
+              "codepoint": "U+02C8",
+              "occurrences": 1
+            },
+            {
+              "character": "́",
+              "codepoint": "U+0301",
+              "occurrences": 2
+            }
+          ],
+          "normalized_unknown_spans": 3,
+          "protected_failures": 0,
+          "records": 78,
+          "roundtrip_checked": 76,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 1084,
+            "mean": 219.30769230769232,
+            "p50": 136,
+            "p95": 599,
+            "p99": 1084
+          },
+          "tokens_per_character": {
+            "max": 0.7326732673267327,
+            "mean": 0.6522566235355489,
+            "p50": 0.6496815286624203,
+            "p95": 0.71875,
+            "p99": 0.7326732673267327
+          },
+          "tokens_per_word": {
+            "max": 5.3076923076923075,
+            "mean": 3.696025004737642,
+            "p50": 3.676470588235294,
+            "p95": 4.5,
+            "p99": 5.3076923076923075
+          },
+          "unknown_records": 2,
+          "unknown_tokens": 3
+        },
+        {
+          "base_token_lengths": {
+            "max": 114,
+            "mean": 37.63793103448276,
+            "p50": 31,
+            "p95": 71,
+            "p99": 114
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 58,
+          "language": "kn",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 58,
+          "roundtrip_checked": 58,
+          "roundtrip_failures": 0,
+          "script": "Knda",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 303,
+            "mean": 97.91379310344827,
+            "p50": 86,
+            "p95": 188,
+            "p99": 303
+          },
+          "tokens_per_character": {
+            "max": 0.6774193548387096,
+            "mean": 0.5718000943192167,
+            "p50": 0.5666666666666667,
+            "p95": 0.6578947368421053,
+            "p99": 0.6774193548387096
+          },
+          "tokens_per_word": {
+            "max": 8.8,
+            "mean": 5.7549217410821685,
+            "p50": 5.666666666666667,
+            "p95": 7.318181818181818,
+            "p99": 8.8
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 1247,
+            "mean": 267.125,
+            "p50": 211,
+            "p95": 596,
+            "p99": 1247
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 40,
+          "language": "kok",
+          "lost_normalized_characters": 9,
+          "missing_characters": [
+            {
+              "character": "ˈ",
+              "codepoint": "U+02C8",
+              "occurrences": 8
+            },
+            {
+              "character": "ː",
+              "codepoint": "U+02D0",
+              "occurrences": 1
+            }
+          ],
+          "normalized_unknown_spans": 9,
+          "protected_failures": 0,
+          "records": 40,
+          "roundtrip_checked": 38,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 1072,
+            "mean": 227.075,
+            "p50": 175,
+            "p95": 506,
+            "p99": 1072
+          },
+          "tokens_per_character": {
+            "max": 0.7761194029850746,
+            "mean": 0.6961534537221945,
+            "p50": 0.6935483870967742,
+            "p95": 0.7333333333333333,
+            "p99": 0.7761194029850746
+          },
+          "tokens_per_word": {
+            "max": 6.875,
+            "mean": 4.987726039799276,
+            "p50": 4.857142857142857,
+            "p95": 6.333333333333333,
+            "p99": 6.875
+          },
+          "unknown_records": 2,
+          "unknown_tokens": 9
+        },
+        {
+          "base_token_lengths": {
+            "max": 631,
+            "mean": 205.8,
+            "p50": 188,
+            "p95": 435,
+            "p99": 631
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 25,
+          "language": "ks",
+          "lost_normalized_characters": 3,
+          "missing_characters": [
+            {
+              "character": "ˈ",
+              "codepoint": "U+02C8",
+              "occurrences": 1
+            },
+            {
+              "character": "ː",
+              "codepoint": "U+02D0",
+              "occurrences": 2
+            }
+          ],
+          "normalized_unknown_spans": 2,
+          "protected_failures": 0,
+          "records": 25,
+          "roundtrip_checked": 24,
+          "roundtrip_failures": 0,
+          "script": "Arab",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 504,
+            "mean": 169.72,
+            "p50": 144,
+            "p95": 354,
+            "p99": 504
+          },
+          "tokens_per_character": {
+            "max": 0.7906976744186046,
+            "mean": 0.6487703141249398,
+            "p50": 0.6597938144329897,
+            "p95": 0.7417721518987341,
+            "p99": 0.7906976744186046
+          },
+          "tokens_per_word": {
+            "max": 5.666666666666667,
+            "mean": 3.7977671733433778,
+            "p50": 3.710526315789474,
+            "p95": 4.571428571428571,
+            "p99": 5.666666666666667
+          },
+          "unknown_records": 1,
+          "unknown_tokens": 2
+        },
+        {
+          "base_token_lengths": {
+            "max": 406,
+            "mean": 123.64516129032258,
+            "p50": 106,
+            "p95": 263,
+            "p99": 406
+          },
+          "changed_sequence_fraction": 0.967741935483871,
+          "changed_sequences": 60,
+          "language": "mai",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 62,
+          "roundtrip_checked": 62,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 323,
+            "mean": 99.5,
+            "p50": 82,
+            "p95": 210,
+            "p99": 323
+          },
+          "tokens_per_character": {
+            "max": 0.8571428571428571,
+            "mean": 0.6697382652462146,
+            "p50": 0.6666666666666666,
+            "p95": 0.7284768211920529,
+            "p99": 0.8571428571428571
+          },
+          "tokens_per_word": {
+            "max": 5.4,
+            "mean": 4.229988155105614,
+            "p50": 4.25,
+            "p95": 5.0,
+            "p99": 5.4
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 172,
+            "mean": 31.607843137254903,
+            "p50": 25,
+            "p95": 70,
+            "p99": 172
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 51,
+          "language": "ml",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 51,
+          "roundtrip_checked": 51,
+          "roundtrip_failures": 0,
+          "script": "Mlym",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 598,
+            "mean": 104.17647058823529,
+            "p50": 78,
+            "p95": 228,
+            "p99": 598
+          },
+          "tokens_per_character": {
+            "max": 0.6428571428571429,
+            "mean": 0.5309152979080166,
+            "p50": 0.5250219490781387,
+            "p95": 0.5975609756097561,
+            "p99": 0.6428571428571429
+          },
+          "tokens_per_word": {
+            "max": 9.6,
+            "mean": 6.531978822530744,
+            "p50": 6.5,
+            "p95": 7.944444444444445,
+            "p99": 9.6
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 149,
+            "mean": 52.93333333333333,
+            "p50": 40,
+            "p95": 149,
+            "p99": 149
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 15,
+          "language": "mni",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 15,
+          "roundtrip_checked": 15,
+          "roundtrip_failures": 0,
+          "script": "Mtei",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 303,
+            "mean": 90.13333333333334,
+            "p50": 71,
+            "p95": 303,
+            "p99": 303
+          },
+          "tokens_per_character": {
+            "max": 0.7096774193548387,
+            "mean": 0.5600319513520305,
+            "p50": 0.5434782608695652,
+            "p95": 0.7096774193548387,
+            "p99": 0.7096774193548387
+          },
+          "tokens_per_word": {
+            "max": 5.333333333333333,
+            "mean": 3.4199664541428736,
+            "p50": 3.25,
+            "p95": 5.333333333333333,
+            "p99": 5.333333333333333
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 396,
+            "mean": 144.76666666666668,
+            "p50": 116,
+            "p95": 294,
+            "p99": 396
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 60,
+          "language": "mr",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 60,
+          "roundtrip_checked": 60,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 326,
+            "mean": 118.45,
+            "p50": 97,
+            "p95": 242,
+            "p99": 326
+          },
+          "tokens_per_character": {
+            "max": 0.7192982456140351,
+            "mean": 0.6409119790697024,
+            "p50": 0.6349206349206349,
+            "p95": 0.6896551724137931,
+            "p99": 0.7192982456140351
+          },
+          "tokens_per_word": {
+            "max": 6.0,
+            "mean": 4.680182298674696,
+            "p50": 4.764705882352941,
+            "p95": 5.25,
+            "p99": 6.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 1052,
+            "mean": 235.36697247706422,
+            "p50": 197,
+            "p95": 560,
+            "p99": 728
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 109,
+          "language": "ne",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 109,
+          "roundtrip_checked": 109,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 846,
+            "mean": 193.3119266055046,
+            "p50": 163,
+            "p95": 453,
+            "p99": 609
+          },
+          "tokens_per_character": {
+            "max": 0.7890625,
+            "mean": 0.6826567137716487,
+            "p50": 0.6816326530612244,
+            "p95": 0.7323232323232324,
+            "p99": 0.7864077669902912
+          },
+          "tokens_per_word": {
+            "max": 5.842105263157895,
+            "mean": 4.511426219083062,
+            "p50": 4.519230769230769,
+            "p95": 5.25,
+            "p99": 5.75
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 362,
+            "mean": 91.45360824742268,
+            "p50": 83,
+            "p95": 224,
+            "p99": 362
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 97,
+          "language": "or",
+          "lost_normalized_characters": 6,
+          "missing_characters": [
+            {
+              "character": "ˈ",
+              "codepoint": "U+02C8",
+              "occurrences": 1
+            },
+            {
+              "character": "ː",
+              "codepoint": "U+02D0",
+              "occurrences": 3
+            },
+            {
+              "character": "̪",
+              "codepoint": "U+032A",
+              "occurrences": 1
+            },
+            {
+              "character": "ἄ",
+              "codepoint": "U+1F04",
+              "occurrences": 1
+            }
+          ],
+          "normalized_unknown_spans": 6,
+          "protected_failures": 0,
+          "records": 97,
+          "roundtrip_checked": 95,
+          "roundtrip_failures": 0,
+          "script": "Orya",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 573,
+            "mean": 165.8659793814433,
+            "p50": 147,
+            "p95": 400,
+            "p99": 573
+          },
+          "tokens_per_character": {
+            "max": 0.7192982456140351,
+            "mean": 0.6101847890406533,
+            "p50": 0.6060606060606061,
+            "p95": 0.6885245901639344,
+            "p99": 0.7192982456140351
+          },
+          "tokens_per_word": {
+            "max": 6.857142857142857,
+            "mean": 4.021869364847543,
+            "p50": 3.857142857142857,
+            "p95": 5.166666666666667,
+            "p99": 6.857142857142857
+          },
+          "unknown_records": 2,
+          "unknown_tokens": 6
+        },
+        {
+          "base_token_lengths": {
+            "max": 553,
+            "mean": 133.10169491525423,
+            "p50": 110,
+            "p95": 376,
+            "p99": 553
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 59,
+          "language": "pa",
+          "lost_normalized_characters": 23,
+          "missing_characters": [
+            {
+              "character": "ɾ",
+              "codepoint": "U+027E",
+              "occurrences": 1
+            },
+            {
+              "character": "ˈ",
+              "codepoint": "U+02C8",
+              "occurrences": 6
+            },
+            {
+              "character": "ˌ",
+              "codepoint": "U+02CC",
+              "occurrences": 2
+            },
+            {
+              "character": "ː",
+              "codepoint": "U+02D0",
+              "occurrences": 10
+            },
+            {
+              "character": "ִ",
+              "codepoint": "U+05B4",
+              "occurrences": 1
+            },
+            {
+              "character": "ֶ",
+              "codepoint": "U+05B6",
+              "occurrences": 2
+            },
+            {
+              "character": "ַ",
+              "codepoint": "U+05B7",
+              "occurrences": 1
+            }
+          ],
+          "normalized_unknown_spans": 20,
+          "protected_failures": 0,
+          "records": 59,
+          "roundtrip_checked": 55,
+          "roundtrip_failures": 0,
+          "script": "Guru",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 714,
+            "mean": 178.45762711864407,
+            "p50": 150,
+            "p95": 495,
+            "p99": 714
+          },
+          "tokens_per_character": {
+            "max": 0.7209302325581395,
+            "mean": 0.5694577369249522,
+            "p50": 0.5648854961832062,
+            "p95": 0.6577181208053692,
+            "p99": 0.7209302325581395
+          },
+          "tokens_per_word": {
+            "max": 5.166666666666667,
+            "mean": 3.0733101210128244,
+            "p50": 2.9722222222222223,
+            "p95": 4.17948717948718,
+            "p99": 5.166666666666667
+          },
+          "unknown_records": 4,
+          "unknown_tokens": 20
+        },
+        {
+          "base_token_lengths": {
+            "max": 857,
+            "mean": 192.80722891566265,
+            "p50": 144,
+            "p95": 524,
+            "p99": 857
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 83,
+          "language": "sa",
+          "lost_normalized_characters": 6,
+          "missing_characters": [
+            {
+              "character": "ɾ",
+              "codepoint": "U+027E",
+              "occurrences": 1
+            },
+            {
+              "character": "ˈ",
+              "codepoint": "U+02C8",
+              "occurrences": 3
+            },
+            {
+              "character": "ː",
+              "codepoint": "U+02D0",
+              "occurrences": 2
+            }
+          ],
+          "normalized_unknown_spans": 6,
+          "protected_failures": 0,
+          "records": 83,
+          "roundtrip_checked": 81,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 731,
+            "mean": 166.24096385542168,
+            "p50": 120,
+            "p95": 457,
+            "p99": 731
+          },
+          "tokens_per_character": {
+            "max": 0.8292682926829268,
+            "mean": 0.7104227885799193,
+            "p50": 0.7104722792607803,
+            "p95": 0.7653061224489796,
+            "p99": 0.8292682926829268
+          },
+          "tokens_per_word": {
+            "max": 8.5,
+            "mean": 5.666842242082927,
+            "p50": 5.571428571428571,
+            "p95": 6.909090909090909,
+            "p99": 8.5
+          },
+          "unknown_records": 2,
+          "unknown_tokens": 6
+        },
+        {
+          "base_token_lengths": {
+            "max": 209,
+            "mean": 100.39285714285714,
+            "p50": 96,
+            "p95": 197,
+            "p99": 209
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 28,
+          "language": "sat",
+          "lost_normalized_characters": 33,
+          "missing_characters": [
+            {
+              "character": "က",
+              "codepoint": "U+1000",
+              "occurrences": 3
+            },
+            {
+              "character": "ခ",
+              "codepoint": "U+1001",
+              "occurrences": 1
+            },
+            {
+              "character": "င",
+              "codepoint": "U+1004",
+              "occurrences": 1
+            },
+            {
+              "character": "န",
+              "codepoint": "U+1014",
+              "occurrences": 1
+            },
+            {
+              "character": "ပ",
+              "codepoint": "U+1015",
+              "occurrences": 1
+            },
+            {
+              "character": "မ",
+              "codepoint": "U+1019",
+              "occurrences": 2
+            },
+            {
+              "character": "ယ",
+              "codepoint": "U+101A",
+              "occurrences": 1
+            },
+            {
+              "character": "ရ",
+              "codepoint": "U+101B",
+              "occurrences": 3
+            },
+            {
+              "character": "ာ",
+              "codepoint": "U+102C",
+              "occurrences": 1
+            },
+            {
+              "character": "ိ",
+              "codepoint": "U+102D",
+              "occurrences": 3
+            },
+            {
+              "character": "ု",
+              "codepoint": "U+102F",
+              "occurrences": 3
+            },
+            {
+              "character": "ေ",
+              "codepoint": "U+1031",
+              "occurrences": 1
+            },
+            {
+              "character": "့",
+              "codepoint": "U+1037",
+              "occurrences": 2
+            },
+            {
+              "character": "း",
+              "codepoint": "U+1038",
+              "occurrences": 1
+            },
+            {
+              "character": "်",
+              "codepoint": "U+103A",
+              "occurrences": 4
+            },
+            {
+              "character": "ျ",
+              "codepoint": "U+103B",
+              "occurrences": 1
+            },
+            {
+              "character": "ြ",
+              "codepoint": "U+103C",
+              "occurrences": 2
+            },
+            {
+              "character": "ွ",
+              "codepoint": "U+103D",
+              "occurrences": 2
+            }
+          ],
+          "normalized_unknown_spans": 5,
+          "protected_failures": 0,
+          "records": 28,
+          "roundtrip_checked": 27,
+          "roundtrip_failures": 0,
+          "script": "Olck",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "failed",
+          "token_lengths": {
+            "max": 264,
+            "mean": 134.32142857142858,
+            "p50": 128,
+            "p95": 256,
+            "p99": 264
+          },
+          "tokens_per_character": {
+            "max": 0.7090909090909091,
+            "mean": 0.5022545637957374,
+            "p50": 0.48450704225352115,
+            "p95": 0.6232876712328768,
+            "p99": 0.7090909090909091
+          },
+          "tokens_per_word": {
+            "max": 4.875,
+            "mean": 2.930195979922116,
+            "p50": 2.780821917808219,
+            "p95": 4.7,
+            "p99": 4.875
+          },
+          "unknown_records": 1,
+          "unknown_tokens": 5
+        },
+        {
+          "base_token_lengths": {
+            "max": 2992,
+            "mean": 544.4857142857143,
+            "p50": 457,
+            "p95": 1495,
+            "p99": 2091
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 245,
+          "language": "sd",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 245,
+          "roundtrip_checked": 245,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Devanagari Sindhi author blog"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 2345,
+            "mean": 426.76326530612243,
+            "p50": 359,
+            "p95": 1196,
+            "p99": 1608
+          },
+          "tokens_per_character": {
+            "max": 0.8275862068965517,
+            "mean": 0.7070702887568459,
+            "p50": 0.704812834224599,
+            "p95": 0.75,
+            "p99": 0.8
+          },
+          "tokens_per_word": {
+            "max": 5.0,
+            "mean": 3.6304471975810424,
+            "p50": 3.5688073394495414,
+            "p95": 4.357142857142857,
+            "p99": 4.8
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 136,
+            "mean": 43.35,
+            "p50": 36,
+            "p95": 83,
+            "p99": 136
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 60,
+          "language": "ta",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 60,
+          "roundtrip_checked": 60,
+          "roundtrip_failures": 0,
+          "script": "Taml",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 327,
+            "mean": 105.05,
+            "p50": 87,
+            "p95": 200,
+            "p99": 327
+          },
+          "tokens_per_character": {
+            "max": 0.5307017543859649,
+            "mean": 0.47801008404088746,
+            "p50": 0.47580645161290325,
+            "p95": 0.5274725274725275,
+            "p99": 0.5307017543859649
+          },
+          "tokens_per_word": {
+            "max": 7.4,
+            "mean": 5.468608717053158,
+            "p50": 5.357142857142857,
+            "p95": 6.6,
+            "p99": 7.4
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 119,
+            "mean": 41.758620689655174,
+            "p50": 34,
+            "p95": 77,
+            "p99": 119
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 58,
+          "language": "te",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 58,
+          "roundtrip_checked": 58,
+          "roundtrip_failures": 0,
+          "script": "Telu",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 342,
+            "mean": 108.65517241379311,
+            "p50": 92,
+            "p95": 200,
+            "p99": 342
+          },
+          "tokens_per_character": {
+            "max": 0.6472491909385113,
+            "mean": 0.5939304770857358,
+            "p50": 0.5934065934065934,
+            "p95": 0.6379310344827587,
+            "p99": 0.6472491909385113
+          },
+          "tokens_per_word": {
+            "max": 8.083333333333334,
+            "mean": 5.860576552349168,
+            "p50": 5.827586206896552,
+            "p95": 7.428571428571429,
+            "p99": 8.083333333333334
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 427,
+            "mean": 131.80327868852459,
+            "p50": 114,
+            "p95": 250,
+            "p99": 427
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 61,
+          "language": "ur",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 61,
+          "roundtrip_checked": 61,
+          "roundtrip_failures": 0,
+          "script": "Arab",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 344,
+            "mean": 104.80327868852459,
+            "p50": 94,
+            "p95": 206,
+            "p99": 344
+          },
+          "tokens_per_character": {
+            "max": 0.74,
+            "mean": 0.656027708847079,
+            "p50": 0.6557377049180327,
+            "p95": 0.7023809523809523,
+            "p99": 0.74
+          },
+          "tokens_per_word": {
+            "max": 5.857142857142857,
+            "mean": 2.971400335958964,
+            "p50": 2.9516129032258065,
+            "p95": 3.316666666666667,
+            "p99": 5.857142857142857
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        }
+      ],
+      "profiles": 22,
+      "records": 1442,
+      "report_sha256": "c8d0c7c0f15211a89deee18cfa8a9bed6eee0632fff07784c546d7e18f20c01a",
+      "roundtrip_failures": 0,
+      "status": "failed",
+      "structural_passed": true,
+      "unknown_records": 16
+    },
+    "scoped-bhasha-with-sindhi": {
+      "lost_normalized_characters": 0,
+      "missing_targets": [],
+      "per_language": [
+        {
+          "base_token_lengths": {
+            "max": 218,
+            "mean": 38.84055118110236,
+            "p50": 36,
+            "p95": 69,
+            "p99": 106
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 1524,
+          "language": "as",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 1524,
+          "roundtrip_checked": 1524,
+          "roundtrip_failures": 0,
+          "script": "Beng",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 367,
+            "mean": 67.248687664042,
+            "p50": 62,
+            "p95": 117,
+            "p99": 176
+          },
+          "tokens_per_character": {
+            "max": 1.0526315789473684,
+            "mean": 0.5779201791106525,
+            "p50": 0.5734265734265734,
+            "p95": 0.6588235294117647,
+            "p99": 0.71
+          },
+          "tokens_per_word": {
+            "max": 16.0,
+            "mean": 3.827940567578797,
+            "p50": 3.736842105263158,
+            "p95": 4.8125,
+            "p99": 5.7
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 246,
+            "mean": 30.33464005702067,
+            "p50": 27,
+            "p95": 60,
+            "p99": 82
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5612,
+          "language": "bn",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5612,
+          "roundtrip_checked": 5612,
+          "roundtrip_failures": 0,
+          "script": "Beng",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 473,
+            "mean": 53.64504632929437,
+            "p50": 49,
+            "p95": 106,
+            "p99": 146
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.5702636467438799,
+            "p50": 0.5670995670995671,
+            "p95": 0.6578947368421053,
+            "p99": 0.7142857142857143
+          },
+          "tokens_per_word": {
+            "max": 10.5,
+            "mean": 3.859780887028292,
+            "p50": 3.7857142857142856,
+            "p95": 5.037037037037037,
+            "p99": 6.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 328,
+            "mean": 98.68974700399467,
+            "p50": 93,
+            "p95": 172,
+            "p99": 219
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 1502,
+          "language": "brx",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 1502,
+          "roundtrip_checked": 1502,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 265,
+            "mean": 82.97936085219708,
+            "p50": 77,
+            "p95": 143,
+            "p99": 188
+          },
+          "tokens_per_character": {
+            "max": 0.8709677419354839,
+            "mean": 0.7285749566013406,
+            "p50": 0.7278911564625851,
+            "p95": 0.7843137254901961,
+            "p99": 0.8083333333333333
+          },
+          "tokens_per_word": {
+            "max": 8.0,
+            "mean": 5.404414248729181,
+            "p50": 5.363636363636363,
+            "p95": 6.5625,
+            "p99": 7.25
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 353,
+            "mean": 103.23230974632844,
+            "p50": 94,
+            "p95": 191,
+            "p99": 266
+          },
+          "changed_sequence_fraction": 0.9986648865153538,
+          "changed_sequences": 1496,
+          "language": "doi",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 1498,
+          "roundtrip_checked": 1498,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 278,
+            "mean": 83.4192256341789,
+            "p50": 75,
+            "p95": 154,
+            "p99": 219
+          },
+          "tokens_per_character": {
+            "max": 1.3333333333333333,
+            "mean": 0.6642485830884495,
+            "p50": 0.6612244897959184,
+            "p95": 0.7236842105263158,
+            "p99": 0.7627118644067796
+          },
+          "tokens_per_word": {
+            "max": 6.25,
+            "mean": 3.3096957827240696,
+            "p50": 3.269230769230769,
+            "p95": 3.9444444444444446,
+            "p99": 4.333333333333333
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 477,
+            "mean": 36.07672413793104,
+            "p50": 33,
+            "p95": 73,
+            "p99": 101
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5800,
+          "language": "gu",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5800,
+          "roundtrip_checked": 5800,
+          "roundtrip_failures": 0,
+          "script": "Gujr",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 777,
+            "mean": 59.42327586206896,
+            "p50": 53,
+            "p95": 119,
+            "p99": 177
+          },
+          "tokens_per_character": {
+            "max": 1.5,
+            "mean": 0.5838242598442877,
+            "p50": 0.578125,
+            "p95": 0.6829268292682927,
+            "p99": 0.7567567567567568
+          },
+          "tokens_per_word": {
+            "max": 10.0,
+            "mean": 3.624049668997801,
+            "p50": 3.533333333333333,
+            "p95": 4.875,
+            "p99": 6.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 743,
+            "mean": 85.33475479744136,
+            "p50": 76,
+            "p95": 176,
+            "p99": 253
+          },
+          "changed_sequence_fraction": 0.9992892679459844,
+          "changed_sequences": 5624,
+          "language": "hi",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5628,
+          "roundtrip_checked": 5628,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 595,
+            "mean": 66.24307036247335,
+            "p50": 59,
+            "p95": 136,
+            "p99": 200
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.6417274598501455,
+            "p50": 0.6363636363636364,
+            "p95": 0.725,
+            "p99": 0.7927927927927928
+          },
+          "tokens_per_word": {
+            "max": 13.0,
+            "mean": 3.4181866146392577,
+            "p50": 3.3,
+            "p95": 4.545454545454546,
+            "p99": 5.8
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 192,
+            "mean": 27.237672752090088,
+            "p50": 24,
+            "p95": 56,
+            "p99": 81
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5861,
+          "language": "kn",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5861,
+          "roundtrip_checked": 5861,
+          "roundtrip_failures": 0,
+          "script": "Knda",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 444,
+            "mean": 58.64289370414605,
+            "p50": 53,
+            "p95": 119,
+            "p99": 174
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.5697351761081297,
+            "p50": 0.5644171779141104,
+            "p95": 0.6666666666666666,
+            "p99": 0.7407407407407407
+          },
+          "tokens_per_word": {
+            "max": 14.0,
+            "mean": 4.80951408105644,
+            "p50": 4.7272727272727275,
+            "p95": 6.2,
+            "p99": 7.333333333333333
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 409,
+            "mean": 89.55466666666666,
+            "p50": 83,
+            "p95": 154,
+            "p99": 208
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 1500,
+          "language": "kok",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 1500,
+          "roundtrip_checked": 1500,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 348,
+            "mean": 75.302,
+            "p50": 69,
+            "p95": 129,
+            "p99": 175
+          },
+          "tokens_per_character": {
+            "max": 0.8372093023255814,
+            "mean": 0.6835655912099704,
+            "p50": 0.6823529411764706,
+            "p95": 0.7397260273972602,
+            "p99": 0.7790697674418605
+          },
+          "tokens_per_word": {
+            "max": 7.0,
+            "mean": 4.652778396297539,
+            "p50": 4.625,
+            "p95": 5.625,
+            "p99": 6.166666666666667
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 268,
+            "mean": 94.39356632247815,
+            "p50": 90,
+            "p95": 159,
+            "p99": 208
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 2518,
+          "language": "ks",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 2518,
+          "roundtrip_checked": 2518,
+          "roundtrip_failures": 0,
+          "script": "Arab",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 226,
+            "mean": 82.4614773629865,
+            "p50": 79,
+            "p95": 140,
+            "p99": 181
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.7103159880833447,
+            "p50": 0.7090909090909091,
+            "p95": 0.7868852459016393,
+            "p99": 0.828125
+          },
+          "tokens_per_word": {
+            "max": 7.5,
+            "mean": 3.999693765049871,
+            "p50": 3.9642857142857144,
+            "p95": 4.785714285714286,
+            "p99": 5.212121212121212
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 350,
+            "mean": 93.65433571996817,
+            "p50": 88,
+            "p95": 161,
+            "p99": 221
+          },
+          "changed_sequence_fraction": 0.9992044550517104,
+          "changed_sequences": 2512,
+          "language": "mai",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 2514,
+          "roundtrip_checked": 2514,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 297,
+            "mean": 75.87987271280828,
+            "p50": 72,
+            "p95": 130,
+            "p99": 179
+          },
+          "tokens_per_character": {
+            "max": 1.0033783783783783,
+            "mean": 0.6872730843439057,
+            "p50": 0.6859504132231405,
+            "p95": 0.75,
+            "p99": 0.7954545454545454
+          },
+          "tokens_per_word": {
+            "max": 7.142857142857143,
+            "mean": 3.8079740744671042,
+            "p50": 3.75,
+            "p95": 4.764705882352941,
+            "p99": 5.3
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 128,
+            "mean": 22.859726901932966,
+            "p50": 20,
+            "p95": 46,
+            "p99": 64
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5639,
+          "language": "ml",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5639,
+          "roundtrip_checked": 5639,
+          "roundtrip_failures": 0,
+          "script": "Mlym",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 265,
+            "mean": 57.14577052668913,
+            "p50": 51,
+            "p95": 116,
+            "p99": 155
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.5656312728941539,
+            "p50": 0.5593869731800766,
+            "p95": 0.664179104477612,
+            "p99": 0.7777777777777778
+          },
+          "tokens_per_word": {
+            "max": 14.0,
+            "mean": 5.6715486738710865,
+            "p50": 5.529411764705882,
+            "p95": 7.625,
+            "p99": 9.2
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 117,
+            "mean": 34.26964047936085,
+            "p50": 32,
+            "p95": 59,
+            "p99": 76
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 1502,
+          "language": "mni",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 1502,
+          "roundtrip_checked": 1502,
+          "roundtrip_failures": 0,
+          "script": "Mtei",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 238,
+            "mean": 61.74367509986684,
+            "p50": 58,
+            "p95": 107,
+            "p99": 131
+          },
+          "tokens_per_character": {
+            "max": 0.875,
+            "mean": 0.5884436225194736,
+            "p50": 0.5844155844155844,
+            "p95": 0.6847826086956522,
+            "p99": 0.7317073170731707
+          },
+          "tokens_per_word": {
+            "max": 7.714285714285714,
+            "mean": 3.8081258970541154,
+            "p50": 3.75,
+            "p95": 4.866666666666666,
+            "p99": 5.666666666666667
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 436,
+            "mean": 66.2863741339492,
+            "p50": 59,
+            "p95": 142,
+            "p99": 188
+          },
+          "changed_sequence_fraction": 0.992893942085628,
+          "changed_sequences": 5589,
+          "language": "mr",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5629,
+          "roundtrip_checked": 5629,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 359,
+            "mean": 56.006217800675074,
+            "p50": 49,
+            "p95": 120,
+            "p99": 159
+          },
+          "tokens_per_character": {
+            "max": 1.1666666666666667,
+            "mean": 0.687232597557383,
+            "p50": 0.6811594202898551,
+            "p95": 0.7777777777777778,
+            "p99": 0.875
+          },
+          "tokens_per_word": {
+            "max": 18.0,
+            "mean": 4.78103867182211,
+            "p50": 4.7,
+            "p95": 6.130434782608695,
+            "p99": 7.5
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 303,
+            "mean": 93.86396181384248,
+            "p50": 89,
+            "p95": 156,
+            "p99": 203
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 2514,
+          "language": "ne",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 2514,
+          "roundtrip_checked": 2514,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 244,
+            "mean": 76.1722354813047,
+            "p50": 73,
+            "p95": 127,
+            "p99": 165
+          },
+          "tokens_per_character": {
+            "max": 0.8333333333333334,
+            "mean": 0.682668797679578,
+            "p50": 0.6811594202898551,
+            "p95": 0.7415730337078652,
+            "p99": 0.7714285714285715
+          },
+          "tokens_per_word": {
+            "max": 7.333333333333333,
+            "mean": 4.620951379511894,
+            "p50": 4.583333333333333,
+            "p95": 5.636363636363637,
+            "p99": 6.166666666666667
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 199,
+            "mean": 37.279237844940866,
+            "p50": 35,
+            "p95": 64,
+            "p99": 89
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 1522,
+          "language": "or",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 1522,
+          "roundtrip_checked": 1522,
+          "roundtrip_failures": 0,
+          "script": "Orya",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 376,
+            "mean": 67.07030223390277,
+            "p50": 64,
+            "p95": 115,
+            "p99": 163
+          },
+          "tokens_per_character": {
+            "max": 0.7727272727272727,
+            "mean": 0.5720438333580765,
+            "p50": 0.5691056910569106,
+            "p95": 0.6578947368421053,
+            "p99": 0.703125
+          },
+          "tokens_per_word": {
+            "max": 6.2,
+            "mean": 3.891425332221509,
+            "p50": 3.8333333333333335,
+            "p95": 4.833333333333333,
+            "p99": 5.375
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 551,
+            "mean": 42.44615119088712,
+            "p50": 38,
+            "p95": 87,
+            "p99": 134
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5794,
+          "language": "pa",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5794,
+          "roundtrip_checked": 5794,
+          "roundtrip_failures": 0,
+          "script": "Guru",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 728,
+            "mean": 56.75043148084225,
+            "p50": 51,
+            "p95": 117,
+            "p99": 184
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.5631717628819484,
+            "p50": 0.5566037735849056,
+            "p95": 0.6666666666666666,
+            "p99": 0.7777777777777778
+          },
+          "tokens_per_word": {
+            "max": 8.0,
+            "mean": 2.906277277873679,
+            "p50": 2.8260869565217392,
+            "p95": 3.857142857142857,
+            "p99": 5.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 296,
+            "mean": 100.35736925515056,
+            "p50": 96,
+            "p95": 174,
+            "p99": 226
+          },
+          "changed_sequence_fraction": 0.9992076069730587,
+          "changed_sequences": 2522,
+          "language": "sa",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 2524,
+          "roundtrip_checked": 2524,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 262,
+            "mean": 84.63985736925515,
+            "p50": 81,
+            "p95": 147,
+            "p99": 194
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.6972404632936765,
+            "p50": 0.6965174129353234,
+            "p95": 0.7543859649122807,
+            "p99": 0.782608695652174
+          },
+          "tokens_per_word": {
+            "max": 12.0,
+            "mean": 5.924615835887768,
+            "p50": 5.769230769230769,
+            "p95": 8.333333333333334,
+            "p99": 10.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 181,
+            "mean": 47.38658146964856,
+            "p50": 44,
+            "p95": 83,
+            "p99": 116
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 2504,
+          "language": "sat",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 2504,
+          "roundtrip_checked": 2504,
+          "roundtrip_failures": 0,
+          "script": "Olck",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 244,
+            "mean": 67.12420127795527,
+            "p50": 63,
+            "p95": 118,
+            "p99": 162
+          },
+          "tokens_per_character": {
+            "max": 0.7166666666666667,
+            "mean": 0.507615977893268,
+            "p50": 0.5059523809523809,
+            "p95": 0.5846153846153846,
+            "p99": 0.6266666666666667
+          },
+          "tokens_per_word": {
+            "max": 6.090909090909091,
+            "mean": 2.931115318230906,
+            "p50": 2.8823529411764706,
+            "p95": 3.6923076923076925,
+            "p99": 4.217391304347826
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 2992,
+            "mean": 544.4857142857143,
+            "p50": 457,
+            "p95": 1495,
+            "p99": 2091
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 245,
+          "language": "sd",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 245,
+          "roundtrip_checked": 245,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Devanagari Sindhi author blog"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 2345,
+            "mean": 426.76326530612243,
+            "p50": 359,
+            "p95": 1196,
+            "p99": 1608
+          },
+          "tokens_per_character": {
+            "max": 0.8275862068965517,
+            "mean": 0.7070702887568459,
+            "p50": 0.704812834224599,
+            "p95": 0.75,
+            "p99": 0.8
+          },
+          "tokens_per_word": {
+            "max": 5.0,
+            "mean": 3.6304471975810424,
+            "p50": 3.5688073394495414,
+            "p95": 4.357142857142857,
+            "p99": 4.8
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 156,
+            "mean": 24.515135878912968,
+            "p50": 22,
+            "p95": 52,
+            "p99": 71
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5814,
+          "language": "ta",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5814,
+          "roundtrip_checked": 5814,
+          "roundtrip_failures": 0,
+          "script": "Taml",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 311,
+            "mean": 50.1546267629859,
+            "p50": 46,
+            "p95": 103,
+            "p99": 149
+          },
+          "tokens_per_character": {
+            "max": 1.0,
+            "mean": 0.500316067256655,
+            "p50": 0.49193548387096775,
+            "p95": 0.6049382716049383,
+            "p99": 0.7142857142857143
+          },
+          "tokens_per_word": {
+            "max": 24.0,
+            "mean": 4.622243195394951,
+            "p50": 4.5,
+            "p95": 6.0,
+            "p99": 7.333333333333333
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 433,
+            "mean": 24.946409989594173,
+            "p50": 21,
+            "p95": 56,
+            "p99": 79
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 5766,
+          "language": "te",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 5766,
+          "roundtrip_checked": 5766,
+          "roundtrip_failures": 0,
+          "script": "Telu",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 888,
+            "mean": 51.82223378425252,
+            "p50": 45,
+            "p95": 113,
+            "p99": 166
+          },
+          "tokens_per_character": {
+            "max": 1.3333333333333333,
+            "mean": 0.5964786907446232,
+            "p50": 0.5882352941176471,
+            "p95": 0.7016129032258065,
+            "p99": 0.8
+          },
+          "tokens_per_word": {
+            "max": 15.0,
+            "mean": 4.730237335929013,
+            "p50": 4.6,
+            "p95": 6.4,
+            "p99": 8.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 7155,
+            "mean": 80.01476762704503,
+            "p50": 70,
+            "p95": 161,
+            "p99": 248
+          },
+          "changed_sequence_fraction": 0.9927609671347908,
+          "changed_sequences": 6857,
+          "language": "ur",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 6907,
+          "roundtrip_checked": 6907,
+          "roundtrip_failures": 0,
+          "script": "Arab",
+          "sources": [
+            "Bhasha-Abhijnaanam v1.0 (source-specific provenance retained per record)"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 5577,
+            "mean": 64.4812509048791,
+            "p50": 56,
+            "p95": 129,
+            "p99": 198
+          },
+          "tokens_per_character": {
+            "max": 1.3333333333333333,
+            "mean": 0.6628874734125274,
+            "p50": 0.6527777777777778,
+            "p95": 0.782608695652174,
+            "p99": 1.0
+          },
+          "tokens_per_word": {
+            "max": 9.5,
+            "mean": 3.128171803488404,
+            "p50": 3.0285714285714285,
+            "p95": 4.019607843137255,
+            "p99": 5.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        }
+      ],
+      "profiles": 22,
+      "records": 80317,
+      "report_sha256": "e1bff413c9488cbd5d8eab78a24a9fcdba53d059abe60c11dcf29e5856cdfaba",
+      "roundtrip_failures": 0,
+      "status": "passed_on_supplied_text",
+      "structural_passed": true,
+      "unknown_records": 0
+    },
+    "scoped-independent": {
+      "lost_normalized_characters": 0,
+      "missing_targets": [],
+      "per_language": [
+        {
+          "base_token_lengths": {
+            "max": 529,
+            "mean": 142.49295774647888,
+            "p50": 132,
+            "p95": 287,
+            "p99": 529
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 71,
+          "language": "as",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 71,
+          "roundtrip_checked": 71,
+          "roundtrip_failures": 0,
+          "script": "Beng",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 958,
+            "mean": 255.53521126760563,
+            "p50": 238,
+            "p95": 509,
+            "p99": 958
+          },
+          "tokens_per_character": {
+            "max": 0.6703296703296703,
+            "mean": 0.5873060872759419,
+            "p50": 0.589098532494759,
+            "p95": 0.6322869955156951,
+            "p99": 0.6703296703296703
+          },
+          "tokens_per_word": {
+            "max": 4.779661016949152,
+            "mean": 3.982885163190377,
+            "p50": 3.979591836734694,
+            "p95": 4.46,
+            "p99": 4.779661016949152
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 265,
+            "mean": 87.1625,
+            "p50": 68,
+            "p95": 231,
+            "p99": 265
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 80,
+          "language": "bn",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 80,
+          "roundtrip_checked": 80,
+          "roundtrip_failures": 0,
+          "script": "Beng",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 476,
+            "mean": 159.0,
+            "p50": 135,
+            "p95": 420,
+            "p99": 476
+          },
+          "tokens_per_character": {
+            "max": 0.7142857142857143,
+            "mean": 0.5779914316613917,
+            "p50": 0.5735294117647058,
+            "p95": 0.6375,
+            "p99": 0.7142857142857143
+          },
+          "tokens_per_word": {
+            "max": 5.6923076923076925,
+            "mean": 4.152752572875505,
+            "p50": 4.0227272727272725,
+            "p95": 5.142857142857143,
+            "p99": 5.6923076923076925
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 407,
+            "mean": 163.47619047619048,
+            "p50": 135,
+            "p95": 329,
+            "p99": 407
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 21,
+          "language": "brx",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 21,
+          "roundtrip_checked": 21,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 342,
+            "mean": 139.23809523809524,
+            "p50": 109,
+            "p95": 289,
+            "p99": 342
+          },
+          "tokens_per_character": {
+            "max": 0.8,
+            "mean": 0.72735845795633,
+            "p50": 0.7219251336898396,
+            "p95": 0.7613636363636364,
+            "p99": 0.8
+          },
+          "tokens_per_word": {
+            "max": 6.666666666666667,
+            "mean": 5.220949220024944,
+            "p50": 5.15625,
+            "p95": 5.6875,
+            "p99": 6.666666666666667
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 640,
+            "mean": 410.375,
+            "p50": 371,
+            "p95": 640,
+            "p99": 640
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 8,
+          "language": "doi",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 8,
+          "roundtrip_checked": 8,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 530,
+            "mean": 341.5,
+            "p50": 306,
+            "p95": 530,
+            "p99": 530
+          },
+          "tokens_per_character": {
+            "max": 0.6965174129353234,
+            "mean": 0.6751200166003265,
+            "p50": 0.6719022687609075,
+            "p95": 0.6965174129353234,
+            "p99": 0.6965174129353234
+          },
+          "tokens_per_word": {
+            "max": 4.08,
+            "mean": 3.625186946633724,
+            "p50": 3.5604395604395602,
+            "p95": 4.08,
+            "p99": 4.08
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 431,
+            "mean": 140.71830985915494,
+            "p50": 150,
+            "p95": 265,
+            "p99": 431
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 71,
+          "language": "gu",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 71,
+          "roundtrip_checked": 71,
+          "roundtrip_failures": 0,
+          "script": "Gujr",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 658,
+            "mean": 223.74647887323943,
+            "p50": 238,
+            "p95": 420,
+            "p99": 658
+          },
+          "tokens_per_character": {
+            "max": 0.7532467532467533,
+            "mean": 0.575132009416845,
+            "p50": 0.5636363636363636,
+            "p95": 0.6567796610169492,
+            "p99": 0.7532467532467533
+          },
+          "tokens_per_word": {
+            "max": 4.269230769230769,
+            "mean": 3.5239258876098507,
+            "p50": 3.4711538461538463,
+            "p95": 4.071428571428571,
+            "p99": 4.269230769230769
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 1312,
+            "mean": 269.64473684210526,
+            "p50": 153,
+            "p95": 755,
+            "p99": 1312
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 76,
+          "language": "hi",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 76,
+          "roundtrip_checked": 76,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 1084,
+            "mean": 215.35526315789474,
+            "p50": 125,
+            "p95": 599,
+            "p99": 1084
+          },
+          "tokens_per_character": {
+            "max": 0.7326732673267327,
+            "mean": 0.6527482958614886,
+            "p50": 0.6502057613168725,
+            "p95": 0.71875,
+            "p99": 0.7326732673267327
+          },
+          "tokens_per_word": {
+            "max": 5.3076923076923075,
+            "mean": 3.6988339334337454,
+            "p50": 3.676470588235294,
+            "p95": 4.5,
+            "p99": 5.3076923076923075
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 114,
+            "mean": 37.63793103448276,
+            "p50": 31,
+            "p95": 71,
+            "p99": 114
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 58,
+          "language": "kn",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 58,
+          "roundtrip_checked": 58,
+          "roundtrip_failures": 0,
+          "script": "Knda",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 303,
+            "mean": 97.91379310344827,
+            "p50": 86,
+            "p95": 188,
+            "p99": 303
+          },
+          "tokens_per_character": {
+            "max": 0.6774193548387096,
+            "mean": 0.5718000943192167,
+            "p50": 0.5666666666666667,
+            "p95": 0.6578947368421053,
+            "p99": 0.6774193548387096
+          },
+          "tokens_per_word": {
+            "max": 8.8,
+            "mean": 5.7549217410821685,
+            "p50": 5.666666666666667,
+            "p95": 7.318181818181818,
+            "p99": 8.8
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 1247,
+            "mean": 277.6578947368421,
+            "p50": 226,
+            "p95": 656,
+            "p99": 1247
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 38,
+          "language": "kok",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 38,
+          "roundtrip_checked": 38,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 1072,
+            "mean": 235.97368421052633,
+            "p50": 192,
+            "p95": 544,
+            "p99": 1072
+          },
+          "tokens_per_character": {
+            "max": 0.7761194029850746,
+            "mean": 0.6948290128940277,
+            "p50": 0.6910377358490566,
+            "p95": 0.7651006711409396,
+            "p99": 0.7761194029850746
+          },
+          "tokens_per_word": {
+            "max": 6.333333333333333,
+            "mean": 4.890954310899823,
+            "p50": 4.855072463768116,
+            "p95": 6.0,
+            "p99": 6.333333333333333
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 631,
+            "mean": 204.25,
+            "p50": 174,
+            "p95": 435,
+            "p99": 631
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 24,
+          "language": "ks",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 24,
+          "roundtrip_checked": 24,
+          "roundtrip_failures": 0,
+          "script": "Arab",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 504,
+            "mean": 168.08333333333334,
+            "p50": 141,
+            "p95": 354,
+            "p99": 504
+          },
+          "tokens_per_character": {
+            "max": 0.7906976744186046,
+            "mean": 0.6501141116284249,
+            "p50": 0.6597938144329897,
+            "p95": 0.7417721518987341,
+            "p99": 0.7906976744186046
+          },
+          "tokens_per_word": {
+            "max": 5.666666666666667,
+            "mean": 3.8132479093911553,
+            "p50": 3.710526315789474,
+            "p95": 4.571428571428571,
+            "p99": 5.666666666666667
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 406,
+            "mean": 123.64516129032258,
+            "p50": 106,
+            "p95": 263,
+            "p99": 406
+          },
+          "changed_sequence_fraction": 0.967741935483871,
+          "changed_sequences": 60,
+          "language": "mai",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 62,
+          "roundtrip_checked": 62,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 323,
+            "mean": 99.5,
+            "p50": 82,
+            "p95": 210,
+            "p99": 323
+          },
+          "tokens_per_character": {
+            "max": 0.8571428571428571,
+            "mean": 0.6697382652462146,
+            "p50": 0.6666666666666666,
+            "p95": 0.7284768211920529,
+            "p99": 0.8571428571428571
+          },
+          "tokens_per_word": {
+            "max": 5.4,
+            "mean": 4.229988155105614,
+            "p50": 4.25,
+            "p95": 5.0,
+            "p99": 5.4
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 172,
+            "mean": 31.607843137254903,
+            "p50": 25,
+            "p95": 70,
+            "p99": 172
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 51,
+          "language": "ml",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 51,
+          "roundtrip_checked": 51,
+          "roundtrip_failures": 0,
+          "script": "Mlym",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 598,
+            "mean": 104.17647058823529,
+            "p50": 78,
+            "p95": 228,
+            "p99": 598
+          },
+          "tokens_per_character": {
+            "max": 0.6428571428571429,
+            "mean": 0.5309152979080166,
+            "p50": 0.5250219490781387,
+            "p95": 0.5975609756097561,
+            "p99": 0.6428571428571429
+          },
+          "tokens_per_word": {
+            "max": 9.6,
+            "mean": 6.531978822530744,
+            "p50": 6.5,
+            "p95": 7.944444444444445,
+            "p99": 9.6
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 149,
+            "mean": 52.93333333333333,
+            "p50": 40,
+            "p95": 149,
+            "p99": 149
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 15,
+          "language": "mni",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 15,
+          "roundtrip_checked": 15,
+          "roundtrip_failures": 0,
+          "script": "Mtei",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 303,
+            "mean": 90.13333333333334,
+            "p50": 71,
+            "p95": 303,
+            "p99": 303
+          },
+          "tokens_per_character": {
+            "max": 0.7096774193548387,
+            "mean": 0.5600319513520305,
+            "p50": 0.5434782608695652,
+            "p95": 0.7096774193548387,
+            "p99": 0.7096774193548387
+          },
+          "tokens_per_word": {
+            "max": 5.333333333333333,
+            "mean": 3.4199664541428736,
+            "p50": 3.25,
+            "p95": 5.333333333333333,
+            "p99": 5.333333333333333
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 396,
+            "mean": 144.76666666666668,
+            "p50": 116,
+            "p95": 294,
+            "p99": 396
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 60,
+          "language": "mr",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 60,
+          "roundtrip_checked": 60,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 326,
+            "mean": 118.45,
+            "p50": 97,
+            "p95": 242,
+            "p99": 326
+          },
+          "tokens_per_character": {
+            "max": 0.7192982456140351,
+            "mean": 0.6409119790697024,
+            "p50": 0.6349206349206349,
+            "p95": 0.6896551724137931,
+            "p99": 0.7192982456140351
+          },
+          "tokens_per_word": {
+            "max": 6.0,
+            "mean": 4.680182298674696,
+            "p50": 4.764705882352941,
+            "p95": 5.25,
+            "p99": 6.0
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 1052,
+            "mean": 235.36697247706422,
+            "p50": 197,
+            "p95": 560,
+            "p99": 728
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 109,
+          "language": "ne",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 109,
+          "roundtrip_checked": 109,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 846,
+            "mean": 193.3119266055046,
+            "p50": 163,
+            "p95": 453,
+            "p99": 609
+          },
+          "tokens_per_character": {
+            "max": 0.7890625,
+            "mean": 0.6826567137716487,
+            "p50": 0.6816326530612244,
+            "p95": 0.7323232323232324,
+            "p99": 0.7864077669902912
+          },
+          "tokens_per_word": {
+            "max": 5.842105263157895,
+            "mean": 4.511426219083062,
+            "p50": 4.519230769230769,
+            "p95": 5.25,
+            "p99": 5.75
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 362,
+            "mean": 91.2,
+            "p50": 79,
+            "p95": 224,
+            "p99": 362
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 95,
+          "language": "or",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 95,
+          "roundtrip_checked": 95,
+          "roundtrip_failures": 0,
+          "script": "Orya",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 573,
+            "mean": 165.81052631578947,
+            "p50": 147,
+            "p95": 400,
+            "p99": 573
+          },
+          "tokens_per_character": {
+            "max": 0.7192982456140351,
+            "mean": 0.6101935050912343,
+            "p50": 0.6060606060606061,
+            "p95": 0.6885245901639344,
+            "p99": 0.7192982456140351
+          },
+          "tokens_per_word": {
+            "max": 6.857142857142857,
+            "mean": 4.025494059764854,
+            "p50": 3.857142857142857,
+            "p95": 5.166666666666667,
+            "p99": 6.857142857142857
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 553,
+            "mean": 126.49090909090908,
+            "p50": 109,
+            "p95": 360,
+            "p99": 553
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 55,
+          "language": "pa",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 55,
+          "roundtrip_checked": 55,
+          "roundtrip_failures": 0,
+          "script": "Guru",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 714,
+            "mean": 168.72727272727272,
+            "p50": 145,
+            "p95": 491,
+            "p99": 714
+          },
+          "tokens_per_character": {
+            "max": 0.7209302325581395,
+            "mean": 0.5658084039425955,
+            "p50": 0.5625,
+            "p95": 0.6435643564356436,
+            "p99": 0.7209302325581395
+          },
+          "tokens_per_word": {
+            "max": 5.166666666666667,
+            "mean": 3.036010152820035,
+            "p50": 2.953846153846154,
+            "p95": 3.7586206896551726,
+            "p99": 5.166666666666667
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 857,
+            "mean": 192.79012345679013,
+            "p50": 128,
+            "p95": 524,
+            "p99": 857
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 81,
+          "language": "sa",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 81,
+          "roundtrip_checked": 81,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 731,
+            "mean": 165.93827160493828,
+            "p50": 111,
+            "p95": 457,
+            "p99": 731
+          },
+          "tokens_per_character": {
+            "max": 0.8292682926829268,
+            "mean": 0.7097562424883461,
+            "p50": 0.7102803738317757,
+            "p95": 0.7653061224489796,
+            "p99": 0.8292682926829268
+          },
+          "tokens_per_word": {
+            "max": 8.5,
+            "mean": 5.674104751203231,
+            "p50": 5.571428571428571,
+            "p95": 6.909090909090909,
+            "p99": 8.5
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 209,
+            "mean": 101.62962962962963,
+            "p50": 103,
+            "p95": 197,
+            "p99": 209
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 27,
+          "language": "sat",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 27,
+          "roundtrip_checked": 27,
+          "roundtrip_failures": 0,
+          "script": "Olck",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 264,
+            "mean": 136.0,
+            "p50": 136,
+            "p95": 256,
+            "p99": 264
+          },
+          "tokens_per_character": {
+            "max": 0.7090909090909091,
+            "mean": 0.5040387464306514,
+            "p50": 0.4954128440366973,
+            "p95": 0.6232876712328768,
+            "p99": 0.7090909090909091
+          },
+          "tokens_per_word": {
+            "max": 4.875,
+            "mean": 2.935712497697009,
+            "p50": 2.780821917808219,
+            "p95": 4.7,
+            "p99": 4.875
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 2992,
+            "mean": 544.4857142857143,
+            "p50": 457,
+            "p95": 1495,
+            "p99": 2091
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 245,
+          "language": "sd",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 245,
+          "roundtrip_checked": 245,
+          "roundtrip_failures": 0,
+          "script": "Deva",
+          "sources": [
+            "Independent Devanagari Sindhi author blog"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 2345,
+            "mean": 426.76326530612243,
+            "p50": 359,
+            "p95": 1196,
+            "p99": 1608
+          },
+          "tokens_per_character": {
+            "max": 0.8275862068965517,
+            "mean": 0.7070702887568459,
+            "p50": 0.704812834224599,
+            "p95": 0.75,
+            "p99": 0.8
+          },
+          "tokens_per_word": {
+            "max": 5.0,
+            "mean": 3.6304471975810424,
+            "p50": 3.5688073394495414,
+            "p95": 4.357142857142857,
+            "p99": 4.8
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 136,
+            "mean": 43.35,
+            "p50": 36,
+            "p95": 83,
+            "p99": 136
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 60,
+          "language": "ta",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 60,
+          "roundtrip_checked": 60,
+          "roundtrip_failures": 0,
+          "script": "Taml",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 327,
+            "mean": 105.05,
+            "p50": 87,
+            "p95": 200,
+            "p99": 327
+          },
+          "tokens_per_character": {
+            "max": 0.5307017543859649,
+            "mean": 0.47801008404088746,
+            "p50": 0.47580645161290325,
+            "p95": 0.5274725274725275,
+            "p99": 0.5307017543859649
+          },
+          "tokens_per_word": {
+            "max": 7.4,
+            "mean": 5.468608717053158,
+            "p50": 5.357142857142857,
+            "p95": 6.6,
+            "p99": 7.4
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 119,
+            "mean": 41.758620689655174,
+            "p50": 34,
+            "p95": 77,
+            "p99": 119
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 58,
+          "language": "te",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 58,
+          "roundtrip_checked": 58,
+          "roundtrip_failures": 0,
+          "script": "Telu",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 342,
+            "mean": 108.65517241379311,
+            "p50": 92,
+            "p95": 200,
+            "p99": 342
+          },
+          "tokens_per_character": {
+            "max": 0.6472491909385113,
+            "mean": 0.5939304770857358,
+            "p50": 0.5934065934065934,
+            "p95": 0.6379310344827587,
+            "p99": 0.6472491909385113
+          },
+          "tokens_per_word": {
+            "max": 8.083333333333334,
+            "mean": 5.860576552349168,
+            "p50": 5.827586206896552,
+            "p95": 7.428571428571429,
+            "p99": 8.083333333333334
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        },
+        {
+          "base_token_lengths": {
+            "max": 427,
+            "mean": 131.80327868852459,
+            "p50": 114,
+            "p95": 250,
+            "p99": 427
+          },
+          "changed_sequence_fraction": 1.0,
+          "changed_sequences": 61,
+          "language": "ur",
+          "lost_normalized_characters": 0,
+          "missing_characters": [],
+          "normalized_unknown_spans": 0,
+          "protected_failures": 0,
+          "records": 61,
+          "roundtrip_checked": 61,
+          "roundtrip_failures": 0,
+          "script": "Arab",
+          "sources": [
+            "Independent Wikimedia and Unicode UDHR samples"
+          ],
+          "status": "passed_on_supplied_text",
+          "token_lengths": {
+            "max": 344,
+            "mean": 104.80327868852459,
+            "p50": 94,
+            "p95": 206,
+            "p99": 344
+          },
+          "tokens_per_character": {
+            "max": 0.74,
+            "mean": 0.656027708847079,
+            "p50": 0.6557377049180327,
+            "p95": 0.7023809523809523,
+            "p99": 0.74
+          },
+          "tokens_per_word": {
+            "max": 5.857142857142857,
+            "mean": 2.971400335958964,
+            "p50": 2.9516129032258065,
+            "p95": 3.316666666666667,
+            "p99": 5.857142857142857
+          },
+          "unknown_records": 0,
+          "unknown_tokens": 0
+        }
+      ],
+      "profiles": 22,
+      "records": 1426,
+      "report_sha256": "6f0d3fbc68be13ea2460bc949350544fd0911e3d68fc3aa95a7ab321b9ffad78",
+      "roundtrip_failures": 0,
+      "status": "passed_on_supplied_text",
+      "structural_passed": true,
+      "unknown_records": 0
+    }
+  },
+  "cpu_tests": {
+    "passed": 136,
+    "warnings": "Two upstream SentencePiece SWIG deprecation warnings"
+  },
+  "date": "2026-09-06",
+  "fresh_source_download_rebuild": {
+    "manifest_byte_identical": true,
+    "tokenizer_byte_identical": true,
+    "verified_files": 33
+  },
+  "limitations": [
+    "Full raw corpora contain unsupported characters and therefore fail. Scope exclusions are explicit and retained.",
+    "Bhasha has no Devanagari Sindhi; 245 single-author prose records supplement that gap. Those same Sindhi records also occur in the independent run, so corpus totals must not be added as unique examples.",
+    "Independent Wikimedia selection may share upstream authorship with public training text. These audits informed character selection and are not an untouched held-out ASR test.",
+    "Round-trip failures are counted only on unknown-free records; unknown records already fail coverage.",
+    "Text/token preservation and synthetic numerical tests do not establish actual checkpoint compatibility or ASR accuracy.",
+    "54 protected probes are English/control examples and existing special/tag strings, not a natural-language corpus for every original locale."
+  ],
+  "merge_count": 5848,
+  "new_ids": 3392,
+  "new_piece_reachability": {
+    "checked": 3392,
+    "failed": 0,
+    "failures": []
+  },
+  "normalizer": "1A unchanged",
+  "protected_probe_count": 54,
+  "protected_probe_failures": 0,
+  "runtime": {
+    "protobuf": "6.33.6",
+    "pytest": "9.1.1",
+    "python": "3.14.7",
+    "sentencepiece": "0.2.1",
+    "tokenizers": "0.22.2",
+    "torch": "2.14.0"
+  },
+  "schema_version": 1,
+  "scope_policy_manifests_sha256": {
+    "scoped-bhasha": "5a68beeabbdaf4f75aa3d11dcda88a9643872de776626ec7ea48661487e7bd54",
+    "scoped-independent": "d89c22a4b67f6199528281e7bd33d447bb26e99d6d8cb667ccff96034d9987aa"
+  },
+  "source_files_sha256": {
+    "src/sttok/__init__.py": "8522b1adb63b4bdb9a519f612b6a57d8b6fa823bb3b7c0543b25fd4a363be2aa",
+    "src/sttok/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/sttok/builder.py": "d6547ba9b6883a87b9ac939ab862ab01e48fea7361be93cc85d379789239c53c",
+    "src/sttok/checkpoint.py": "b14d52d770ca8bfdbeb1059377d8df56590ab4d58b181fc50a2b5c785ff40f18",
+    "src/sttok/checkpoint_validation.py": "060abde7f7a3f3f99be81fa5426c2e5b36f768eb0bca4ae2b725c6fe713a9fcd",
+    "src/sttok/cli.py": "ad69b7b6b839f05f0d083ad83f45445f61db449a3dc3f51c2e88ff0d6b2063b6",
+    "src/sttok/corpora.py": "3df80cdb737d647841af7a5cac50ae551eafb888ce9c753847017306eb6f8162",
+    "src/sttok/evaluation.py": "7186e41c8910dc929370732e573ba7f6cb68685e94b7ed3ad4a66cbc819f0455",
+    "src/sttok/inference.py": "7ceb3f9369da43d4f58090d1851b27031ac8394c16f5dd974c99ac598d2c4545",
+    "src/sttok/prompts.py": "f13fe1fe3ef8ca59beb6557a061450b6903d75e432783a8e97136cb198ac1a33",
+    "src/sttok/runtime.py": "8e37bc5c383be1cdf1bf8fd2b10399b1c90d77975cd9350ea225779deee0675e",
+    "src/sttok/scope.py": "1488f8bae839c9b5052cda2b569e9a47309a9e7b8c15a1276d662b71e00cb44b",
+    "src/sttok/sources.py": "a5232b55884371045d366487738fd2a5893225551a06c29595ef49721d32f56d",
+    "src/sttok/training_smoke.py": "b3d3ee5b5e24ed7e1d174c6e42183276bfb3f8bae109d05517788c1ecb027d11",
+    "src/sttok/validation.py": "cbffc13149a22420214efad04d762cb03e55864d8d14ea25fc31f0126a4f03f4"
+  },
+  "standard_exemplar_audit": {
+    "elements": 1348,
+    "fixture_sha256": "3d922a3a6ce373f016d4f561231ab423acd30aaae5bf04905ec8a40df1106103",
+    "normalized_roundtrip_failures": 0,
+    "profiles": 22,
+    "report_sha256": "6acffd2f817a22c4e7861f7e2e0456f10de50b206d35fd8ff04e7b2d2240e3db",
+    "scope": "CLDR48 standard sets for the exact target scripts; all inheritance resolved.",
+    "unknowns": 0
+  },
+  "standard_exemplar_fixes": {
+    "characters": [
+      "ৡ",
+      "ৢ",
+      "ৣ",
+      "ೡ",
+      "ౕ",
+      "ౡ"
+    ],
+    "cldr_revision": "acd6d88ae493633240e19a87a721076a8a75c310",
+    "reason": "Missing standard Bengali, Kannada and Telugu exemplar characters exposed by an independent alphabet audit, then added and explicitly retested."
+  },
+  "streaming_executed": false,
+  "training_executed": false,
+  "vocabulary_size": 16481
+}

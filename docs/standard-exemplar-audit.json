@@ -1,0 +1,497 @@
+{
+  "limitation": "Standard CLDR exemplar representation only; no auxiliary repertoire, universal script coverage or ASR claim.",
+  "normalized_roundtrip_elements_checked": 1348,
+  "normalized_roundtrip_failures": [],
+  "profiles": [
+    {
+      "character_count": 59,
+      "element_count": 63,
+      "error": null,
+      "inheritance_chain": [
+        "as"
+      ],
+      "language": "as",
+      "locale": "as",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Bengali",
+      "standard_pattern": "[় অ আ ই ঈ উ ঊ ঋ এ ঐ ও ঔ ং ঁ ঃ ক খ গ ঘ ঙ চ ছ জ ঝ ঞ ট ঠ ড{ড়} ঢ{ঢ়} ণ ত থ দ ধ ন প ফ ব ভ ম য{য়} ৰ ল ৱ শ ষ স হ {ক্ষ} া ি ী ু ূ ৃ ে ৈ ো ৌ ্]",
+      "status": "verified"
+    },
+    {
+      "character_count": 68,
+      "element_count": 72,
+      "error": null,
+      "inheritance_chain": [
+        "bn"
+      ],
+      "language": "bn",
+      "locale": "bn",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Bengali",
+      "standard_pattern": "[় ৺ অ আ ই ঈ উ ঊ ঋ ৠ ঌ ৡ এ ঐ ও ঔ ং ঃ ঁ ক {ক্ষ} খ গ ঘ ঙ চ ছ জ ঝ ঞ ট ঠ ড{ড়} ঢ{ঢ়} ণ ত ৎ থ দ ধ ন প ফ ব ভ ম য{য়} র ল শ ষ স হ ঽ া ি ী ু ূ ৃ ৄ ৢ ৣ ে ৈ ো ৌ ্ ৗ]",
+      "status": "verified"
+    },
+    {
+      "character_count": 61,
+      "element_count": 62,
+      "error": null,
+      "inheritance_chain": [
+        "brx"
+      ],
+      "language": "brx",
+      "locale": "brx",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Devanagari",
+      "standard_pattern": "[़ ँ ं अ आ इ ई उ ऊ ऍ ए ऐ ऑ ओ औ क ख ग घ च छ ज झ ञ ट ठ ड{ड़} ढ ण त थ द ध न प फ ब भ म य र ल ळ व श ष स ह ा ि ी ु ू ृ ॅ े ै ॉ ो ौ ्]",
+      "status": "verified"
+    },
+    {
+      "character_count": 70,
+      "element_count": 73,
+      "error": null,
+      "inheritance_chain": [
+        "doi"
+      ],
+      "language": "doi",
+      "locale": "doi",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Devanagari",
+      "standard_pattern": "[॑ ॒ ़ ँ ंः ॐ अ आ इ ई उ ऊ ऋ ॠ ऌ ॡ ए ऐ ओ औ क {क्ष} ख ग घ ङ च छ ज झ ञ ट ठ ड{ड़} ढ{ढ़} ण त थ द ध न प फ ब भ म य र ल ळ व श ष स ह ऽ ा ि ी ु ू ृ ॄ ॢ ॣ े ै ो ौ ्]",
+      "status": "verified"
+    },
+    {
+      "character_count": 68,
+      "element_count": 68,
+      "error": null,
+      "inheritance_chain": [
+        "gu"
+      ],
+      "language": "gu",
+      "locale": "gu",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Gujarati",
+      "standard_pattern": "[઼ ૐ ં ઁ ઃ અ આ ઇ ઈ ઉ ઊ ઋ ૠ ઍ એ ઐ ઑ ઓ ઔ ક ખ ગ ઘ ઙ ચ છ જ ઝ ઞ ટ ઠ ડ ઢ ણ ત થ દ ધ ન પ ફ બ ભ મ ય ર લ વ શ ષ સ હ ળ ઽ ા િ ી ુ ૂ ૃ ૄ ૅ ે ૈ ૉ ો ૌ ્]",
+      "status": "verified"
+    },
+    {
+      "character_count": 67,
+      "element_count": 67,
+      "error": null,
+      "inheritance_chain": [
+        "hi"
+      ],
+      "language": "hi",
+      "locale": "hi",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Devanagari",
+      "standard_pattern": "[़ ॐ ं ँ ः अ आ इ ई उ ऊ ऋ ऌ ऍ ए ऐ ऑ ओ औ क ख ग घ ङ च छ ज झ ञ ट ठ ड ढ ण त थ द ध न प फ ब भ म य र ल ळ व श ष स ह ऽ ा ि ी ु ू ृ ॅ े ै ॉ ो ौ ्]",
+      "status": "verified"
+    },
+    {
+      "character_count": 71,
+      "element_count": 71,
+      "error": null,
+      "inheritance_chain": [
+        "kn"
+      ],
+      "language": "kn",
+      "locale": "kn",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Kannada",
+      "standard_pattern": "[಼ ಅ ಆ ಇ ಈ ಉ ಊ ಋ ೠ ಌ ೡ ಎ ಏ ಐ ಒ ಓ ಔ ಂ ಃ ಕ ಖ ಗ ಘ ಙ ಚ ಛ ಜ ಝ ಞ ಟ ಠ ಡ ಢ ಣ ತ ಥ ದ ಧ ನ ಪ ಫ ಬ ಭ ಮ ಯ ರ ಱ ಲ ವ ಶ ಷ ಸ ಹ ಳ ಽ ಾ ಿ ೀ ು ೂ ೃ ೄ ೆ ೇ ೈ ೊ ೋ ೌ ್ ೕ ೖ]",
+      "status": "verified"
+    },
+    {
+      "character_count": 77,
+      "element_count": 85,
+      "error": null,
+      "inheritance_chain": [
+        "kok_Deva",
+        "kok"
+      ],
+      "language": "kok",
+      "locale": "kok_Deva",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Devanagari",
+      "standard_pattern": "[़ ० १ २ ३ ४ ५ ६ ७ ८ ९ ॐ ं ँ ः अ आ इ ई उ ऊ ऋ ऌ ऍ ए ऐ ऑ ओ औ क{क़} ख{ख़} ग{ग़} घ ङ च छ ज{ज़} झ ञ ट ठ ड{ड़} ढ{ढ़} ण त थ द ध न प फ{फ़} ब भ म य{य़} र ल व श ष स ह ळ ऽ ा ि ी ु ू ृ ॅ े ै ॉ ो ौ ्]",
+      "status": "verified"
+    },
+    {
+      "character_count": 46,
+      "element_count": 46,
+      "error": null,
+      "inheritance_chain": [
+        "ks_Arab",
+        "ks"
+      ],
+      "language": "ks",
+      "locale": "ks_Arab",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Arabic",
+      "standard_pattern": "[ء آ أ ٲ ؤ ا ب پ ت ث ٹ ج چ ح خ د ذ ڈ ر ز ڑ ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن ں ھ ہ و ۄ ۆ ی ؠ ے]",
+      "status": "verified"
+    },
+    {
+      "character_count": 45,
+      "element_count": 49,
+      "error": null,
+      "inheritance_chain": [
+        "mai"
+      ],
+      "language": "mai",
+      "locale": "mai",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Devanagari",
+      "standard_pattern": "[़ ंः क {क्ष} ख ग घ च छ ज {ज्ञ} झ ञ ट ठ ड{डं} ढ ण त {त्र} थ द ध न प फ ब भ म य र ल व श {श्र} ष स ह ा ि ी ु ू े ै ो ौ]",
+      "status": "verified"
+    },
+    {
+      "character_count": 51,
+      "element_count": 51,
+      "error": null,
+      "inheritance_chain": [
+        "ml"
+      ],
+      "language": "ml",
+      "locale": "ml",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Malayalam",
+      "standard_pattern": "[അ{അഃ} {അം} ആ ഇ ഈ ഉ ഊ ഋ എ ഏ ഐ ഒ ഓ ഔ ക ഖ ഗ ഘ ങ ച ഛ ജ ഝ ഞ ട ഠ ഡ ഢ ണ ത ഥ ദ ധ ന പ ഫ ബ ഭ മ യ ര ല വ ശ ഷ സ ഹ ള ഴ റ]",
+      "status": "verified"
+    },
+    {
+      "character_count": 45,
+      "element_count": 45,
+      "error": null,
+      "inheritance_chain": [
+        "mni_Mtei"
+      ],
+      "language": "mni",
+      "locale": "mni_Mtei",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Meetei Mayek",
+      "standard_pattern": "[꯬ ꯀ ꯁ ꯂ ꯃ ꯄ ꯅ ꯆ ꯇ ꯈ ꯉ ꯊ ꯋ ꯌ ꯍ ꯎ ꯏ ꯐ ꯑ ꯒ ꯓ ꯔ ꯕ ꯖ ꯗ ꯘ ꯙ ꯚ ꯣ ꯤ ꯥ ꯦ ꯧ ꯨ ꯩ ꯪ ꯛ ꯜ ꯝ ꯞ ꯟ ꯠ ꯡ ꯢ ꯭]",
+      "status": "verified"
+    },
+    {
+      "character_count": 64,
+      "element_count": 66,
+      "error": null,
+      "inheritance_chain": [
+        "mr"
+      ],
+      "language": "mr",
+      "locale": "mr",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Devanagari",
+      "standard_pattern": "[ॐ ं ः अ आ इ ई उ ऊ ऋ ऌ ए ऐ ऑ ओ औ क ख ग घ ङ च छ ज झ ञ ट ठ ड ढ ण त थ द ध न प फ ब भ म य र ल व श ष स ह ळ {क्ष} {ज्ञ} ऽ ा ि ी ु ू ृ ॅ े ै ॉ ो ौ ्]",
+      "status": "verified"
+    },
+    {
+      "character_count": 67,
+      "element_count": 67,
+      "error": null,
+      "inheritance_chain": [
+        "ne"
+      ],
+      "language": "ne",
+      "locale": "ne",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Devanagari",
+      "standard_pattern": "[़ ँ ंः ॐ अ आ इ ई उ ऊ ऋ ऌ ऍ ए ऐ ऑ ओ औ क ख ग घ ङ च छ ज झ ञ ट ठ ड ढ ण त थ द ध न प फ ब भ म य र ल ळ व श ष स ह ऽ ा ि ी ु ू ृ ॅ े ै ॉ ो ौ ्]",
+      "status": "verified"
+    },
+    {
+      "character_count": 62,
+      "element_count": 65,
+      "error": null,
+      "inheritance_chain": [
+        "or"
+      ],
+      "language": "or",
+      "locale": "or",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Odia",
+      "standard_pattern": "[଼ ଅ ଆ ଇ ଈ ଉ ଊ ଋ ଏ ଐ ଓ ଔ ଁ ଂ ଃ କ ଖ ଗ ଘ ଙ ଚ ଛ ଜ ଝ ଞ ଟ ଠ ଡ{ଡ଼} ଢ{ଢ଼} ଣ ତ ଥ ଦ ଧ ନ ପ ଫ ବ ଭ ମ ଯୟ ର ଲ ଳ ଵ ୱ ଶ ଷ ସ ହ {କ୍ଷ} ା ି ୀ ୁ ୂ ୃ େ ୈ ୋ ୌ ୍]",
+      "status": "verified"
+    },
+    {
+      "character_count": 69,
+      "element_count": 74,
+      "error": null,
+      "inheritance_chain": [
+        "pa"
+      ],
+      "language": "pa",
+      "locale": "pa",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Gurmukhi",
+      "standard_pattern": "[ੱ {ੰਂ} ਼ ੦ ੧ ੨ ੩ ੪ ੫ ੬ ੭ ੮ ੯ ੴ ੳ ਉ ਊ ਓ ਅ ਆ ਐ ਔ ੲ ਇ ਈ ਏ ਸ{ਸ਼} ਹ ਕ ਖ{ਖ਼} ਗ{ਗ਼} ਘ ਙ ਚ ਛ ਜ{ਜ਼} ਝ ਞ ਟ ਠ ਡ ਢ ਣ ਤ ਥ ਦ ਧ ਨ ਪ ਫ{ਫ਼} ਬ ਭ ਮ ਯ ਰ ਲ{ਲ਼} ਵ ੜ ੍ ਾ ਿ ੀ ੁ ੂ ੇ ੈ ੋ ੌ]",
+      "status": "verified"
+    },
+    {
+      "character_count": 70,
+      "element_count": 70,
+      "error": null,
+      "inheritance_chain": [
+        "sa"
+      ],
+      "language": "sa",
+      "locale": "sa",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Devanagari",
+      "standard_pattern": "[॑ ॒ ़ ँ ंः ॐ अ आ इ ई उ ऊ ऋ ॠ ऌ ॡ ए ऐ ओ औ क ख ग घ ङ च छ ज झ ञ ट ठ ड ढ ण त थ द ध न प फ ब भ म य र ल ळ व श ष स ह ऽ ा ि ी ु ू ृ ॄ ॢ ॣ े ै ो ौ ्]",
+      "status": "verified"
+    },
+    {
+      "character_count": 36,
+      "element_count": 36,
+      "error": null,
+      "inheritance_chain": [
+        "sat_Olck",
+        "sat"
+      ],
+      "language": "sat",
+      "locale": "sat_Olck",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Ol Chiki",
+      "standard_pattern": "[ᱚ ᱛ ᱜ ᱝ ᱞ ᱟ ᱠ ᱡ ᱢ ᱣ ᱤ ᱥ ᱦ ᱧ ᱨ ᱩ ᱪ ᱫ ᱬ ᱭ ᱮ ᱯ ᱰ ᱱ ᱲ ᱳ ᱴ ᱵ ᱶ ᱷ ᱸ ᱹ ᱺ ᱻ ᱼ ᱽ]",
+      "status": "verified"
+    },
+    {
+      "character_count": 63,
+      "element_count": 63,
+      "error": null,
+      "inheritance_chain": [
+        "sd_Deva"
+      ],
+      "language": "sd",
+      "locale": "sd_Deva",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Devanagari",
+      "standard_pattern": "[़ ं अ आ इ ई उ ऊ ए ऐ ओ औ क ख ग ॻ घ ङ च छ ज ॼ झ ञ ट ठ ड ॾ ढ ण त थ द ध न प फ ब ॿ भ म य र ल व श ष स ह ा ि ी ु ू ृ ॄ ॅ े ै ॉ ो ौ ्]",
+      "status": "verified"
+    },
+    {
+      "character_count": 47,
+      "element_count": 47,
+      "error": null,
+      "inheritance_chain": [
+        "ta"
+      ],
+      "language": "ta",
+      "locale": "ta",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Tamil",
+      "standard_pattern": "[அ ஆ இ ஈ உ ஊ எ ஏ ஐ ஒ ஓ ஔ ஃ க ங ச ஞ ட ண த ந ப ம ய ர ல வ ழ ள ற ன ஜ ஷ ஸ ஹ ா ி ீ ு ூ ெ ே ை ொ ோ ௌ ்]",
+      "status": "verified"
+    },
+    {
+      "character_count": 70,
+      "element_count": 70,
+      "error": null,
+      "inheritance_chain": [
+        "te"
+      ],
+      "language": "te",
+      "locale": "te",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Telugu",
+      "standard_pattern": "[అ ఆ ఇ ఈ ఉ ఊ ఋ ౠ ఌ ౡ ఎ ఏ ఐ ఒ ఓ ఔ ఁ ం ః క ఖ గ ఘ ఙ చ ఛ జ ఝ ఞ ట ఠ డ ఢ ణ త థ ద ధ న ప ఫ బ భ మ య ర ఱ ల వ శ ష స హ ళ ా ి ీ ు ూ ృ ౄ ె ే ై ొ ో ౌ ్ ౕ ౖ]",
+      "status": "verified"
+    },
+    {
+      "character_count": 38,
+      "element_count": 38,
+      "error": null,
+      "inheritance_chain": [
+        "ur"
+      ],
+      "language": "ur",
+      "locale": "ur",
+      "missing_characters": [],
+      "missing_elements": [],
+      "normalized_roundtrip_failures": [],
+      "script": "Arabic",
+      "standard_pattern": "[ا ب پ ت ٹ ث ج چ ح خ د ڈ ذ ر ڑ ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن و ہ ھ ء ی ے]",
+      "status": "verified"
+    }
+  ],
+  "revision": "acd6d88ae493633240e19a87a721076a8a75c310",
+  "sources": [
+    {
+      "file": "as.xml",
+      "sha256": "1b210c6fa451fd59108202b12607615f70f2b8a6574b78eb0aa10e7415f50efb",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/as.xml"
+    },
+    {
+      "file": "bn.xml",
+      "sha256": "bac59264993110a47ca53b92357352bdc23f2ca0a9bb66ec48609c4c174ef68b",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/bn.xml"
+    },
+    {
+      "file": "brx.xml",
+      "sha256": "749e14c5c533aa0d8024be2b5067cb77ebe4592505d9c4cb86a707af3d85f6ef",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/brx.xml"
+    },
+    {
+      "file": "doi.xml",
+      "sha256": "52e80e0e0558bf6e30427532efbc825ec8f68d77cd9b2fae791f0c0f7add572e",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/doi.xml"
+    },
+    {
+      "file": "gu.xml",
+      "sha256": "a3b24ea142b1860bb61ef483b73425897877a339d3e82bf69eb51c576020a04e",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/gu.xml"
+    },
+    {
+      "file": "hi.xml",
+      "sha256": "5fa900f98f3f4ca70f73af23925783f73c62856d84892be9f364e05f4f10b261",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/hi.xml"
+    },
+    {
+      "file": "kn.xml",
+      "sha256": "913971145002f04c35fa0f8a439c11be7d761d5fc766462f8f829c2541a392af",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/kn.xml"
+    },
+    {
+      "file": "kok.xml",
+      "sha256": "d862f655e8d735f30d0f705e59e201f5d00a10ab84cb895c6954c30678765de7",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/kok.xml"
+    },
+    {
+      "file": "kok_Deva.xml",
+      "sha256": "39cedda3eebbb8c21a4c3e4d9cd38927bb49000a96d3f6bb29695f95cf21e203",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/kok_Deva.xml"
+    },
+    {
+      "file": "ks.xml",
+      "sha256": "752d13f51346305620eeb307db77ed57979da518f03185d3323e76fbe07e55fd",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/ks.xml"
+    },
+    {
+      "file": "ks_Arab.xml",
+      "sha256": "619648b902e2ef44c416bc7eef2aaeba91aff08737bc2f0ef535e0c9b43ed033",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/ks_Arab.xml"
+    },
+    {
+      "file": "mai.xml",
+      "sha256": "7ea047e4b2e9e2b6e6c53908319c69c1a8d984cc31471e84a4b5933a562a5fcd",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/mai.xml"
+    },
+    {
+      "file": "ml.xml",
+      "sha256": "7aaf9d1392322df3bb0ac9a55b8b14f38bb50edff8c365d88ab859599ef66f16",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/ml.xml"
+    },
+    {
+      "file": "mni_Mtei.xml",
+      "sha256": "3600c8d7f749f22fefe398a512ca7db1f184a8ad7b327db40f78a0c6c26e3e3b",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/mni_Mtei.xml"
+    },
+    {
+      "file": "mr.xml",
+      "sha256": "9db1280c9d371b157823e43fef234aa058249e7a81bc7763b9162e943838d9a0",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/mr.xml"
+    },
+    {
+      "file": "ne.xml",
+      "sha256": "3d24e649a8ddd6ab453b17570beb80b593348c513cd3626c7f9cbcc3673179b4",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/ne.xml"
+    },
+    {
+      "file": "or.xml",
+      "sha256": "713face3586348e9699ab0e3ad280d9f646b598d07b87dea8835cc05fa2d7bf0",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/or.xml"
+    },
+    {
+      "file": "pa.xml",
+      "sha256": "60196cfb67ea248ef993e6d85eb689fe9b73a047d9984a352591106eea6a75f0",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/pa.xml"
+    },
+    {
+      "file": "sa.xml",
+      "sha256": "41dc74d9c3ba414bdbae4ed790e39bba69f05fbb37b7c9c5b3e844906f60bf9a",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/sa.xml"
+    },
+    {
+      "file": "sat.xml",
+      "sha256": "ce899956f16c134df65d582663f003d0ea18b1ed9f9f3e6e721a0e54d42c99ef",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/sat.xml"
+    },
+    {
+      "file": "sat_Olck.xml",
+      "sha256": "3b8151567381f2877102cf090ecfec1f3aa892925a74083a7c72d836bc89e490",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/sat_Olck.xml"
+    },
+    {
+      "file": "sd_Deva.xml",
+      "sha256": "2298384ee097c35bd42931927a1e7525638337ebd26c47a7377431acf308e562",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/sd_Deva.xml"
+    },
+    {
+      "file": "supplementalData.xml",
+      "sha256": "fb054c9f9a95f0c4da9dd1e5e0ef6dd208b6f9a73f45303011be247277d81bef",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/supplemental/supplementalData.xml"
+    },
+    {
+      "file": "ta.xml",
+      "sha256": "7f37db20018f0fd3d6590be9b3cdbda1c6829a53e971a7c5e6df3d314ebb4b15",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/ta.xml"
+    },
+    {
+      "file": "te.xml",
+      "sha256": "d429759810b8f472242ca348eeabf8541da7c48c56c81bd43ec5009790efba9a",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/te.xml"
+    },
+    {
+      "file": "ur.xml",
+      "sha256": "4e8a57befb8ac8b2902fe5cc764aecd1d7db44134d49fb8ce0bab40e7ae8e214",
+      "url": "https://raw.githubusercontent.com/unicode-org/cldr/acd6d88ae493633240e19a87a721076a8a75c310/common/main/ur.xml"
+    }
+  ],
+  "tokenizer_sha256": "ef619be3ac1f85de60a3e9ab8c9f2deaddcbcfd71c8c9f1a55d9a9fc26d6a9c4",
+  "vocabulary_size": 16481
+}
