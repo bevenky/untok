@@ -1,5 +1,6 @@
 """Fake-model unit tests only; these do not establish NeMo integration or WER."""
 import hashlib
+from enum import Enum
 import json
 import sys
 import types
@@ -9,16 +10,34 @@ import pytest
 from sttok import inference
 
 
+def test_runtime_configuration_enums_have_stable_json_names():
+    class ScoreMode(Enum):
+        KEEP = 1
+
+    plain = inference._plain({"decoder": {"score_mode": ScoreMode.KEEP}, "modes": [ScoreMode.KEEP]})
+    assert plain == {"decoder": {"score_mode": "KEEP"}, "modes": ["KEEP"]}
+    assert json.loads(json.dumps(plain)) == plain
+
+
 class FakeModel:
     def __init__(self, outputs=None):
+        torch = pytest.importorskip("torch")
         self.outputs = outputs if outputs is not None else ["one one two"]
         self.calls = []
         self.cfg = {
-            "model_defaults": {"prompt_dictionary": {"en-US": 0, "auto": 1}},
+            "model_defaults": {"prompt_dictionary": {"en-US": 0, "auto": 1}, "enc_hidden": 2},
             "decoding": {"strategy": "greedy_batch", "greedy": {"max_symbols": 10}},
             "encoder": {"att_context_size": [70, 13]},
         }
         self.tokenizer = types.SimpleNamespace(tokenizer=types.SimpleNamespace(serialized_model_proto=lambda: b"synthetic-tokenizer-unit-test"))
+        self.preprocessor = types.SimpleNamespace(_sample_rate=16000)
+        self.num_prompts, self.concat = 2, True
+        self.prompt_kernel = torch.nn.Linear(4, 2)
+        self.wrong_prompt = False
+        self.skip_prompt = False
+
+    def get_transcribe_config(self):
+        return types.SimpleNamespace()
 
     def to(self, device):
         self.device = device
@@ -31,7 +50,18 @@ class FakeModel:
         return self
 
     def transcribe(self, **kwargs):
+        torch = pytest.importorskip("torch")
         self.calls.append(kwargs)
+        assert isinstance(kwargs["audio"][0], torch.Tensor)
+        assert kwargs["override_config"].target_lang == kwargs["target_lang"]
+        assert kwargs["override_config"].pad_min_duration == 0
+        if not self.skip_prompt:
+            conditioning = torch.zeros(1, 3, 4)
+            prompt_id = self.cfg["model_defaults"]["prompt_dictionary"][kwargs["target_lang"]]
+            if self.wrong_prompt:
+                prompt_id = 1 - prompt_id
+            conditioning[..., 2 + prompt_id] = 1
+            self.prompt_kernel(conditioning)
         output = self.outputs[len(self.calls) - 1]
         if isinstance(output, Exception):
             raise output
@@ -45,6 +75,9 @@ def fixture(tmp_path, monkeypatch, mode="known", outputs=None):
     checkpoint.write_bytes(b"not-real-checkpoint-unit-test-fixture")
     model = FakeModel(outputs)
     monkeypatch.setattr(inference, "_load_model", lambda path, device: model)
+    torch = pytest.importorskip("torch")
+    # Synthetic waveform input; the fake model only exercises the prompt contract.
+    monkeypatch.setattr(inference, "_load_audio_tensor", lambda *args: torch.zeros(16000))
     request = {"mode": "offline", "language_mode": mode}
     if mode == "known":
         request["language_prompt"] = "en-US"
@@ -80,6 +113,10 @@ def test_known_prompt_repeated_text_and_actual_hash_provenance(tmp_path, monkeyp
     assert prediction["tokenizer_sha256"] == inference._tokenizer_hash(model)
     assert prediction["audio_sha256"] == manifest["utterances"][0]["audio_sha256"]
     assert prediction["actual_settings"]["mode"] == "offline"
+    assert prediction["prompt_evidence"]["prompt_id"] == 0
+    assert prediction["prompt_evidence"]["verified_kernel_calls"] == 1
+    assert prediction["prompt_evidence"]["verified_frames"] == 3
+    assert not model.prompt_kernel._forward_pre_hooks
     assert summary["streaming_validated"] is False
     assert output.with_suffix(".jsonl.run.json").is_file()
 
@@ -91,6 +128,57 @@ def test_automatic_mode_uses_real_auto_prompt(tmp_path, monkeypatch):
     row = json.loads(output.read_text())
     assert row["language_mode"] == "automatic"
     assert row["language_prompt"] is None
+    assert row["prompt_evidence"]["prompt_id"] == 1
+
+
+@pytest.mark.parametrize("failure", ["wrong_prompt", "skip_prompt", "transcribe_exception"])
+def test_actual_prompt_failures_leave_no_evidence_and_remove_hooks(tmp_path, monkeypatch, failure):
+    _, path, checkpoint, output, model = fixture(tmp_path, monkeypatch)
+    if failure == "transcribe_exception":
+        model.outputs = [RuntimeError("transcription failed")]
+        error, pattern = RuntimeError, "transcription failed"
+    else:
+        setattr(model, failure, True)
+        error, pattern = ValueError, "conditioning|hooks did not execute"
+    with pytest.raises(error, match=pattern):
+        inference.run_nemo_inference(path, checkpoint, "baseline", output)
+    assert not model.prompt_kernel._forward_pre_hooks
+    assert not output.exists()
+    assert not output.with_suffix(".jsonl.run.json").exists()
+
+
+@pytest.mark.parametrize("failure", [None, "sample_rate", "stereo", "empty", "nonfinite", "changed_hash"])
+def test_audio_loader_checks_decode_shape_rate_and_current_hash(tmp_path, monkeypatch, failure):
+    """Mock soundfile decoding; exercise loader checks without adding test dependencies."""
+    torch = pytest.importorskip("torch")
+    path = tmp_path / "decoder-fixture.wav"
+    path.write_bytes(b"explicit mock decoder fixture")
+    digest = inference._sha256(path)
+    samples = torch.zeros(320, 1)
+    rate = 16000
+    if failure == "sample_rate":
+        rate = 8000
+    elif failure == "stereo":
+        samples = torch.zeros(320, 2)
+    elif failure == "empty":
+        samples = torch.zeros(0, 1)
+    elif failure == "nonfinite":
+        samples[0, 0] = float("nan")
+
+    def read(filename, **kwargs):
+        assert filename == str(path)
+        assert kwargs == {"dtype": "float32", "always_2d": True}
+        if failure == "changed_hash":
+            path.write_bytes(b"changed during mocked decoding")
+        return samples.numpy(), rate
+
+    monkeypatch.setitem(sys.modules, "soundfile", types.SimpleNamespace(read=read))
+    if failure:
+        with pytest.raises(ValueError, match="sample rate|mono audio|finite|hash changed"):
+            inference._load_audio_tensor(path, digest, 16000)
+    else:
+        tensor = inference._load_audio_tensor(path, digest, 16000)
+        assert tensor.shape == (320,) and tensor.dtype == torch.float32
 
 
 def test_missing_audio_fails_before_loading_model(tmp_path, monkeypatch):

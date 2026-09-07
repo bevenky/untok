@@ -122,12 +122,12 @@ class HFTokenizerAdapter:
     """TokenizerSpec-shaped adapter, with native RNNT IDs at every public edge.
 
     This intentionally does not inherit a NeMo class, allowing CPU tokenizer
-    checks without importing its training stack. NeMo uses this protocol by
-    duck typing. Language tags remain available when decoding, and consecutive
-    repeated RNNT tokens are retained.
+    checks without importing its training stack. Its callable interface supports
+    NeMo's TokenizerWrapper fallback for non-TokenizerSpec objects. Language tags
+    remain available when decoding, and consecutive repeated RNNT tokens are retained.
     """
 
-    def __init__(self, tokenizer_json: str | Path):
+    def __init__(self, tokenizer_json: str | Path, native_decoder_model: str | Path | None = None):
         from tokenizers import Tokenizer
 
         self.path = str(Path(tokenizer_json).resolve())
@@ -141,6 +141,53 @@ class HFTokenizerAdapter:
         self.pad_id = self.blank_id  # RNNT's padded labels are excluded by length.
         self.unk_id = self.id_map.to_model([self.backend.token_to_id("<unk>")])[0]
         self.bos_id = self.eos_id = -1
+        self.native_decoder_model_path = None
+        self.native_decoder_sha256 = None
+        self.native_decoder_model_proto = None
+        self._native_decoder = None
+        if native_decoder_model is not None:
+            self._setup_native_decoder(native_decoder_model)
+
+    def _setup_native_decoder(self, path: str | Path) -> None:
+        """Keep native piece-to-text semantics while HF alone encodes text.
+
+        Native SentencePiece renders unknowns and boundary spaces differently
+        from HF. DecodePieces also emits an unrecognized piece literally,
+        including its metaspace marker. Copy the original proto and append
+        missing ordinary pieces as NORMAL solely for decoding. Added scores
+        are unused: this processor never encodes or segments text. The source
+        artifact, HF BPE JSON, original piece types and normalizer are unchanged.
+        """
+        import sentencepiece as spm
+        from sentencepiece import sentencepiece_model_pb2
+
+        path = Path(path).resolve()
+        source = path.read_bytes()
+        proto = sentencepiece_model_pb2.ModelProto()
+        proto.ParseFromString(source)
+        # The selected base puts the HF-only padding/blank entries immediately
+        # after every original native piece. A shorter or unrelated decoder
+        # cannot establish native decoding compatibility for that old prefix.
+        expected = min(self.id_map.hf_pad_id, self.id_map.hf_blank_id)
+        if len(proto.pieces) != expected:
+            raise ValueError("Native decoder does not cover the complete original HF piece prefix")
+        for index, piece in enumerate(proto.pieces):
+            if self.backend.id_to_token(index) != piece.piece:
+                raise ValueError(f"Native decoder piece {index} disagrees with its original HF ID")
+        for model_id, canonical_id in enumerate(self.id_map.model_to_canonical[:-1]):
+            if model_id < expected:
+                continue
+            piece = proto.pieces.add()
+            piece.piece = self.backend.id_to_token(canonical_id)
+            piece.type = sentencepiece_model_pb2.ModelProto.SentencePiece.NORMAL
+            piece.score = 0.0  # Never used: this processor only decodes pieces.
+        proto.trainer_spec.vocab_size = len(proto.pieces)
+        self._native_decoder = spm.SentencePieceProcessor(model_proto=proto.SerializeToString())
+        self.native_decoder_model_path = str(path)
+        self.native_decoder_sha256 = hashlib.sha256(source).hexdigest()
+        # Keep the original immutable artifact bytes for a later re-migration;
+        # the in-memory extended decoder is never an encoding artifact.
+        self.native_decoder_model_proto = source
 
     def get_vocab(self) -> dict[str, int]:
         return {
@@ -151,7 +198,13 @@ class HFTokenizerAdapter:
     def text_to_ids(self, text: str) -> list[int]:
         return self.id_map.to_model(self.backend.encode(text, add_special_tokens=False).ids)
 
+    def __call__(self, text: str) -> list[int]:
+        """Support NeMo's callable tokenizer interface with native model IDs."""
+        return self.text_to_ids(text)
+
     def ids_to_text(self, ids: Sequence[int]) -> str:
+        if self._native_decoder is not None:
+            return self._native_decoder.decode_pieces(self.ids_to_tokens(ids))
         return self.backend.decode(self.id_map.to_canonical(ids), skip_special_tokens=False)
 
     def text_to_tokens(self, text: str) -> list[str]:
@@ -182,6 +235,37 @@ class HFTokenizerAdapter:
 _NEMO_CLASS = None
 
 
+def _register_trusted_nemo_target(model_class):
+    """Permit this exact class without broadening NeMo's allowed module prefixes.
+
+    The pinned NeMo validator has no custom-class registration API and checks
+    prefixes before its exact-target set. Preserve its predicate for all other
+    targets, and verify the resolved identity of our single installed class.
+    """
+    from importlib import import_module
+
+    common = import_module("nemo.core.classes.common")
+    original = getattr(common, "_is_target_allowed", None)
+    serialization = getattr(common, "Serialization", None)
+    if not callable(original) or not isinstance(serialization, type):
+        raise RuntimeError("Unsupported NeMo target-validation interface")
+    if not isinstance(model_class, type) or not issubclass(model_class, serialization):
+        raise ValueError("The registered tokenizer model must be a NeMo Serialization subclass")
+    if getattr(original, "_sttok_registered_class", None) is model_class:
+        return
+    target_path = "sttok.runtime.ExtendedNemotronRNNTModel"
+
+    def allow_registered_model(target):
+        if target == target_path:
+            # An alias, replaced module attribute or similarly named class is
+            # insufficient: Hydra must resolve the exact class registered here.
+            return common.hydra.utils.get_class(target) is model_class
+        return original(target)
+
+    allow_registered_model._sttok_registered_class = model_class
+    common._is_target_allowed = allow_registered_model
+
+
 def get_nemo_model_class():
     """Lazily provide the registered model class required to restore our .nemo.
 
@@ -199,15 +283,21 @@ def get_nemo_model_class():
                 path = self.register_artifact(
                     "tokenizer.hf_tokenizer_json", tokenizer_cfg["hf_tokenizer_json"]
                 )
+                native_decoder = None
+                if tokenizer_cfg.get("native_decoder_model") is not None:
+                    native_decoder = self.register_artifact(
+                        "tokenizer.native_decoder_model", tokenizer_cfg["native_decoder_model"]
+                    )
                 self.tokenizer_cfg = tokenizer_cfg
                 self.tokenizer_dir = str(Path(path).parent)
                 self.tokenizer_type = "bpe"
-                self.tokenizer = HFTokenizerAdapter(path)
+                self.tokenizer = HFTokenizerAdapter(path, native_decoder_model=native_decoder)
 
         ExtendedNemotronRNNTModel.__module__ = __name__
         ExtendedNemotronRNNTModel.__qualname__ = "ExtendedNemotronRNNTModel"
         _NEMO_CLASS = ExtendedNemotronRNNTModel
         globals()["ExtendedNemotronRNNTModel"] = _NEMO_CLASS
+    _register_trusted_nemo_target(_NEMO_CLASS)
     return _NEMO_CLASS
 
 

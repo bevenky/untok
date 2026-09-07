@@ -7,6 +7,7 @@ actual supplied checkpoints and never substitute generated predictions.
 from __future__ import annotations
 
 from contextlib import contextmanager
+import copy
 import json
 import math
 from numbers import Integral
@@ -18,7 +19,7 @@ from .checkpoint import (
     inspect_nemo_layout, mask_new_outputs_for_test, old_model_row_mapping,
     verify_state_transfer,
 )
-from .inference import _canonical_hash, _load_model, _plain, _tokenizer_hash
+from .inference import _canonical_hash, _load_model, _plain, _tokenizer_hash, _transcribe_with_verified_prompt
 from .runtime import build_id_map
 
 
@@ -70,11 +71,6 @@ def _equivalent_inference_config(original: Any, expanded: Any, decoder: str) -> 
     for config in (old, new):
         if config.get("decoding", {}).get("strategy") != decoder:
             raise ValueError("Declared greedy strategy does not match the restored checkpoint")
-        # Hooks cannot be assumed to execute during a cached CUDA graph replay.
-        for group in (config.get("decoding", {}), config.get("decoding", {}).get("greedy", {})):
-            for key, value in group.items():
-                if ("cuda_graph" in key or "compile" in key) and value not in (False, None):
-                    raise ValueError("Disable graph/compiled decoding explicitly before hook-based migration validation")
     excluded = {"decoder": {"vocab_size"}, "joint": {"num_classes", "vocabulary"},
                 "model_defaults": {"prompt_dictionary"}}
     hashes = {}
@@ -92,6 +88,78 @@ def _equivalent_inference_config(original: Any, expanded: Any, decoder: str) -> 
         raise ValueError("Original prompt identities were not preserved")
     return {"config_section_sha256": hashes, "original_prompt_dictionary": old_prompts,
             "expanded_prompt_dictionary": new_prompts}
+
+
+def _eager_decoder_state(model: Any) -> dict[str, Any]:
+    """Inspect actual decoder objects; omitted config flags can default to graphs."""
+    strategy = _plain(model.cfg).get("decoding", {}).get("strategy")
+    decoder = getattr(getattr(model, "decoding", None), "decoding", None)
+    if decoder is None or strategy not in {"greedy", "greedy_batch"}:
+        raise ValueError("Cannot verify the native greedy decoder execution mode")
+    if getattr(decoder, "_compiled_call_impl", None) is not None:
+        raise ValueError("Compiled decoder execution cannot be instrumented")
+    state = {"strategy": strategy, "decoder_class": type(decoder).__module__ + "." + type(decoder).__qualname__,
+             "max_symbols": decoder.max_symbols, "loop_labels": getattr(decoder, "loop_labels", None),
+             "use_cuda_graph_decoder": getattr(decoder, "use_cuda_graph_decoder", False),
+             "allow_cuda_graphs": None, "cuda_graphs_mode": None}
+    if strategy == "greedy_batch" and getattr(decoder, "use_cuda_graph_decoder", None) is not False:
+        raise ValueError("Actual greedy decoder still permits CUDA graphs")
+    computer = getattr(decoder, "decoding_computer", None)
+    if strategy == "greedy_batch" and state["loop_labels"]:
+        if computer is None or getattr(computer, "allow_cuda_graphs", None) is not False:
+            raise ValueError("Actual label-looping decoder still permits CUDA graphs")
+        if getattr(computer, "cuda_graphs_mode", "unverified") is not None:
+            raise ValueError("Actual label-looping decoder has an active CUDA graph mode")
+        state["allow_cuda_graphs"] = False
+    return state
+
+
+def _configure_eager_decoding(model: Any) -> dict[str, Any]:
+    """Disable graph execution explicitly while preserving decoding and weights."""
+    serialized = copy.deepcopy(_plain(model.cfg).get("decoding", {}))
+    if serialized.get("strategy") not in {"greedy", "greedy_batch"}:
+        raise ValueError("Eager instrumentation requires a native greedy strategy")
+    for group in (serialized, serialized.get("greedy", {})):
+        for key, value in group.items():
+            if key != "use_cuda_graph_decoder" and ("cuda_graph" in key or "compile" in key) and value not in (False, None):
+                raise ValueError("Unsupported graph/compiled decoding option for instrumentation")
+    before_decoder = getattr(getattr(model, "decoding", None), "decoding", None)
+    if before_decoder is None or not hasattr(before_decoder, "max_symbols"):
+        raise ValueError("Cannot inspect original greedy decoder settings")
+    behavior = (type(before_decoder), before_decoder.max_symbols, getattr(before_decoder, "loop_labels", None))
+
+    def state_identity():
+        return {name: (value.data_ptr(), value._version, tuple(value.shape), value.dtype)
+                for name, value in model.state_dict().items()}
+
+    original_state = state_identity()
+    requested = copy.deepcopy(serialized)
+    requested.setdefault("greedy", {})["use_cuda_graph_decoder"] = False
+    model.change_decoding_strategy(requested, verbose=False)
+    effective = _plain(model.cfg)["decoding"]
+
+    def check_preserved(before, after, path=()):
+        for key, value in before.items():
+            location = path + (key,)
+            if location == ("greedy", "use_cuda_graph_decoder"):
+                continue
+            if key not in after:
+                raise ValueError(f"Decoding option disappeared during eager setup: {location}")
+            if isinstance(value, dict) and isinstance(after[key], dict):
+                check_preserved(value, after[key], location)
+            elif after[key] != value:
+                raise ValueError(f"Decoding behavior changed during eager setup: {location}")
+
+    check_preserved(serialized, effective)
+    runtime = _eager_decoder_state(model)
+    after_decoder = model.decoding.decoding
+    if behavior != (type(after_decoder), after_decoder.max_symbols, getattr(after_decoder, "loop_labels", None)):
+        raise ValueError("Greedy decoder algorithm or max_symbols changed during eager setup")
+    if original_state != state_identity():
+        raise ValueError("Model tensors changed during eager decoder setup")
+    return {"serialized_config": serialized, "effective_config": effective, "runtime": runtime,
+            "model_tensors_unchanged": True, "changed_option": "greedy.use_cuda_graph_decoder=false",
+            "purpose": "observable joint-head hooks; no checkpoint or model weights are rewritten"}
 
 
 def _hypothesis(result: Any, mapping) -> dict[str, Any]:
@@ -228,46 +296,66 @@ def validate_checkpoint_pair(
             raise ValueError(f"Prompt {prompt!r} is unavailable for paired baseline inference; no automatic fallback")
     original.to(device).float().eval()
     migrated.to(device).float().eval()
+    eager_original = _configure_eager_decoding(original)
+    eager_migrated = _configure_eager_decoding(migrated)
+    if (eager_original["effective_config"] != eager_migrated["effective_config"]
+            or eager_original["runtime"] != eager_migrated["runtime"]):
+        raise ValueError("Original and expanded models use different effective eager decoding settings")
     old_head, new_head = original.joint.joint_net[-1], migrated.joint.joint_net[-1]
     rows = []
     with torch.inference_mode():
         for item in requests:
-            arguments = {"audio": [str(item["audio"])], "batch_size": 1, "num_workers": 0,
-                         "return_hypotheses": True, "verbose": False, "target_lang": item["target_lang"]}
+            arguments = (item["audio"], item["audio_sha256"], item["target_lang"])
+            _eager_decoder_state(original)
+            _eager_decoder_state(migrated)
             with _head_trace(old_head) as old_trace:
-                baseline = _hypothesis(original.transcribe(**arguments), old_map)
+                result, old_prompt = _transcribe_with_verified_prompt(original, *arguments)
+                baseline = _hypothesis(result, old_map)
             with _head_trace(new_head, old_to_new=row_map) as new_trace:
-                masked = _hypothesis(migrated.transcribe(**arguments), new_map)
+                result, masked_prompt = _transcribe_with_verified_prompt(migrated, *arguments)
+                masked = _hypothesis(result, new_map)
             probes = _probe_checks(old_trace, new_trace, new_head, row_map, atol=atol, rtol=rtol)
             # Hooks were removed by the context manager. This is a genuinely
             # separate run with all newly added model outputs enabled.
-            active = _hypothesis(migrated.transcribe(**arguments), new_map)
+            result, active_prompt = _transcribe_with_verified_prompt(migrated, *arguments)
+            active = _hypothesis(result, new_map)
             same_tokens = baseline["canonical_hf_ids"] == masked["canonical_hf_ids"]
             same_text = baseline["text"] == masked["text"]
             rows.append({"utterance_id": item["id"], "audio_sha256": item["audio_sha256"],
                          "target_lang": item["target_lang"], "baseline": baseline,
+                         "prompt_evidence": {"baseline": old_prompt, "expanded_old_outputs_only": masked_prompt,
+                                             "expanded_all_outputs": active_prompt},
                          "expanded_old_outputs_only": masked, "expanded_all_outputs": active,
                          "old_output_token_parity": same_tokens, "old_output_text_parity": same_text,
                          "joint_probes": probes,
                          "active_text_changed": baseline["text"] != active["text"],
                          "active_token_sequence_changed": baseline["canonical_hf_ids"] != active["canonical_hf_ids"]})
     passed = all(row["old_output_token_parity"] and row["old_output_text_parity"] and row["joint_probes"]["passed"] for row in rows)
+    active_text_changes = sum(row["active_text_changed"] for row in rows)
+    active_token_changes = sum(row["active_token_sequence_changed"] for row in rows)
     report = {"schema_version": 1, "run_id": manifest["run_id"],
               "status": "migration_compatibility_passed_on_supplied_corpus" if passed else "migration_compatibility_failed",
               "passed": passed, "release_ready": False, "state_transfer": state_report,
               "manifest_sha256": _sha256(manifest_path),
               "artifact_sha256": {name: manifest[name] for name in expected_files},
               "source_runtime_tokenizer_sha256": source_tokenizer_hash,
-              "actual_settings": manifest["settings"], "config_section_sha256": config["config_section_sha256"],
+              "actual_settings": {**manifest["settings"], "decoder_execution": "eager",
+                                  "effective_decoding_config": eager_original["effective_config"],
+                                  "runtime_decoder": eager_original["runtime"]},
+              "decoding_execution": {"source": eager_original, "expanded": eager_migrated},
+              "config_section_sha256": config["config_section_sha256"],
               "source_model_class": type(original).__module__ + "." + type(original).__qualname__,
               "expanded_model_class": type(migrated).__module__ + "." + type(migrated).__qualname__,
-              "utterance_count": len(rows), "active_text_change_count": sum(r["active_text_changed"] for r in rows),
+              "utterance_count": len(rows), "active_text_change_count": active_text_changes,
+              "active_token_change_count": active_token_changes,
+              "initialization_preservation_passed": passed and active_text_changes == 0 and active_token_changes == 0,
               "utterances": rows, "streaming_validated": False, "rnnt_training_smoke_executed": False,
               "asr_accuracy_evaluated": False,
               "remaining_gates": ["RNNT forward/backward with new labels", "streaming regression",
                                   "per-language ASR accuracy on held-out speech", "new-language fine-tuning"]}
     output.parent.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps(report, indent=2, ensure_ascii=False, allow_nan=False)
     with output.open("x") as stream:
-        json.dump(report, stream, indent=2, ensure_ascii=False, allow_nan=False)
+        stream.write(payload)
         stream.write("\n")
     return report

@@ -1,13 +1,16 @@
 """CPU checks of mapping, learned state retention, and RNNT output semantics."""
 import copy
 import json
+import math
 from pathlib import Path
+import sys
+from types import ModuleType, SimpleNamespace
 
 import pytest
 from tokenizers import Tokenizer, decoders, models
 
 from sttok.checkpoint import (
-    artifact_preflight, compare_old_logits, inspect_nemo_layout,
+    artifact_preflight, compare_old_logits, inspect_nemo_layout, initialize_added_rows,
     mask_new_outputs_for_test, old_model_row_mapping, transfer_state_dict,
     verify_state_transfer,
 )
@@ -90,6 +93,59 @@ def test_preflight_reports_upstream_style_special_id_mismatch(artifacts, tmp_pat
     assert report["hf_direct_compatible"] is False
     assert {r["field"] for r in report["hf_conflicts"]} == {"blank_token_id", "pad_token_id", "vocab_size"}
     assert report["checkpoint_executed"] is False
+
+
+def test_adapter_callable_returns_native_labels_for_nemo_wrapper(artifacts):
+    _, extended = artifacts
+    adapter = HFTokenizerAdapter(extended)
+    # NeMo's TokenizerWrapper calls tokenizer(text) for non-TokenizerSpec objects.
+    assert adapter("aaकளbb") == [2, 2, 4, 5, 3, 3]
+    assert adapter("") == []
+    with pytest.raises(ValueError, match="padding"):
+        adapter("a<pad>b")
+    with pytest.raises(ValueError, match="blank"):
+        adapter("a<blank>b")
+
+
+def test_nemo_registration_allows_only_exact_resolved_model_class(monkeypatch):
+    from sttok.runtime import _register_trusted_nemo_target
+
+    class Serialization:
+        pass
+
+    class TrustedModel(Serialization):
+        pass
+
+    target = "sttok.runtime.ExtendedNemotronRNNTModel"
+    resolved = {target: TrustedModel}
+    checked = []
+
+    def original_allowed(value):
+        checked.append(value)
+        return value == "nemo.collections.asr.TrustedExistingModel"
+
+    common = ModuleType("nemo.core.classes.common")
+    common.Serialization = Serialization
+    common._is_target_allowed = original_allowed
+    common.ALLOWED_TARGET_PREFIXES = ["nemo.collections."]
+    common.hydra = SimpleNamespace(utils=SimpleNamespace(get_class=lambda value: resolved[value]))
+    monkeypatch.setitem(sys.modules, common.__name__, common)
+
+    _register_trusted_nemo_target(TrustedModel)
+    validator = common._is_target_allowed
+    assert validator(target) is True
+    assert validator("nemo.collections.asr.TrustedExistingModel") is True
+    for unrelated in ("os.system", "sttok.other.Model", target + "Unsafe", target + ".Nested"):
+        assert validator(unrelated) is False
+        assert unrelated in checked
+    assert common.ALLOWED_TARGET_PREFIXES == ["nemo.collections."]
+    resolved[target] = type("DifferentModel", (Serialization,), {})
+    assert validator(target) is False
+    _register_trusted_nemo_target(TrustedModel)
+    assert common._is_target_allowed is validator
+    with pytest.raises(ValueError, match="Serialization subclass"):
+        _register_trusted_nemo_target(object)
+    assert common._is_target_allowed is validator
 
 
 def _model(vocabulary_size):
@@ -178,6 +234,123 @@ def test_detects_destroyed_unchanged_layers_and_unrecognized_heads(artifacts):
         inspect_nemo_layout(expanded)
     with pytest.raises(ValueError, match="blank"):
         transfer_state_dict(original.state_dict(), state, old_layout, new_layout, (0, 1, 2, 3, 4))
+
+
+@pytest.mark.parametrize("dtype_name", ["float32", "float64"])
+def test_blank_anchored_additions_preserve_greedy_choice_and_bound_probability_mass(dtype_name):
+    torch = pytest.importorskip("torch")
+    torch.manual_seed(127)
+    dtype = getattr(torch, dtype_name)
+    original, expanded = _model(4).to(dtype), _model(6).to(dtype)
+    old_layout, new_layout = inspect_nemo_layout(original), inspect_nemo_layout(expanded)
+    row_map, added = (0, 1, 2, 3, 6), [4, 5]
+    source = copy.deepcopy(original.state_dict())
+    untouched = copy.deepcopy(expanded.state_dict())
+    initialized, policy = initialize_added_rows(source, expanded.state_dict(), old_layout, new_layout, row_map)
+    assert all(torch.equal(expanded.state_dict()[key], value) for key, value in untouched.items())
+    expanded.load_state_dict(transfer_state_dict(source, initialized, old_layout, new_layout, row_map))
+    assert verify_state_transfer(source, expanded.state_dict(), old_layout, row_map)["passed"]
+    expected_embedding = source[old_layout.embedding_key][:-1].double().mean(0).to(dtype)
+    assert torch.equal(expanded.decoder.prediction["embed"].weight[added], expected_embedding.expand(2, -1))
+    expected_weight = source[old_layout.output_weight_key][old_layout.blank_id]
+    assert torch.equal(expanded.joint.joint_net[-1].weight[added], expected_weight.expand(2, -1))
+    features = torch.cat([torch.zeros(1, 5, dtype=dtype)] +
+                         [torch.randn(73, 5, dtype=dtype) * scale for scale in (1e-3, 1, 100, 10000)])
+    old_logits = original.joint.joint_net[-1](features)
+    new_logits = expanded.joint.joint_net[-1](features)
+    assert torch.equal(new_logits.argmax(-1), torch.tensor(row_map)[old_logits.argmax(-1)])
+    log_ratio = (torch.logsumexp(new_logits[:, added].double(), -1)
+                 - torch.logsumexp(new_logits[:, list(row_map)].double(), -1))
+    assert torch.isfinite(new_logits).all()
+    # Large features magnify float rounding when the bias is added to logits.
+    # Check the exact statewise formula with an explicit dtype/scale tolerance.
+    tolerance = 4 * torch.finfo(dtype).eps * max(1, float(new_logits.detach().abs().max()))
+    expected_ratio = (math.log(len(added)) - policy["applied_bias_margin"]
+                      + old_logits[:, old_layout.blank_id].double() - old_logits.double().logsumexp(-1))
+    assert torch.allclose(log_ratio, expected_ratio, atol=tolerance, rtol=0)
+    assert float(log_ratio.detach().max()) <= math.log(policy["max_new_to_old_softmax_mass_ratio"]) + tolerance
+    assert policy["old_output_rows_including_blank"] == 5
+    assert policy["embedding_mean_rows_excluding_blank"] == 4
+    assert policy["reference_old_blank_row"] == old_layout.blank_id
+
+
+@pytest.mark.parametrize("nonblank_bias", [0., -100.])
+def test_added_probability_tracks_old_blank_and_bound_is_tight_when_blank_dominates(nonblank_bias):
+    torch = pytest.importorskip("torch")
+    original, expanded = _model(4), _model(6)
+    old_layout, new_layout = inspect_nemo_layout(original), inspect_nemo_layout(expanded)
+    with torch.no_grad():
+        original.joint.joint_net[-1].weight.zero_()
+        original.joint.joint_net[-1].bias.fill_(nonblank_bias)
+        original.joint.joint_net[-1].bias[-1] = 0
+        original.decoder.prediction["embed"].weight[-1].fill_(1000)
+    row_map = (0, 1, 2, 3, 6)
+    initialized, policy = initialize_added_rows(original.state_dict(), expanded.state_dict(), old_layout, new_layout, row_map)
+    expanded.load_state_dict(transfer_state_dict(original.state_dict(), initialized, old_layout, new_layout, row_map))
+    logits = expanded.joint.joint_net[-1](torch.full((1, 5), 10000.0)).double()
+    probabilities = logits.softmax(-1)
+    ratio = float((probabilities[:, 4:6].sum() / probabilities[:, list(row_map)].sum()).detach())
+    old_blank_probability = 1 / (1 + 4 * math.exp(nonblank_bias))
+    assert ratio == pytest.approx(policy["exact_arithmetic_mass_ratio_bound"] * old_blank_probability, rel=1e-6)
+    if nonblank_bias == -100:
+        assert 0.99999e-6 < ratio <= 1e-6
+    assert policy["exact_arithmetic_mass_ratio_bound"] <= 1e-6
+    assert torch.equal(expanded.decoder.prediction["embed"].weight[4],
+                       original.decoder.prediction["embed"].weight[:4].double().mean(0).float())
+    # Blank must remain preferred even though it moves after the newly added IDs.
+    with torch.no_grad():
+        original.joint.joint_net[-1].bias[-1] = 4
+    initialized, _ = initialize_added_rows(original.state_dict(), expanded.state_dict(), old_layout, new_layout, row_map)
+    expanded.load_state_dict(transfer_state_dict(original.state_dict(), initialized, old_layout, new_layout, row_map))
+    assert expanded.joint.joint_net[-1](torch.ones(1, 5)).argmax(-1).item() == new_layout.blank_id
+
+
+def test_new_row_initialization_is_seed_independent_and_remains_trainable():
+    torch = pytest.importorskip("torch")
+    torch.manual_seed(731)
+    original = _model(4)
+    row_map = (0, 1, 2, 3, 6)
+    old_layout = inspect_nemo_layout(original)
+    states = []
+    for seed in (22, 99):
+        torch.manual_seed(seed)
+        expanded = _model(6)
+        new_layout = inspect_nemo_layout(expanded)
+        initialized, _ = initialize_added_rows(original.state_dict(), expanded.state_dict(), old_layout, new_layout, row_map)
+        state = transfer_state_dict(original.state_dict(), initialized, old_layout, new_layout, row_map)
+        states.append(state)
+    assert all(torch.equal(states[0][key], states[1][key]) for key in states[0])
+    expanded.load_state_dict(states[-1])
+    prefix = torch.tensor([[4, 4, 5]])
+    embedding = expanded.decoder.prediction["embed"](prefix)
+    prediction, _ = expanded.decoder.prediction["rnn"](embedding)
+    logits = expanded.joint.joint_net(expanded.joint.pred(prediction))
+    loss = torch.nn.functional.cross_entropy(logits.flatten(0, 1), torch.tensor([4, 5, 4]))
+    loss.backward()
+    assert torch.isfinite(loss)
+    for parameter in (expanded.decoder.prediction["embed"].weight, expanded.joint.joint_net[-1].weight,
+                      expanded.joint.joint_net[-1].bias):
+        gradients = parameter.grad[4:6]
+        assert parameter.requires_grad and torch.isfinite(gradients).all()
+        assert (gradients.reshape(2, -1).abs().sum(-1) > 0).all()
+    assert not torch.equal(expanded.joint.joint_net[-1].weight.grad[4], expanded.joint.joint_net[-1].weight.grad[5])
+
+
+@pytest.mark.parametrize("failure", ["no_bias", "nan", "zero_ratio", "infinite_ratio", "bad_mapping"])
+def test_added_row_initialization_rejects_unsupported_or_nonfinite_inputs(failure):
+    torch = pytest.importorskip("torch")
+    original, expanded = _model(4), _model(6)
+    if failure == "no_bias":
+        original.joint.joint_net[-1].bias = None
+        expanded.joint.joint_net[-1].bias = None
+    old_layout, new_layout = inspect_nemo_layout(original), inspect_nemo_layout(expanded)
+    source = copy.deepcopy(original.state_dict())
+    if failure == "nan":
+        source[old_layout.output_weight_key][0, 0] = float("nan")
+    ratio = 0 if failure == "zero_ratio" else float("inf") if failure == "infinite_ratio" else 1e-6
+    rows = (0, 1, 2, 3, 4) if failure == "bad_mapping" else (0, 1, 2, 3, 6)
+    with pytest.raises(ValueError, match="bias|non-finite|mass ratio|mapping"):
+        initialize_added_rows(source, expanded.state_dict(), old_layout, new_layout, rows, max_new_mass_ratio=ratio)
 
 
 def test_pinned_nvidia_artifact_contract_if_available():
