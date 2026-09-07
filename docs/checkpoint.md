@@ -61,12 +61,12 @@ Sources: [pinned HF configuration](https://huggingface.co/nvidia/nemotron-3.5-as
   complete local `.nemo`, constructs the adapter-aware model, copies every old
   tensor, saves a new checkpoint, restores it, and checks every copied value
   again. It produces `<output>.migration.json`. It never downloads weights or
-  overwrites a checkpoint. The installed `sttok` package is needed for restoring
-  the custom `sttok.runtime.ExtendedNemotronRNNTModel` class.
+  overwrites a checkpoint. The installed `untok` package is needed for restoring
+  the custom `untok.runtime.ExtendedNemotronRNNTModel` class.
   The pinned NeMo runtime rejects external target namespaces by default.
   `get_nemo_model_class()` permits only this exact installed class, verifies its
   identity and NeMo base class, and leaves validation of all other targets
-  unchanged. It does not allow arbitrary targets under the `sttok` namespace.
+  unchanged. It does not allow arbitrary targets under the `untok` namespace.
 - `inspect_nemo_layout`, `transfer_state_dict` and `verify_state_transfer`
   separate live module discovery, copying, and independent verification. All
   unaffected tensors and buffers must have unchanged names, shapes and dtype.
@@ -123,8 +123,8 @@ evaluation workloads.
 From the repository root, after building the tokenizer, ID map and prompts:
 
 ```sh
-sttok legacy-bpe migrate --source /models/original.nemo --output /models/indic-expanded.nemo --prompts artifacts/nemotron-indic-v1/prompts.json
-sttok legacy-bpe verify-checkpoint --source /models/original.nemo --expanded /models/indic-expanded.nemo --manifest /data/migration-check.json --output reports/migration-audio.json --device cpu
+untok legacy-bpe migrate --source /models/original.nemo --output /models/indic-expanded.nemo --prompts artifacts/nemotron-indic-v1/prompts.json
+untok legacy-bpe verify-checkpoint --source /models/original.nemo --expanded /models/indic-expanded.nemo --manifest /data/migration-check.json --output reports/migration-audio.json --device cpu
 ```
 
 Use the same device in the audio manifest. The manifest format and verification
@@ -133,7 +133,7 @@ limits are described in [checkpoint-validation.md](checkpoint-validation.md).
 The migration function is callable directly:
 
 ```python
-from sttok.checkpoint import migrate_nemo_checkpoint
+from untok.checkpoint import migrate_nemo_checkpoint
 
 report = migrate_nemo_checkpoint(
     source="/models/original.nemo",

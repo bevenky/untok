@@ -32,7 +32,7 @@ def write(path, report):
 
 def load(path, device="cuda"):
     from nemo.collections.asr.models import ASRModel
-    from sttok.native_runtime import get_native_nemo_model_class
+    from untok.native_runtime import get_native_nemo_model_class
 
     get_native_nemo_model_class()
     model = ASRModel.restore_from(str(path), map_location="cpu")
@@ -108,10 +108,10 @@ def streaming_parity(baseline, candidate, row_map):
 
 def offline(args, report):
     import torch
-    from sttok.checkpoint_validation import (
+    from untok.checkpoint_validation import (
         _configure_eager_decoding, _equivalent_inference_config, _head_trace, _probe_checks,
     )
-    from sttok.inference import _transcribe_with_verified_prompt
+    from untok.inference import _transcribe_with_verified_prompt
 
     migration = json.loads(args.migration.read_text())
     row_map = migration["old_model_to_new_model"]
@@ -161,9 +161,9 @@ def offline(args, report):
 
 def inference(args, report):
     import torch
-    from sttok.checkpoint_validation import _configure_eager_decoding
-    from sttok.evaluation import edit_distance, normalize_for_scoring
-    from sttok.inference import _transcribe_with_verified_prompt
+    from untok.checkpoint_validation import _configure_eager_decoding
+    from untok.evaluation import edit_distance, normalize_for_scoring
+    from untok.inference import _transcribe_with_verified_prompt
 
     model = load(args.checkpoint, args.device)
     _configure_eager_decoding(model)
@@ -209,8 +209,8 @@ def streaming(args, report):
     import torch
     from omegaconf import OmegaConf
     from real_streaming_probe import run_stream
-    from sttok.inference import _load_audio_tensor, _plain
-    from sttok.checkpoint_validation import _equivalent_inference_config, _probe_checks
+    from untok.inference import _load_audio_tensor, _plain
+    from untok.checkpoint_validation import _equivalent_inference_config, _probe_checks
 
     class IdentityMap:
         def to_canonical(self, ids, drop_blank=False):

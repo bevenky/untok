@@ -7,8 +7,8 @@ import pytest
 import sentencepiece as spm
 from sentencepiece import sentencepiece_model_pb2 as pb
 
-from sttok.checkpoint import inspect_nemo_layout
-from sttok.native_checkpoint import (
+from untok.checkpoint import inspect_nemo_layout
+from untok.native_checkpoint import (
     _prompt_registry, compare_retained_logits, initialize_native_added_rows,
     retained_row_pairs, transfer_native_state_dict, validate_source_native_tokenizer,
     verify_native_state_transfer,

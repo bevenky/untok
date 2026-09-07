@@ -6,9 +6,9 @@ import json
 import pytest
 from tokenizers import Tokenizer, decoders, models, normalizers, pre_tokenizers
 
-from sttok.scope import allowed_characters, scope_corpora
-from sttok.sources import sha256, write_json
-from sttok.validation import validate_tokenizer
+from untok.scope import allowed_characters, scope_corpora
+from untok.sources import sha256, write_json
+from untok.validation import validate_tokenizer
 
 
 @pytest.fixture

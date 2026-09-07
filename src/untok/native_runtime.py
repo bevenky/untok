@@ -20,7 +20,7 @@ def native_bundle_config(directory):
     if any(Path(name).name != name or name in {".", ".."} for name in names):
         raise ValueError("Native bundle artifacts must have contained filenames")
     return {
-        "type": "sttok_native_unigram",
+        "type": "untok_native_unigram",
         "bundle_manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
         "bundle_filenames": {f"file_{i}": name for i, name in enumerate(names)},
         "bundle_files": {f"file_{i}": str(directory / name) for i, name in enumerate(names)},
@@ -30,7 +30,7 @@ def native_bundle_config(directory):
 def _setup_native_tokenizer(model, tokenizer_cfg):
     from .bundles import load_tokenizer_bundle
 
-    if tokenizer_cfg.get("type") != "sttok_native_unigram":
+    if tokenizer_cfg.get("type") != "untok_native_unigram":
         raise ValueError("NativeNemotronRNNTModel requires a native Unigram bundle")
     filenames = dict(tokenizer_cfg.get("bundle_filenames", {}))
     paths = dict(tokenizer_cfg.get("bundle_files", {}))
@@ -48,7 +48,7 @@ def _setup_native_tokenizer(model, tokenizer_cfg):
         registered[filenames[key]] = model.register_artifact(f"tokenizer.bundle_files.{key}", paths[key])
     # NeMo renames archived files. Reassemble their logical names only while the
     # bundle verifier loads their bytes; registered originals remain persistent.
-    with tempfile.TemporaryDirectory(prefix="sttok-native-bundle-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="untok-native-bundle-") as temporary:
         directory = Path(temporary)
         for name, path in registered.items():
             (directory / name).write_bytes(Path(path).read_bytes())
@@ -83,7 +83,7 @@ def transcribe_native_file(model, audio, *, target_lang):
     from .inference import _sha256, _transcribe_with_verified_prompt
 
     if not getattr(model, "native_tokenizer_sha256", None):
-        raise ValueError("Restore a native sttok checkpoint before using native inference")
+        raise ValueError("Restore a native untok checkpoint before using native inference")
     path = Path(audio)
     model.eval()
     try:
@@ -104,16 +104,16 @@ def _register_native_target(model_class):
         raise RuntimeError("Unsupported NeMo target-validation interface")
     if not isinstance(model_class, type) or not issubclass(model_class, serialization):
         raise ValueError("The native model must be a NeMo Serialization subclass")
-    if getattr(original, "_sttok_native_registered_class", None) is model_class:
+    if getattr(original, "_untok_native_registered_class", None) is model_class:
         return
-    target_path = "sttok.native_runtime.NativeNemotronRNNTModel"
+    target_path = "untok.native_runtime.NativeNemotronRNNTModel"
 
     def allow_native_target(target):
         if target == target_path:
             return common.hydra.utils.get_class(target) is model_class
         return original(target)
 
-    allow_native_target._sttok_native_registered_class = model_class
+    allow_native_target._untok_native_registered_class = model_class
     common._is_target_allowed = allow_native_target
 
 

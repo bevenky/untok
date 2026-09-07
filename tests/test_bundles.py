@@ -10,11 +10,11 @@ import zipfile
 import pytest
 from sentencepiece import sentencepiece_model_pb2 as pb
 
-from sttok.bundles import (
+from untok.bundles import (
     NativeSubsetTokenizerAdapter, character_allowed, deterministic_bundle_zip,
     load_tokenizer_bundle, package_tokenizer_bundles,
 )
-from sttok.unigram import NativeTokenizerAdapter, build_native_tokenizer
+from untok.unigram import NativeTokenizerAdapter, build_native_tokenizer
 
 
 @pytest.fixture

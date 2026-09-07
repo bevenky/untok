@@ -28,7 +28,7 @@ LATIN_SOURCE_LANGUAGES = frozenset(
 
 
 def choose_rows(records, profile, languages=None, max_per_language=1):
-    from sttok.prompts import TARGET_LOCALES
+    from untok.prompts import TARGET_LOCALES
 
     if profile not in {"latin", "latin-indic"}:
         raise ValueError("This probe requires a reduced Latin or Latin+Indic checkpoint")
@@ -76,7 +76,7 @@ def mapped_hypothesis_equal(source, target, mapping):
 def retained_trace_checks(source_trace, target_trace, target_head, old_layout, new_layout, mapping,
                           *, atol=1e-6, rtol=1e-5):
     import torch
-    from sttok.native_checkpoint import compare_retained_logits
+    from untok.native_checkpoint import compare_retained_logits
 
     if (not source_trace["calls"] or not target_trace["calls"]
             or not source_trace["probes"] or not target_trace["probes"]):
@@ -112,9 +112,9 @@ def retained_trace_checks(source_trace, target_trace, target_head, old_layout, n
 
 
 def offline_row(original, reduced, row, prompt, old_layout, new_layout, mapping):
-    from sttok.checkpoint_validation import _head_trace
-    from sttok.inference import _transcribe_with_verified_prompt
-    from sttok.native_checkpoint import retained_row_pairs
+    from untok.checkpoint_validation import _head_trace
+    from untok.inference import _transcribe_with_verified_prompt
+    from untok.native_checkpoint import retained_row_pairs
 
     old_ids, new_ids = retained_row_pairs(old_layout, new_layout, mapping)
     arguments = (Path(row["audio"]), row["audio_sha256"], prompt["control_target_lang"])
@@ -170,8 +170,8 @@ def prepare_streaming_evaluation(model):
 
 def configure_streaming(models):
     from omegaconf import OmegaConf, open_dict
-    from sttok.checkpoint_validation import _eager_decoder_state
-    from sttok.inference import _plain
+    from untok.checkpoint_validation import _eager_decoder_state
+    from untok.inference import _plain
 
     evidence = []
     for model in models:
@@ -194,8 +194,8 @@ def configure_streaming(models):
 
 def streaming_row(original, reduced, row, prompt, old_layout, new_layout, mapping):
     from real_streaming_probe import run_stream
-    from sttok.inference import _load_audio_tensor
-    from sttok.native_checkpoint import retained_row_pairs
+    from untok.inference import _load_audio_tensor
+    from untok.native_checkpoint import retained_row_pairs
 
     class IdentityMap:
         def to_canonical(self, ids, drop_blank=False):
@@ -247,9 +247,9 @@ def main():
         raise ValueError("Choose a new subset-probe output path")
     import torch
     import native_checkpoint_probe
-    from sttok.checkpoint import inspect_nemo_layout
-    from sttok.checkpoint_validation import _configure_eager_decoding, _equivalent_inference_config
-    from sttok.native_checkpoint import retained_row_pairs, validate_source_native_tokenizer
+    from untok.checkpoint import inspect_nemo_layout
+    from untok.checkpoint_validation import _configure_eager_decoding, _equivalent_inference_config
+    from untok.native_checkpoint import retained_row_pairs, validate_source_native_tokenizer
 
     torch.manual_seed(0)
     torch.set_float32_matmul_precision("highest")

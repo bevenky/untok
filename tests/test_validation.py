@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from tokenizers import AddedToken, Regex, Tokenizer, decoders, models, normalizers, pre_tokenizers
 
-from sttok.validation import TARGET_SCRIPTS, expected_text, validate_tokenizer
+from untok.validation import TARGET_SCRIPTS, expected_text, validate_tokenizer
 
 
 def dump(path, value):

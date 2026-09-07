@@ -41,7 +41,7 @@ def sha(data: bytes) -> str:
 
 
 def get(url: str):
-    request = urllib.request.Request(url, headers={"User-Agent": "sttok-development-smoke/1"})
+    request = urllib.request.Request(url, headers={"User-Agent": "untok-development-smoke/1"})
     return urllib.request.urlopen(request, timeout=120)
 
 

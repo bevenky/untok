@@ -16,22 +16,22 @@ All historical commands require the explicit `legacy-bpe` prefix:
 
 ```sh
 python -m pip install -e '.[legacy-bpe]'
-sttok legacy-bpe fetch
-sttok legacy-bpe build
-sttok legacy-bpe id-map
-sttok legacy-bpe prompts
-sttok legacy-bpe --help
+untok legacy-bpe fetch
+untok legacy-bpe build
+untok legacy-bpe id-map
+untok legacy-bpe prompts
+untok legacy-bpe --help
 ```
 
 Their arguments and default paths are unchanged. The BPE artifact remains in
 `artifacts/nemotron-indic-v1/`; the active Unigram artifact is separate at
 `artifacts/nemotron-indic-unigram-v1/`.
 
-Plain `sttok build`, `sttok check` and `sttok validate` now use Unigram.
+Plain `untok build`, `untok check` and `untok validate` now use Unigram.
 The `build-unigram`, `check-unigram` and `validate-unigram` aliases remain
 available for existing native instructions and scripts. There is no native
 checkpoint migration command yet. For historical BPE migration, use
-`sttok legacy-bpe migrate` and the corresponding BPE documentation.
+`untok legacy-bpe migrate` and the corresponding BPE documentation.
 
 ## Historical evidence
 

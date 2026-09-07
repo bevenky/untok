@@ -8,10 +8,10 @@ from types import SimpleNamespace
 import pytest
 from tokenizers import Tokenizer, decoders, models
 
-import sttok.checkpoint_validation as runner
-import sttok.inference as inference
-from sttok.checkpoint import inspect_nemo_layout, old_model_row_mapping, transfer_state_dict
-from sttok.runtime import HFTokenizerAdapter, build_id_map
+import untok.checkpoint_validation as runner
+import untok.inference as inference
+from untok.checkpoint import inspect_nemo_layout, old_model_row_mapping, transfer_state_dict
+from untok.runtime import HFTokenizerAdapter, build_id_map
 
 
 def _digest(path):

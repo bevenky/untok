@@ -7,7 +7,7 @@ import pytest
 import sentencepiece as spm
 from sentencepiece import sentencepiece_model_pb2 as pb
 
-from sttok.unigram import NativeTokenizerAdapter, build_native_tokenizer, validate_native_prefix
+from untok.unigram import NativeTokenizerAdapter, build_native_tokenizer, validate_native_prefix
 
 
 @pytest.fixture

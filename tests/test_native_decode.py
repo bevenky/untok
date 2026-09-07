@@ -11,7 +11,7 @@ import sentencepiece as spm
 from sentencepiece import sentencepiece_model_pb2 as pb
 from tokenizers import Tokenizer, decoders, models, pre_tokenizers
 
-from sttok.runtime import HFTokenizerAdapter
+from untok.runtime import HFTokenizerAdapter
 
 
 @pytest.fixture
@@ -113,12 +113,12 @@ def test_unrelated_or_incomplete_native_decoder_is_rejected(native_artifacts):
 
 
 def test_pinned_real_native_decoder_and_all_candidate_witnesses():
-    native_path = os.environ.get("STTOK_NATIVE_DECODER_MODEL")
+    native_path = os.environ.get("UNTOK_NATIVE_DECODER_MODEL")
     repo = Path(__file__).resolve().parents[1]
     extended = repo / "artifacts/nemotron-indic-v1/tokenizer.json"
     manifest_path = extended.parent / "manifest.json"
     if not native_path or not extended.exists() or not manifest_path.exists():
-        pytest.skip("Supply STTOK_NATIVE_DECODER_MODEL and built candidate for the real artifact check")
+        pytest.skip("Supply UNTOK_NATIVE_DECODER_MODEL and built candidate for the real artifact check")
     native = Path(native_path)
     assert hashlib.sha256(native.read_bytes()).hexdigest() == "ce3895e40806f02a26c3a225161b96ef682d6c0054bae32a245dec4258d7d291"
     source = spm.SentencePieceProcessor(model_file=str(native))

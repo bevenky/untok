@@ -106,8 +106,8 @@ def test_subset_scope_selection_and_missing_audio_failures(probes):
 
 
 def test_subset_preserves_all_retained_source_regional_prompt_paths(probes):
-    from sttok.evaluation import ADAPTATION_LOCALES, BASE_ASR_LOCALES
-    from sttok.prompts import TARGET_LOCALES
+    from untok.evaluation import ADAPTATION_LOCALES, BASE_ASR_LOCALES
+    from untok.prompts import TARGET_LOCALES
 
     _, subset = probes
     assert len(subset.LATIN_SOURCE_LANGUAGES) == 25
@@ -170,8 +170,8 @@ def test_streaming_eval_boundary_restores_nested_modes_without_changing_tensors(
 
 def test_subset_actual_head_capture_and_retained_state_replay(probes):
     torch = pytest.importorskip("torch")
-    from sttok.checkpoint import RNNTLayout
-    from sttok.checkpoint_validation import _head_trace
+    from untok.checkpoint import RNNTLayout
+    from untok.checkpoint_validation import _head_trace
 
     _, subset = probes
     source, target = torch.nn.Linear(3, 5), torch.nn.Linear(3, 4)

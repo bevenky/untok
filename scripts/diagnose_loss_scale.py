@@ -92,7 +92,7 @@ def weight_statistics(original, expanded, old_layout, new_layout, old_to_new, ne
 
 
 def loss_settings(model):
-    from sttok.inference import _plain
+    from untok.inference import _plain
     inner = model.loss._loss
     if type(inner).__name__ != "RNNTLossNumba":
         raise ValueError(f"Expected actual native RNNTLossNumba, received {type(inner).__name__}")
@@ -137,7 +137,7 @@ def loss(model, logits, targets, encoded_lengths, target_lengths):
 
 
 def fused_loss(model, encoded, encoded_lengths, predicted, targets, target_lengths, row_map=None):
-    from sttok.checkpoint import mask_new_outputs_for_test
+    from untok.checkpoint import mask_new_outputs_for_test
     handle = None
     if row_map is not None:
         handle = model.joint.joint_net[-1].register_forward_hook(
@@ -190,10 +190,10 @@ def main():
     import numpy as np
     import soundfile as sf
     import torch
-    from sttok.inference import _load_model, _plain, _tokenizer_hash
-    from sttok.checkpoint import (inspect_nemo_layout, old_model_row_mapping,
+    from untok.inference import _load_model, _plain, _tokenizer_hash
+    from untok.checkpoint import (inspect_nemo_layout, old_model_row_mapping,
                                   mask_new_outputs_for_test, _validate_source_tokens)
-    from sttok.runtime import build_id_map
+    from untok.runtime import build_id_map
     if not args.device.startswith("cuda") or not torch.cuda.is_available():
         raise RuntimeError("This diagnostic targets the same native CUDA loss as the real training probes")
     old_map = build_id_map(args.base_tokenizer)

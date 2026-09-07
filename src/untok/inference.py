@@ -46,7 +46,7 @@ def _canonical_hash(value) -> str:
 
 def _runtime_versions() -> dict[str, str | None]:
     result = {"python": platform.python_version()}
-    for package in ("nemo_toolkit", "torch", "tokenizers", "sentencepiece", "sttok"):
+    for package in ("nemo_toolkit", "torch", "tokenizers", "sentencepiece", "untok"):
         try:
             result[package] = metadata.version(package)
         except metadata.PackageNotFoundError:
@@ -63,10 +63,10 @@ def _load_model(checkpoint: Path, device: str):
     config = ASRModel.restore_from(str(checkpoint), return_config=True, map_location=device)
     tokenizer_type = config.get("tokenizer", {}).get("type")
     target = config.get("target", "")
-    extended = tokenizer_type == "sttok_hf_bpe" or str(target).startswith("sttok.")
+    extended = tokenizer_type == "untok_hf_bpe" or str(target).startswith("untok.")
     if extended:
-        if tokenizer_type != "sttok_hf_bpe":
-            raise ValueError("Custom sttok checkpoint has an unsupported tokenizer configuration")
+        if tokenizer_type != "untok_hf_bpe":
+            raise ValueError("Custom untok checkpoint has an unsupported tokenizer configuration")
         from .runtime import get_nemo_model_class
         model_class = get_nemo_model_class()
     else:

@@ -5,8 +5,8 @@ import zipfile
 
 import pytest
 
-from sttok.corpora import prepare_bhasha
-from sttok.sources import sha256, write_json
+from untok.corpora import prepare_bhasha
+from untok.sources import sha256, write_json
 
 
 def row(identifier, script, text, source="independent source label"):

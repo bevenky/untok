@@ -1,4 +1,4 @@
-# sttok
+# untok
 
 Extend the native SentencePiece Unigram tokenizer from
 [NVIDIA Nemotron 3.5 ASR streaming 0.6B](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b)
@@ -34,7 +34,7 @@ ZIP archives:
 
 ```sh
 unzip full.zip -d artifacts/nemotron-indic-unigram-v1
-sttok package --bundle artifacts/nemotron-indic-unigram-v1 --output dist
+untok package --bundle artifacts/nemotron-indic-unigram-v1 --output dist
 ```
 
 To package just one, add `--profiles latin-indic`. Generated tokenizer bundles
@@ -43,7 +43,7 @@ are distributed separately from the Git repository.
 ## Use the tokenizer
 
 ```python
-from sttok.bundles import load_tokenizer
+from untok.bundles import load_tokenizer
 
 tokenizer = load_tokenizer("dist/latin-indic")
 ids = tokenizer.text_to_ids("நான் office போகிறேன்")

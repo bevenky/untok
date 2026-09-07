@@ -38,7 +38,7 @@ but excluded from native fitting because its lexical extraction policy is
 unresolved. IN22-Conv was unavailable to the supplied account and is excluded.
 
 Script-limited native bundles use the generated Unicode 17.0.0 table in
-`src/sttok/_bundle_script_ranges.py`. The table includes the Unicode License V3
+`src/untok/_bundle_script_ranges.py`. The table includes the Unicode License V3
 notice and ships as a Python module with the wheel. Regenerate it with
 `scripts/generate_bundle_script_ranges.py`; its inputs must match these hashes:
 

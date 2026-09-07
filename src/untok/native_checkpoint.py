@@ -239,16 +239,16 @@ def migrate_native_checkpoint(source, bundle, output, *, expected_source_sha256,
     registry = _prompt_registry(cfg.model_defaults, prompt_registry)
     with open_dict(cfg):
         cfg.tokenizer = tokenizer_cfg
-        cfg.target = "sttok.native_runtime.NativeNemotronRNNTModel"
+        cfg.target = "untok.native_runtime.NativeNemotronRNNTModel"
         cfg.model_defaults.prompt_dictionary = registry["prompt_dictionary"]
-        cfg.sttok_native_migration = {"source_checkpoint_sha256": expected_source_sha256,
+        cfg.untok_native_migration = {"source_checkpoint_sha256": expected_source_sha256,
                                       "base_tokenizer_sha256": base_sha,
                                       "tokenizer_sha256": target_sha,
                                       "prompt_registry": registry}
         for split in ("train_ds", "validation_ds", "test_ds"):
             cfg[split] = None
     output.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix=".sttok-native-migration-", dir=output.parent) as staging:
+    with tempfile.TemporaryDirectory(prefix=".untok-native-migration-", dir=output.parent) as staging:
         with torch.random.fork_rng(devices=[]):
             torch.manual_seed(seed)
             expanded = native_class(cfg=cfg, trainer=None)
@@ -285,7 +285,7 @@ def migrate_native_checkpoint(source, bundle, output, *, expected_source_sha256,
             raise ValueError("Native tokenizer artifacts or row mapping changed after checkpoint reload")
         if dict(restored.cfg.model_defaults.prompt_dictionary) != registry["prompt_dictionary"]:
             raise ValueError("Prompt assignments changed after native checkpoint reload")
-        saved_metadata = OmegaConf.to_container(restored.cfg.sttok_native_migration, resolve=True)
+        saved_metadata = OmegaConf.to_container(restored.cfg.untok_native_migration, resolve=True)
         if saved_metadata["prompt_registry"] != registry:
             raise ValueError("Prompt registry provenance changed after checkpoint reload")
         if any(not torch.equal(restored.state_dict()[key][added], value) for key, value in expected_added.items()):

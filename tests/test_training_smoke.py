@@ -7,8 +7,8 @@ from types import SimpleNamespace
 import pytest
 from tokenizers import Tokenizer, decoders, models
 
-import sttok.training_smoke as smoke
-from sttok.runtime import HFTokenizerAdapter
+import untok.training_smoke as smoke
+from untok.runtime import HFTokenizerAdapter
 
 
 @pytest.fixture

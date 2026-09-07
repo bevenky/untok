@@ -9,12 +9,12 @@ from types import ModuleType, SimpleNamespace
 import pytest
 from tokenizers import Tokenizer, decoders, models
 
-from sttok.checkpoint import (
+from untok.checkpoint import (
     artifact_preflight, compare_old_logits, inspect_nemo_layout, initialize_added_rows,
     mask_new_outputs_for_test, old_model_row_mapping, transfer_state_dict,
     verify_state_transfer,
 )
-from sttok.runtime import HFTokenizerAdapter, build_id_map
+from untok.runtime import HFTokenizerAdapter, build_id_map
 
 
 @pytest.fixture
@@ -108,7 +108,7 @@ def test_adapter_callable_returns_native_labels_for_nemo_wrapper(artifacts):
 
 
 def test_nemo_registration_allows_only_exact_resolved_model_class(monkeypatch):
-    from sttok.runtime import _register_trusted_nemo_target
+    from untok.runtime import _register_trusted_nemo_target
 
     class Serialization:
         pass
@@ -116,7 +116,7 @@ def test_nemo_registration_allows_only_exact_resolved_model_class(monkeypatch):
     class TrustedModel(Serialization):
         pass
 
-    target = "sttok.runtime.ExtendedNemotronRNNTModel"
+    target = "untok.runtime.ExtendedNemotronRNNTModel"
     resolved = {target: TrustedModel}
     checked = []
 
@@ -135,7 +135,7 @@ def test_nemo_registration_allows_only_exact_resolved_model_class(monkeypatch):
     validator = common._is_target_allowed
     assert validator(target) is True
     assert validator("nemo.collections.asr.TrustedExistingModel") is True
-    for unrelated in ("os.system", "sttok.other.Model", target + "Unsafe", target + ".Nested"):
+    for unrelated in ("os.system", "untok.other.Model", target + "Unsafe", target + ".Nested"):
         assert validator(unrelated) is False
         assert unrelated in checked
     assert common.ALLOWED_TARGET_PREFIXES == ["nemo.collections."]

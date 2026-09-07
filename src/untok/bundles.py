@@ -299,7 +299,7 @@ def package_tokenizer_bundles(bundle: str | Path, output: str | Path,
         "bundles": {},
     }
     output.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix=".sttok-bundles-", dir=output.parent) as temporary:
+    with tempfile.TemporaryDirectory(prefix=".untok-bundles-", dir=output.parent) as temporary:
         stage = Path(temporary) / "ready"
         stage.mkdir()
         for profile in sorted(profiles):

@@ -11,15 +11,15 @@ from types import ModuleType, SimpleNamespace
 import pytest
 from sentencepiece import sentencepiece_model_pb2 as pb
 
-from sttok.bundles import load_tokenizer_bundle, package_tokenizer_bundles
-from sttok.native_checkpoint import migrate_native_checkpoint
-from sttok.native_runtime import _register_native_target, _setup_native_tokenizer, native_bundle_config
-from sttok.unigram import build_native_tokenizer
+from untok.bundles import load_tokenizer_bundle, package_tokenizer_bundles
+from untok.native_checkpoint import migrate_native_checkpoint
+from untok.native_runtime import _register_native_target, _setup_native_tokenizer, native_bundle_config
+from untok.unigram import build_native_tokenizer
 
 
 def test_native_file_inference_uses_verified_tensor_prompt_path(tmp_path, monkeypatch):
-    import sttok.inference as inference
-    from sttok.native_runtime import transcribe_native_file
+    import untok.inference as inference
+    from untok.native_runtime import transcribe_native_file
 
     audio = tmp_path / "speech.wav"
     audio.write_bytes(b"audio provenance fixture")
@@ -44,7 +44,7 @@ def test_native_file_inference_uses_verified_tensor_prompt_path(tmp_path, monkey
     with pytest.raises(ValueError, match="transcription failed"):
         transcribe_native_file(model, audio, target_lang="hi-IN")
     assert model.eval_calls == 4
-    with pytest.raises(ValueError, match="native sttok checkpoint"):
+    with pytest.raises(ValueError, match="native untok checkpoint"):
         transcribe_native_file(SimpleNamespace(), audio, target_lang="hi-IN")
 
 
@@ -109,7 +109,7 @@ def test_native_bundle_survives_renamed_archive_paths_and_source_directory_remov
 @pytest.mark.parametrize("failure", ["wrong_type", "missing_file", "unsafe_name", "manifest_hash", "extra_file"])
 def test_native_runtime_rejects_ambiguous_artifacts(native_bundle, tmp_path, failure):
     cfg = native_bundle_config(native_bundle)
-    if failure == "wrong_type": cfg["type"] = "sttok_hf_bpe"
+    if failure == "wrong_type": cfg["type"] = "untok_hf_bpe"
     elif failure == "missing_file": cfg["bundle_files"].pop("file_0")
     elif failure == "unsafe_name": cfg["bundle_filenames"]["file_0"] = "../outside.model"
     elif failure == "manifest_hash": cfg["bundle_manifest_sha256"] = "0" * 64
@@ -128,7 +128,7 @@ def test_native_registration_does_not_allow_legacy_or_other_classes(monkeypatch)
     class NativeClass(Serialization):
         pass
 
-    target = "sttok.native_runtime.NativeNemotronRNNTModel"
+    target = "untok.native_runtime.NativeNemotronRNNTModel"
     resolved = {target: NativeClass}
     common = ModuleType("nemo.core.classes.common")
     common.Serialization = Serialization
@@ -139,7 +139,7 @@ def test_native_registration_does_not_allow_legacy_or_other_classes(monkeypatch)
     _register_native_target(NativeClass)
     predicate = common._is_target_allowed
     assert predicate(target) and predicate("nemo.collections.ExistingModel")
-    for other in ("sttok.runtime.ExtendedNemotronRNNTModel", "sttok.other.Model", target + "Alias", "os.system"):
+    for other in ("untok.runtime.ExtendedNemotronRNNTModel", "untok.other.Model", target + "Alias", "os.system"):
         assert not predicate(other)
     assert common.ALLOWED_TARGET_PREFIXES == ["nemo.collections."]
     resolved[target] = type("Other", (Serialization,), {})
@@ -172,7 +172,7 @@ def test_native_migration_orchestration_saves_verifies_and_rejects_corrupt_reloa
     """The archive is a unit-test stand-in; actual NeMo remains an integration gate."""
     torch = pytest.importorskip("torch")
     import sentencepiece as spm
-    import sttok.native_checkpoint as migration
+    import untok.native_checkpoint as migration
     from test_native_checkpoint import toy_model
 
     if profile != "full":

@@ -59,7 +59,7 @@ def tensor_evidence(tensor):
 @contextmanager
 def observe_prompt(model, target_lang):
     import torch
-    from sttok.inference import _plain
+    from untok.inference import _plain
     defaults = _plain(model.cfg)["model_defaults"]
     width, count = defaults["enc_hidden"], defaults["num_prompts"]
     prompt_id = defaults["prompt_dictionary"][target_lang]
@@ -87,8 +87,8 @@ def observe_prompt(model, target_lang):
 
 def prepare_model(path, target_lang, device):
     from omegaconf import OmegaConf, open_dict
-    from sttok.inference import _load_model, _plain
-    from sttok.checkpoint_validation import _eager_decoder_state
+    from untok.inference import _load_model, _plain
+    from untok.checkpoint_validation import _eager_decoder_state
     model = _load_model(path, "cpu").to(device).float().eval()
     cfg = _plain(model.cfg)
     context = [56, 13]
@@ -119,8 +119,8 @@ def prepare_model(path, target_lang, device):
 def run_stream(model, waveform, mapping, target_lang, row_map=None):
     import torch
     from nemo.collections.asr.parts.utils.streaming_utils import CacheAwareStreamingAudioBuffer
-    from sttok.checkpoint_validation import _head_trace, _hypothesis, _eager_decoder_state
-    from sttok.inference import _plain
+    from untok.checkpoint_validation import _head_trace, _hypothesis, _eager_decoder_state
+    from untok.inference import _plain
     buffer = CacheAwareStreamingAudioBuffer(model, online_normalization=False, pad_and_drop_preencoded=False)
     with torch.inference_mode():
         buffer.append_audio(waveform.numpy(), stream_id=-1)
@@ -190,10 +190,10 @@ def main():
     started = time.monotonic()
     try:
         import torch
-        from sttok.checkpoint import old_model_row_mapping, _validate_source_tokens
-        from sttok.checkpoint_validation import _probe_checks, _equivalent_inference_config
-        from sttok.inference import _load_audio_tensor, _plain, _runtime_versions, _tokenizer_hash
-        from sttok.runtime import build_id_map
+        from untok.checkpoint import old_model_row_mapping, _validate_source_tokens
+        from untok.checkpoint_validation import _probe_checks, _equivalent_inference_config
+        from untok.inference import _load_audio_tensor, _plain, _runtime_versions, _tokenizer_hash
+        from untok.runtime import build_id_map
         torch.manual_seed(0)
         torch.set_float32_matmul_precision("highest")
         torch.backends.cudnn.benchmark = False

@@ -2,7 +2,7 @@
 """Run actual NeMo dataloader + RNNT backward probes on a tiny real corpus.
 
 There is no optimizer, synthetic audio, loss replacement, or training update.
-The ordinary sttok smoke function restores a fresh checkpoint for each clip.
+The ordinary untok smoke function restores a fresh checkpoint for each clip.
 Read-only hooks additionally verify actual language prompt inputs/gradients.
 """
 from __future__ import annotations
@@ -67,7 +67,7 @@ def make_batch(row, audio, adapter, prompt_registry, num_prompts):
 
 def run_clip_with_prompt_hooks(smoke, row, batch, args, checkpoint_sha, tokenizer_sha, registry, original_slots):
     import torch
-    from sttok.inference import _plain
+    from untok.inference import _plain
 
     native_load = smoke._load_model
     handles = []
@@ -171,8 +171,8 @@ def main():
     if args.output.exists():
         parser.error("Choose a new output report path; previous evidence is never overwritten")
     import torch
-    import sttok.training_smoke as smoke
-    from sttok.runtime import HFTokenizerAdapter
+    import untok.training_smoke as smoke
+    from untok.runtime import HFTokenizerAdapter
 
     if args.device.startswith("cuda") and not torch.cuda.is_available():
         raise RuntimeError("CUDA was explicitly requested but is unavailable")

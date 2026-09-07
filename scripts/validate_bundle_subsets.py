@@ -10,7 +10,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from sttok.bundles import load_tokenizer_bundle
+from untok.bundles import load_tokenizer_bundle
 
 
 def sha(path):

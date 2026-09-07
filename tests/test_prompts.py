@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from sttok.prompts import TARGET_LOCALES, build_prompt_registry, extend_prompt_registry
+from untok.prompts import TARGET_LOCALES, build_prompt_registry, extend_prompt_registry
 
 
 @pytest.fixture

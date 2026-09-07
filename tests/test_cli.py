@@ -4,12 +4,12 @@ from types import SimpleNamespace
 
 import pytest
 
-from sttok.cli import main
+from untok.cli import main
 
 
 @pytest.mark.parametrize("passed,expected", [(True, 0), (False, 2)])
 def test_real_checkpoint_gate_exit_code(monkeypatch, capsys, passed, expected):
-    import sttok.checkpoint_validation as validation
+    import untok.checkpoint_validation as validation
 
     def runner(*args, **kwargs):
         return {"passed": passed, "status": "migration_compatibility_passed_on_supplied_corpus" if passed else "migration_compatibility_failed"}
@@ -22,7 +22,7 @@ def test_real_checkpoint_gate_exit_code(monkeypatch, capsys, passed, expected):
 
 @pytest.mark.parametrize("state,expected", [("incomplete", 2), ("failed", 2), ("passed_on_supplied_text", 0)])
 def test_text_evidence_gate_exit_code(monkeypatch, tmp_path, state, expected):
-    import sttok.validation as validation
+    import untok.validation as validation
 
     monkeypatch.setattr(validation, "validate_tokenizer", lambda *args: {
         "status": state, "structural_passed": state != "failed", "errors": []
@@ -38,8 +38,8 @@ def unexpected_dispatch(*args, **kwargs):
 
 @pytest.mark.parametrize("command", ["build", "build-unigram"])
 def test_build_and_alias_use_native_builder(monkeypatch, capsys, command):
-    import sttok.builder as bpe
-    import sttok.unigram as native
+    import untok.builder as bpe
+    import untok.unigram as native
 
     calls = []
 
@@ -56,7 +56,7 @@ def test_build_and_alias_use_native_builder(monkeypatch, capsys, command):
 
 @pytest.mark.parametrize("command", ["check", "check-unigram"])
 def test_check_and_alias_verify_native_bundle(monkeypatch, capsys, command):
-    import sttok.bundles as native
+    import untok.bundles as native
 
     calls = []
 
@@ -76,8 +76,8 @@ def test_check_and_alias_verify_native_bundle(monkeypatch, capsys, command):
 @pytest.mark.parametrize("command", ["validate", "validate-unigram"])
 @pytest.mark.parametrize("state,expected", [("passed", 0), ("incomplete", 2), ("failed", 2)])
 def test_native_validation_dispatch_and_evidence_gate(monkeypatch, tmp_path, capsys, command, state, expected):
-    import sttok.unigram_validation as native
-    import sttok.validation as bpe
+    import untok.unigram_validation as native
+    import untok.validation as bpe
 
     calls = []
     report = {"passed": state == "passed", "status": state, "structural_passed": state != "failed",
@@ -107,8 +107,8 @@ def test_native_commands_require_explicit_inputs(command):
 
 @pytest.mark.parametrize("command", ["build", "build-unigram"])
 def test_native_build_failure_never_falls_back_to_bpe(monkeypatch, capsys, command):
-    import sttok.builder as bpe
-    import sttok.unigram as native
+    import untok.builder as bpe
+    import untok.unigram as native
 
     def reject(*args):
         raise ValueError("Selection was not fitted against this native base hash")
@@ -122,7 +122,7 @@ def test_native_build_failure_never_falls_back_to_bpe(monkeypatch, capsys, comma
 
 
 def test_invalid_native_bundle_returns_error(monkeypatch, capsys):
-    import sttok.bundles as native
+    import untok.bundles as native
 
     def reject(bundle):
         raise ValueError("Native bundle file hash mismatch")
@@ -133,7 +133,7 @@ def test_invalid_native_bundle_returns_error(monkeypatch, capsys):
 
 
 def test_package_dispatches_all_three_profiles(monkeypatch, capsys):
-    import sttok.bundles as bundles
+    import untok.bundles as bundles
 
     calls = []
 
@@ -148,8 +148,8 @@ def test_package_dispatches_all_three_profiles(monkeypatch, capsys):
 
 
 def test_native_migration_requires_source_pin_and_dispatches_native(monkeypatch, capsys):
-    import sttok.native_checkpoint as native
-    import sttok.checkpoint as legacy
+    import untok.native_checkpoint as native
+    import untok.checkpoint as legacy
 
     calls = []
 
@@ -171,7 +171,7 @@ def test_native_migration_requires_source_pin_and_dispatches_native(monkeypatch,
 @pytest.mark.parametrize("command", ["fetch", "fetch-corpora", "scope-corpora", "preflight", "id-map",
                                     "prompts", "migrate", "verify-checkpoint", "infer"])
 def test_old_commands_require_explicit_legacy_namespace(monkeypatch, command):
-    import sttok.legacy_bpe_cli as legacy
+    import untok.legacy_bpe_cli as legacy
 
     monkeypatch.setattr(legacy, "main", unexpected_dispatch)
     with pytest.raises(SystemExit) as error:
@@ -187,8 +187,8 @@ def test_native_aliases_are_not_legacy_commands(command):
 
 
 def test_legacy_build_keeps_original_defaults_and_previous(monkeypatch, capsys):
-    import sttok.builder as bpe
-    import sttok.unigram as native
+    import untok.builder as bpe
+    import untok.unigram as native
 
     calls = []
 
@@ -206,7 +206,7 @@ def test_legacy_build_keeps_original_defaults_and_previous(monkeypatch, capsys):
 
 
 def test_legacy_migration_preserves_default_bpe_inputs(monkeypatch):
-    import sttok.checkpoint as checkpoint
+    import untok.checkpoint as checkpoint
 
     calls = []
 
@@ -224,7 +224,7 @@ def test_legacy_migration_preserves_default_bpe_inputs(monkeypatch):
 @pytest.mark.parametrize("prefix", [[], ["legacy-bpe"]])
 @pytest.mark.parametrize("state,expected", [("passed", 0), ("incomplete", 2), ("failed", 2)])
 def test_generic_prediction_evaluation_remains_available(monkeypatch, prefix, state, expected):
-    import sttok.evaluation as evaluation
+    import untok.evaluation as evaluation
 
     calls = []
     monkeypatch.setattr(evaluation, "load_manifest", lambda path: ("manifest", path))
@@ -254,7 +254,7 @@ def test_help_explains_native_default_legacy_scope_and_migration(capsys):
         main(["legacy-bpe", "--help"])
     assert error.value.code == 0
     text = " ".join(capsys.readouterr().out.split())
-    assert "sttok legacy-bpe" in text
+    assert "untok legacy-bpe" in text
     assert "original arguments and defaults" in text
     assert "migrate" in text
     assert "build-unigram" not in text

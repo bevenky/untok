@@ -11,7 +11,7 @@ from .sources import fetch_sources, read_json, write_json
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
-        prog="sttok legacy-bpe",
+        prog="untok legacy-bpe",
         description="Reproduce the earlier BPE tokenizer experiment with its original arguments and defaults.",
         epilog="These BPE commands do not build or migrate the native Unigram candidate. Native checkpoint migration is pending.",
     )
@@ -143,7 +143,7 @@ def main(argv=None):
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return status
     except (ValueError, OSError, RuntimeError, ImportError) as exc:
-        print(f"sttok legacy-bpe: {exc}", file=sys.stderr)
+        print(f"untok legacy-bpe: {exc}", file=sys.stderr)
         return 1
 
 

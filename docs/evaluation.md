@@ -5,7 +5,7 @@ expanded untrained model, and the fine-tuned model. It does not run models,
 download audio, train a checkpoint, or turn tokenizer coverage into an ASR claim.
 The checkpoint migration tests separately establish tensor and decoding parity.
 
-Use `sttok.evaluation.evaluate_predictions(manifest, predictions)` and
+Use `untok.evaluation.evaluate_predictions(manifest, predictions)` and
 `write_report(report, path)`; the loaders accept a JSON manifest and JSONL
 predictions. The return value is a JSON-serializable, deterministic report.
 
@@ -128,11 +128,11 @@ minimal runner described below implements offline inference only.
 
 ## Creating predictions with a local NeMo checkpoint
 
-`sttok.inference.run_nemo_inference(manifest_path, checkpoint_path, phase,
+`untok.inference.run_nemo_inference(manifest_path, checkpoint_path, phase,
 output_path, device="cpu")` restores a local `.nemo` checkpoint and transcribes
 the manifest's local audio. It uses the actual `target_lang` parameter in
 [NVIDIA's prompt RNNT API](https://github.com/NVIDIA-NeMo/Speech/blob/main/nemo/collections/asr/models/rnnt_bpe_models_prompt.py),
-validates prompt keys against the restored dictionary, and chooses the sttok
+validates prompt keys against the restored dictionary, and chooses the untok
 restoration class when the checkpoint declares the custom tokenizer.
 
 The runner requires a separate **offline** condition, an explicit request for

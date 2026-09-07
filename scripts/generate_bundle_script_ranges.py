@@ -1,4 +1,4 @@
-"""Regenerate sttok's offline script policy from pinned Unicode 17 data.
+"""Regenerate untok's offline script policy from pinned Unicode 17 data.
 
 Usage: python scripts/generate_bundle_script_ranges.py UCD_DIRECTORY OUTPUT_PY
 The input directory must contain the four exact files named in SOURCES.

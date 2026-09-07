@@ -6,8 +6,8 @@ import pytest
 from sentencepiece import sentencepiece_model_pb2 as pb
 from tokenizers import AddedToken, Tokenizer, decoders, models, pre_tokenizers
 
-from sttok.builder import all_ids, build_tokenizer
-from sttok.sources import sha256, source_path, write_json
+from untok.builder import all_ids, build_tokenizer
+from untok.sources import sha256, source_path, write_json
 
 
 @pytest.fixture
@@ -138,7 +138,7 @@ def test_required_inventory_cannot_add_unapproved_latin(project):
 def test_standard_exemplar_gaps_are_covered_in_real_candidate():
     path = Path("artifacts/nemotron-indic-v1/tokenizer.json")
     if not path.exists():
-        pytest.skip("Run sttok legacy-bpe fetch and sttok legacy-bpe build for the actual artifact check")
+        pytest.skip("Run untok legacy-bpe fetch and untok legacy-bpe build for the actual artifact check")
     tok = Tokenizer.from_file(str(path))
     for character in "ৡৢৣೡౕౡ":
         assert tok.normalizer.normalize_str(character) == character
@@ -151,7 +151,7 @@ def test_standard_exemplar_gaps_are_covered_in_real_candidate():
 def test_all_target_standard_exemplars_in_real_candidate():
     candidate = Path("artifacts/nemotron-indic-v1/tokenizer.json")
     if not candidate.exists():
-        pytest.skip("Run sttok legacy-bpe fetch and sttok legacy-bpe build for the actual artifact check")
+        pytest.skip("Run untok legacy-bpe fetch and untok legacy-bpe build for the actual artifact check")
     fixture = json.loads(Path("configs/standard-exemplars.json").read_text())
     targets = json.loads(Path("configs/build.json").read_text())["targets"]
     assert {(p["language"], p["script"]) for p in fixture["profiles"]} == {(p["language"], p["script"]) for p in targets}

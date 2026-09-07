@@ -64,7 +64,7 @@ def write_rows(path, rows): path.write_text("".join(json.dumps(r,ensure_ascii=Fa
 
 
 def get_json(url, token=None):
-    headers={"User-Agent":"sttok-native-audio/1"}
+    headers={"User-Agent":"untok-native-audio/1"}
     if token: headers["Authorization"]="Bearer "+token
     with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=60) as stream:
         return json.load(stream)
@@ -198,7 +198,7 @@ def main():
         p.error('Request positive counts, durations and workers')
     if args.output.exists() and any(args.output.iterdir()):p.error('Use an empty output directory')
     args.output.mkdir(parents=True,exist_ok=True)
-    from sttok.unigram import NativeTokenizerAdapter
+    from untok.unigram import NativeTokenizerAdapter
     adapter=NativeTokenizerAdapter(args.tokenizer_bundle)
     registry=json.loads(args.source_processor.read_text())['prompt_dictionary']
     targets={r['language']:r for r in json.loads(args.targets.read_text())['targets']}

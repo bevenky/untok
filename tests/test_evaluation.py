@@ -3,7 +3,7 @@ import json
 
 import pytest
 
-from sttok.evaluation import (
+from untok.evaluation import (
     ADAPTATION_LOCALES, BASE_ASR_LOCALES, INDIC_SCRIPTS, PHASES,
     evaluate_predictions, load_manifest, load_predictions,
     paired_bootstrap_delta, score_pair, write_report,

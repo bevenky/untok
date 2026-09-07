@@ -7,7 +7,7 @@ import pytest
 import sentencepiece as spm
 from sentencepiece import sentencepiece_model_pb2 as pb
 
-from sttok.unigram_fit import Lattice, NativeFitter, _allocate, _trie, prepare_records
+from untok.unigram_fit import Lattice, NativeFitter, _allocate, _trie, prepare_records
 
 
 def test_forward_backward_matches_exhaustive_segmentations_and_derivatives():

@@ -15,8 +15,8 @@ actual segmentation algorithm.
 Tokenizer packaging runs on CPU with the normal installation:
 
 ```sh
-sttok package --bundle artifacts/nemotron-indic-unigram-v1 --output dist
-sttok check --bundle dist/latin-indic
+untok package --bundle artifacts/nemotron-indic-unigram-v1 --output dist
+untok check --bundle dist/latin-indic
 ```
 
 Migration requires the compatible NVIDIA NeMo Speech runtime. The verified
@@ -25,7 +25,7 @@ and NeMo Speech revision `ca4daa1470f6c01068c4e6a9a73b19b9a91dc366`.
 The `checkpoint` extra supplies tensor utilities, not the complete NeMo stack.
 
 ```sh
-sttok migrate \
+untok migrate \
   --source nemotron-3.5-asr-streaming-0.6b.nemo \
   --source-sha256 210214ed94039bf6bfbb9a047c7fa289628db75b103e2bf6381fa78285436a74 \
   --bundle dist/latin-indic \
@@ -41,10 +41,10 @@ restored checkpoint. The adjacent `.migration.json` records the checks and
 the explicit source-to-target row map. A removed source text row maps to `null`;
 the original RNNT blank always maps to the target's final output row.
 
-Restore a migrated checkpoint with the installed `sttok` package:
+Restore a migrated checkpoint with the installed `untok` package:
 
 ```python
-from sttok.native_runtime import get_native_nemo_model_class, transcribe_native_file
+from untok.native_runtime import get_native_nemo_model_class, transcribe_native_file
 
 model = get_native_nemo_model_class().restore_from(
     "nemotron-latin-indic.nemo", map_location="cuda"

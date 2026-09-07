@@ -34,7 +34,7 @@ two seeds and two score-mass settings are compared on development text.
 Identical clamped settings are reported as duplicates.
 
 [Corpus preparation](native-unigram-data.md) describes the frozen training
-and evaluation sets. The `sttok.unigram_fit.NativeFitter` library accepts
+and evaluation sets. The `untok.unigram_fit.NativeFitter` library accepts
 explicit text records, candidate strings and scores, group memberships,
 budgets and protected pieces. It performs no downloads. Text must not already
 be SentencePiece-normalized. Supply `balance_language_source=False` when
@@ -51,12 +51,12 @@ retains the original native normalizer bytes.
 Rebuild a candidate from its original model and scored selection:
 
 ```sh
-sttok build \
+untok build \
   --base candidate/base-tokenizer.model \
   --selection candidate/selection.json \
   --output artifacts/nemotron-indic-unigram-v1
 
-sttok check --bundle artifacts/nemotron-indic-unigram-v1
+untok check --bundle artifacts/nemotron-indic-unigram-v1
 ```
 
 `check` verifies file hashes, preserved native metadata and the ID map.
@@ -65,7 +65,7 @@ It does not run corpus evaluation or speech recognition tests.
 To run the full CPU tokenizer checks with your frozen text manifest:
 
 ```sh
-sttok validate \
+untok validate \
   --bundle artifacts/nemotron-indic-unigram-v1 \
   --policy configs/native-unigram-validation.json \
   --corpora /path/to/frozen-data/manifest.json \
@@ -98,7 +98,7 @@ counted explicitly. These checks do not assert identical segmentation where
 new pieces match or unchanged speech accuracy.
 
 ```python
-from sttok.unigram import NativeTokenizerAdapter
+from untok.unigram import NativeTokenizerAdapter
 
 tokenizer = NativeTokenizerAdapter("artifacts/nemotron-indic-unigram-v1")
 ids = tokenizer.text_to_ids("நான் office போகிறேன்")

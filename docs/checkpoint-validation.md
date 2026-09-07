@@ -60,7 +60,7 @@ sufficient RAM/GPU memory for both models. Tokenizer dependencies alone cannot
 run this validation. Use the same declared device in the manifest and function.
 
 ```python
-from sttok.checkpoint_validation import validate_checkpoint_pair
+from untok.checkpoint_validation import validate_checkpoint_pair
 
 report = validate_checkpoint_pair(
     source_checkpoint="/models/original.nemo",

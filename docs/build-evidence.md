@@ -2,6 +2,10 @@
 
 Measured locally on 6 September 2026. This is tokenizer/text evidence; no full Nemotron checkpoint or real audio inference ran.
 
+This is a historical report. Source paths in `build-evidence.json` follow the
+current `untok` layout, while the hashes still describe the source snapshot
+from the measurement date. The original report is preserved in Git history.
+
 Candidate: **16,481 canonical HF IDs**, including **3,392 additions**, with **5,848 BPE merges**. Both a second build and a build from 33 freshly downloaded, hash-verified source files produced byte-identical tokenizer and manifest files.
 
 SHA-256: `ef619be3ac1f85de60a3e9ab8c9f2deaddcbcfd71c8c9f1a55d9a9fc26d6a9c4`.

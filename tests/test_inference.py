@@ -7,7 +7,7 @@ import types
 
 import pytest
 
-from sttok import inference
+from untok import inference
 
 
 def test_runtime_configuration_enums_have_stable_json_names():
@@ -263,7 +263,7 @@ def test_duplicate_or_existing_outputs_are_not_overwritten(tmp_path, monkeypatch
 
 def test_loader_selects_registered_extended_class_from_checkpoint_config(tmp_path, monkeypatch):
     calls = []
-    config = {"tokenizer": {"type": "sttok_hf_bpe"}, "target": "sttok.runtime.ExtendedNemotronRNNTModel"}
+    config = {"tokenizer": {"type": "untok_hf_bpe"}, "target": "untok.runtime.ExtendedNemotronRNNTModel"}
     class FakeASR:
         @classmethod
         def restore_from(cls, path, **kwargs):
@@ -278,9 +278,9 @@ def test_loader_selects_registered_extended_class_from_checkpoint_config(tmp_pat
     nemo_models = types.ModuleType("nemo.collections.asr.models")
     nemo_models.ASRModel = FakeASR
     monkeypatch.setitem(sys.modules, "nemo.collections.asr.models", nemo_models)
-    runtime = types.ModuleType("sttok.runtime")
+    runtime = types.ModuleType("untok.runtime")
     runtime.get_nemo_model_class = lambda: FakeExtended
-    monkeypatch.setitem(sys.modules, "sttok.runtime", runtime)
+    monkeypatch.setitem(sys.modules, "untok.runtime", runtime)
     inference._load_model(tmp_path / "test.nemo", "cpu")
     assert [kind for kind, _ in calls] == ["native", "extended"]
 
@@ -293,7 +293,7 @@ def test_runtime_tokenizer_hash_rejects_unverifiable_tokenizer():
 def test_real_hf_adapter_hash_survives_deleted_restore_directory(tmp_path):
     """Actual tokenizer backend, still no NeMo checkpoint or audio inference."""
     from tokenizers import Tokenizer, models
-    from sttok.runtime import HFTokenizerAdapter
+    from untok.runtime import HFTokenizerAdapter
     path = tmp_path / "restored-tokenizer.json"
     backend = Tokenizer(models.BPE(vocab={"<unk>": 0, "a": 1, "<pad>": 2, "<blank>": 3}, merges=[], unk_token="<unk>"))
     backend.save(str(path))

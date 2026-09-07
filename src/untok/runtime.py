@@ -251,9 +251,9 @@ def _register_trusted_nemo_target(model_class):
         raise RuntimeError("Unsupported NeMo target-validation interface")
     if not isinstance(model_class, type) or not issubclass(model_class, serialization):
         raise ValueError("The registered tokenizer model must be a NeMo Serialization subclass")
-    if getattr(original, "_sttok_registered_class", None) is model_class:
+    if getattr(original, "_untok_registered_class", None) is model_class:
         return
-    target_path = "sttok.runtime.ExtendedNemotronRNNTModel"
+    target_path = "untok.runtime.ExtendedNemotronRNNTModel"
 
     def allow_registered_model(target):
         if target == target_path:
@@ -262,7 +262,7 @@ def _register_trusted_nemo_target(model_class):
             return common.hydra.utils.get_class(target) is model_class
         return original(target)
 
-    allow_registered_model._sttok_registered_class = model_class
+    allow_registered_model._untok_registered_class = model_class
     common._is_target_allowed = allow_registered_model
 
 
@@ -278,7 +278,7 @@ def get_nemo_model_class():
 
         class ExtendedNemotronRNNTModel(EncDecRNNTBPEModelWithPrompt):
             def _setup_tokenizer(self, tokenizer_cfg):
-                if tokenizer_cfg.get("type") != "sttok_hf_bpe":
+                if tokenizer_cfg.get("type") != "untok_hf_bpe":
                     return super()._setup_tokenizer(tokenizer_cfg)
                 path = self.register_artifact(
                     "tokenizer.hf_tokenizer_json", tokenizer_cfg["hf_tokenizer_json"]

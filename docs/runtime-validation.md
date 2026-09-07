@@ -21,7 +21,7 @@ The runtime used numba 0.67.0, numba-cuda 0.13.0, cuda-python 12.8.0,
 SoundFile 0.14.0 and lhotse 2.0.0a3. The checkpoint extra alone does not
 install this training stack. Retain a package freeze with each run.
 
-To include the optional CPU decoding check, set `STTOK_NATIVE_DECODER_MODEL`
+To include the optional CPU decoding check, set `UNTOK_NATIVE_DECODER_MODEL`
 to the original `.model` extracted from the pinned native checkpoint when
 running pytest. Without that artifact, this one test is explicitly skipped.
 

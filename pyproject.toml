@@ -3,7 +3,7 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "sttok"
+name = "untok"
 version = "0.1.0"
 description = "Native Unigram tokenizer extensions for NVIDIA Nemotron ASR"
 requires-python = ">=3.11"
@@ -15,7 +15,7 @@ test = ["pytest>=8,<10"]
 checkpoint = ["torch>=2.8,<3", "PyYAML>=6,<7", "safetensors>=0.6,<1"]
 
 [project.scripts]
-sttok = "sttok.cli:main"
+untok = "untok.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

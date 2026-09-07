@@ -5,9 +5,9 @@ from pathlib import Path
 import pytest
 from sentencepiece import sentencepiece_model_pb2 as pb
 
-from sttok.cli import main
-from sttok.unigram import build_native_tokenizer
-from sttok.unigram_validation import validate_native_tokenizer
+from untok.cli import main
+from untok.unigram import build_native_tokenizer
+from untok.unigram_validation import validate_native_tokenizer
 
 
 def write(path, data):
@@ -198,7 +198,7 @@ def test_cli_writes_report_and_incomplete_is_nonzero(candidate, tmp_path, capsys
 @pytest.mark.parametrize("escape", [False, True])
 def test_expected_text_matches_backend_whitespace_contract(add_prefix, as_suffix, escape):
     import sentencepiece as spm
-    from sttok.unigram_validation import _expected
+    from untok.unigram_validation import _expected
     model = pb.ModelProto()
     model.trainer_spec.model_type = pb.TrainerSpec.UNIGRAM
     model.trainer_spec.unk_id = 0

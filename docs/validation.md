@@ -5,13 +5,13 @@ tokenizer, see [Unigram usage and validation](native-unigram.md).
 
 ## Run the text audit
 
-After `sttok legacy-bpe fetch` and `sttok legacy-bpe build`, run from the repository root:
+After `untok legacy-bpe fetch` and `untok legacy-bpe build`, run from the repository root:
 
 ```sh
-sttok legacy-bpe fetch-corpora
-sttok legacy-bpe validate --corpora .cache/bhasha/manifest.json --output reports/bhasha-full.json
-sttok legacy-bpe scope-corpora --corpora .cache/bhasha/manifest.json --output .cache/scoped-bhasha
-sttok legacy-bpe validate --corpora .cache/scoped-bhasha/manifest.json --output reports/bhasha-scoped.json
+untok legacy-bpe fetch-corpora
+untok legacy-bpe validate --corpora .cache/bhasha/manifest.json --output reports/bhasha-full.json
+untok legacy-bpe scope-corpora --corpora .cache/bhasha/manifest.json --output .cache/scoped-bhasha
+untok legacy-bpe validate --corpora .cache/scoped-bhasha/manifest.json --output reports/bhasha-scoped.json
 ```
 
 Keep both the full and scoped reports. The full audit exposes unsupported
@@ -34,9 +34,9 @@ results, exclusions and limitations of the current candidate.
 Preserve the previous artifact directory and pass it to the builder:
 
 ```sh
-sttok legacy-bpe build --previous /path/to/previous-release --output /path/to/new-release
-sttok legacy-bpe id-map --tokenizer /path/to/new-release/tokenizer.json --output /path/to/new-release/nemo-id-map.json
-sttok legacy-bpe prompts --previous /path/to/previous-release/prompts.json --output /path/to/new-release/prompts.json
+untok legacy-bpe build --previous /path/to/previous-release --output /path/to/new-release
+untok legacy-bpe id-map --tokenizer /path/to/new-release/tokenizer.json --output /path/to/new-release/nemo-id-map.json
+untok legacy-bpe prompts --previous /path/to/previous-release/prompts.json --output /path/to/new-release/prompts.json
 ```
 
 Existing IDs and merges are validated before additions are appended. The
@@ -46,7 +46,7 @@ alone does not establish compatibility.
 
 ## Validation API
 
-`sttok.validation.validate_tokenizer(base_path, extended_path, manifest_path,
+`untok.validation.validate_tokenizer(base_path, extended_path, manifest_path,
 corpora=None, required_targets=None, max_examples=20)` returns a JSON-compatible
 report. It does not write files. The CLI can save that report separately.
 

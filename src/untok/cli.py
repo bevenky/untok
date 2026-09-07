@@ -16,9 +16,9 @@ def main(argv=None):
         return legacy_main(argv[1:])
 
     parser = argparse.ArgumentParser(
-        prog="sttok",
+        prog="untok",
         description="Build and validate native SentencePiece Unigram tokenizer bundles for Nemotron.",
-        epilog=("Checkpoint migration requires a compatible NVIDIA NeMo runtime. Use 'sttok legacy-bpe --help' "
+        epilog=("Checkpoint migration requires a compatible NVIDIA NeMo runtime. Use 'untok legacy-bpe --help' "
                 "to reproduce the earlier BPE experiment with its original arguments and defaults."),
     )
     commands = parser.add_subparsers(dest="command", required=True)
@@ -114,7 +114,7 @@ def main(argv=None):
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return status
     except (ValueError, OSError, RuntimeError, ImportError) as exc:
-        print(f"sttok: {exc}", file=sys.stderr)
+        print(f"untok: {exc}", file=sys.stderr)
         return 1
 
 

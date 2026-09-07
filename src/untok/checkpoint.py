@@ -365,14 +365,14 @@ def migrate_nemo_checkpoint(
         raise ValueError("Source native decoder model is empty or invalid")
     native_decoder_sha256 = hashlib.sha256(native_decoder_proto).hexdigest()
     output.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix=".sttok-migration-", dir=output.parent) as staging:
+    with tempfile.TemporaryDirectory(prefix=".untok-migration-", dir=output.parent) as staging:
         decoder_path = Path(staging) / "native-decoder.model"
         decoder_path.write_bytes(native_decoder_proto)
         cfg = OmegaConf.create(OmegaConf.to_container(original.cfg, resolve=True))
         with open_dict(cfg):
-            cfg.tokenizer = {"type": "sttok_hf_bpe", "hf_tokenizer_json": str(Path(tokenizer_json).resolve()),
+            cfg.tokenizer = {"type": "untok_hf_bpe", "hf_tokenizer_json": str(Path(tokenizer_json).resolve()),
                              "native_decoder_model": str(decoder_path)}
-            cfg.target = "sttok.runtime.ExtendedNemotronRNNTModel"
+            cfg.target = "untok.runtime.ExtendedNemotronRNNTModel"
             if prompt_dictionary is not None:
                 old_prompts = dict(cfg.model_defaults.prompt_dictionary)
                 if any(prompt_dictionary.get(k) != v for k, v in old_prompts.items()):
