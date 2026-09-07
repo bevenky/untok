@@ -277,3 +277,113 @@ def test_control_ids_remap_but_other_trainer_metadata_stays_exact(full, tmp_path
         for field in ("vocab_size", "bos_id", "eos_id"):
             model.trainer_spec.ClearField(field)
     assert target.SerializeToString() == source_model.SerializeToString()
+
+
+@pytest.fixture
+def package_resources(full, tmp_path, monkeypatch):
+    import untok.bundles as bundles
+
+    package_root = tmp_path / "package"
+    package_tokenizer_bundles(full, package_root / "data", make_zips=False)
+    monkeypatch.setattr(bundles.resources, "files", lambda package: package_root)
+    return package_root
+
+
+@pytest.mark.parametrize("profile", ["latin", "latin-indic", "full"])
+def test_profile_names_load_the_same_verified_bundle(package_resources, profile):
+    from untok.bundles import load_tokenizer
+
+    named = load_tokenizer(profile)
+    explicit = load_tokenizer(package_resources / "data" / profile)
+    assert named.model_bytes == explicit.model_bytes
+    assert named.id_map == explicit.id_map
+    assert named.source_native_to_target_native == explicit.source_native_to_target_native
+    assert named.text_to_ids("ab க") == explicit.text_to_ids("ab க")
+
+
+def test_same_named_local_directory_requires_explicit_path(package_resources, full, tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    # A damaged local directory cannot shadow the trusted installed name.
+    (full / "tokenizer.model").write_bytes(b"damaged local model")
+    assert load_tokenizer_bundle("full").vocab_size > 0
+    for explicit in (Path("full"), "./full"):
+        with pytest.raises(ValueError, match="hash mismatch"):
+            load_tokenizer_bundle(explicit)
+
+
+@pytest.mark.parametrize("profile", ["latin", "latin-indic", "full"])
+def test_packaged_profile_cannot_bypass_artifact_validation(package_resources, profile):
+    path = package_resources / "data" / profile / "tokenizer.model"
+    path.write_bytes(path.read_bytes() + b"corruption")
+    with pytest.raises(ValueError, match="hash mismatch"):
+        load_tokenizer_bundle(profile)
+
+
+def test_missing_packaged_data_is_reported(package_resources):
+    import shutil
+
+    shutil.rmtree(package_resources / "data" / "latin")
+    with pytest.raises(ValueError, match="Packaged tokenizer 'latin' is missing"):
+        load_tokenizer_bundle("latin")
+
+
+@pytest.mark.parametrize("profile", ["latin", "latin-indic", "full"])
+def test_zipped_resources_survive_archive_and_temporary_directory_removal(
+    package_resources, profile, tmp_path, monkeypatch,
+):
+    import shutil
+    import untok.bundles as bundles
+
+    expected = load_tokenizer_bundle(package_resources / "data" / profile)
+    archive = tmp_path / "resources.zip"
+    with zipfile.ZipFile(archive, "w") as stream:
+        for path in (package_resources / "data" / profile).iterdir():
+            stream.write(path, path.relative_to(package_resources).as_posix())
+    shutil.rmtree(package_resources)
+    materialized = []
+    original_loader = bundles._load_tokenizer_directory
+
+    def load_and_remember(directory):
+        materialized.append(Path(directory))
+        return original_loader(directory)
+
+    monkeypatch.setattr(bundles, "_load_tokenizer_directory", load_and_remember)
+    with zipfile.ZipFile(archive) as stream:
+        monkeypatch.setattr(bundles.resources, "files", lambda package: zipfile.Path(stream))
+        actual = load_tokenizer_bundle(profile)
+    archive.unlink()
+    assert len(materialized) == 1 and not materialized[0].exists()
+    assert actual.model_bytes == expected.model_bytes
+    assert actual.id_map == expected.id_map
+    for text in ("ab", "a  b", "க", "a🙂b"):
+        ids = actual.text_to_ids(text)
+        assert ids == expected.text_to_ids(text)
+        assert actual.ids_to_text(ids) == expected.ids_to_text(ids)
+
+
+def test_zip_resource_manifest_rejects_path_traversal(package_resources, tmp_path, monkeypatch):
+    import untok.bundles as bundles
+
+    manifest = json.loads((package_resources / "data" / "latin" / "manifest.json").read_text())
+    manifest["files"]["../outside.model"] = "0" * 64
+    archive = tmp_path / "unsafe-resources.zip"
+    with zipfile.ZipFile(archive, "w") as stream:
+        stream.writestr("data/latin/manifest.json", json.dumps(manifest))
+    with zipfile.ZipFile(archive) as stream:
+        monkeypatch.setattr(bundles.resources, "files", lambda package: zipfile.Path(stream))
+        with pytest.raises(ValueError, match="artifact filenames"):
+            load_tokenizer_bundle("latin")
+
+
+@pytest.mark.parametrize("profile,size", [("latin", 2916), ("latin-indic", 10572), ("full", 20550)])
+def test_installed_profiles_include_the_frozen_candidate(profile, size):
+    from untok.bundles import load_tokenizer
+
+    expected_hashes = {
+        "latin": "2068ef8838a2180c8ef794cc492e92dae80941420e1bc418387f7a1ced143b71",
+        "latin-indic": "368143b5b661eecf1865798ff1cc4e2763932613864e7928df44a42059631e1a",
+        "full": "f987a99ce9448ca72bb2da11f36744254f9f9b12f5596fcb742ddedf950886a8",
+    }
+    tokenizer = load_tokenizer(profile)
+    assert tokenizer.vocab_size == size
+    assert hashlib.sha256(tokenizer.model_bytes).hexdigest() == expected_hashes[profile]

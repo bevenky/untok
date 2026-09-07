@@ -5,7 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "untok"
 version = "0.1.0"
-description = "Native Unigram tokenizer extensions for NVIDIA Nemotron ASR"
+description = "SentencePiece Unigram tokenizers with Latin and Indic language support"
+readme = "README.md"
+license-files = ["THIRD_PARTY.md", "licenses/*.txt"]
 requires-python = ">=3.11"
 dependencies = ["sentencepiece==0.2.1", "protobuf>=4.25,<7"]
 
@@ -19,6 +21,10 @@ untok = "untok.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+namespaces = false
+
+[tool.setuptools.package-data]
+untok = ["data/*/*.json", "data/*/*.model"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

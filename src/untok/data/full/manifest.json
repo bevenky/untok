@@ -1,0 +1,32 @@
+{
+  "acoustic_output_size": 20551,
+  "algorithm": "native_sentencepiece_unigram",
+  "asr_validated": false,
+  "base_tokenizer_sha256": "ce3895e40806f02a26c3a225161b96ef682d6c0054bae32a245dec4258d7d291",
+  "checkpoint_validated": false,
+  "files": {
+    "base-tokenizer.model": "ce3895e40806f02a26c3a225161b96ef682d6c0054bae32a245dec4258d7d291",
+    "nemo-id-map.json": "bc915f81d765bceb0569b395f8e6726139c13511b6143204cb60e0f212827cd1",
+    "selection.json": "2acb9490e1a710ceac79f6d34b7eac1e72d5d6179ace72753d6405032456190e",
+    "tokenizer.model": "f987a99ce9448ca72bb2da11f36744254f9f9b12f5596fcb742ddedf950886a8",
+    "vocabulary.json": "aee89cce63d47ca9646962ace117364f79f497323ba127104fd492563ee1e47b"
+  },
+  "first_new_public_id": 13089,
+  "native_blank_id": 20550,
+  "native_entries_preserved": 13087,
+  "native_vocabulary_size": 20550,
+  "new_pieces": 7463,
+  "normal_score_range": [
+    -253.0,
+    0.0
+  ],
+  "normalizer_sha256": "fca0e7752aef7e68c02391ae85821eeb71e1b299cd72f91ebd0b4e7bf020bc42",
+  "public_blank_id": 13088,
+  "public_pad_id": 13087,
+  "public_vocabulary_size": 20552,
+  "schema_version": 1,
+  "selection_sha256": "2acb9490e1a710ceac79f6d34b7eac1e72d5d6179ace72753d6405032456190e",
+  "status": "tokenizer_candidate",
+  "structural_passed": true,
+  "tokenizer_sha256": "f987a99ce9448ca72bb2da11f36744254f9f9b12f5596fcb742ddedf950886a8"
+}

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import bisect
 from dataclasses import asdict, dataclass
+from importlib import resources
 import json
 from pathlib import Path
 import tempfile
@@ -17,7 +18,7 @@ from .runtime import IdMap
 from .unigram import NativeTokenizerAdapter, _digest, _load, _vocabulary, validate_native_prefix
 
 
-def load_tokenizer_bundle(directory: str | Path):
+def _load_tokenizer_directory(directory: str | Path):
     """Load a verified full native bundle or a separately validated subset."""
     directory = Path(directory)
     manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
@@ -33,9 +34,42 @@ def load_tokenizer_bundle(directory: str | Path):
     return adapter
 
 
-load_tokenizer = load_tokenizer_bundle
-
 PROFILES = ("latin", "latin-indic", "full")
+
+
+def load_tokenizer_bundle(directory: str | Path):
+    """Load a bundled profile name or an explicit local bundle directory.
+
+    The strings ``latin``, ``latin-indic`` and ``full`` select installed package
+    data. Use ``Path("full")`` or ``"./full"`` for a same-named local directory.
+    Every path uses the same strict artifact and metadata checks.
+    """
+    if not isinstance(directory, str) or directory not in PROFILES:
+        return _load_tokenizer_directory(directory)
+    resource = resources.files("untok").joinpath("data", directory)
+    if not resource.is_dir():
+        raise ValueError(f"Packaged tokenizer {directory!r} is missing; reinstall untok with its bundle data")
+    # Ordinary wheel and editable installations expose real paths. Avoid an
+    # unnecessary copy of these immutable files on each load.
+    if isinstance(resource, Path):
+        return _load_tokenizer_directory(resource)
+    # Python 3.11's resources.as_file() cannot extract resource directories.
+    # Materialize just this profile, supporting zip-imported packages as well.
+    manifest = json.loads(resource.joinpath("manifest.json").read_text(encoding="utf-8"))
+    files = manifest.get("files") if isinstance(manifest, dict) else None
+    if (not isinstance(files, dict) or not files
+            or any(not isinstance(name, str) or Path(name).name != name
+                   or name in {".", ".."} or "\\" in name for name in files)):
+        raise ValueError("Invalid packaged tokenizer artifact filenames")
+    with tempfile.TemporaryDirectory(prefix="untok-bundled-tokenizer-") as temporary:
+        local = Path(temporary)
+        for name in sorted({"manifest.json", *files}):
+            (local / name).write_bytes(resource.joinpath(name).read_bytes())
+        # Adapters retain model bytes and parsed mappings, not these file paths.
+        return _load_tokenizer_directory(local)
+
+
+load_tokenizer = load_tokenizer_bundle
 _STARTS = {name: tuple(lo for lo, _ in ranges) for name, ranges in RANGES.items()}
 
 

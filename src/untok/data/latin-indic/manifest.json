@@ -1,0 +1,40 @@
+{
+  "acoustic_output_size": 10573,
+  "algorithm": "native_sentencepiece_unigram_subset",
+  "appended_pieces_retained": 7463,
+  "asr_validated": false,
+  "base_tokenizer_sha256": "ce3895e40806f02a26c3a225161b96ef682d6c0054bae32a245dec4258d7d291",
+  "checkpoint_compatibility": "requires_explicit_row_remapping_and_acoustic_validation",
+  "checkpoint_validated": false,
+  "files": {
+    "base-tokenizer.model": "ce3895e40806f02a26c3a225161b96ef682d6c0054bae32a245dec4258d7d291",
+    "full-tokenizer.model": "f987a99ce9448ca72bb2da11f36744254f9f9b12f5596fcb742ddedf950886a8",
+    "native-row-map.json": "ead68aa3271608ef038d9dfd6fe41d5540fdffc927b60a653d6bfe85232b44f8",
+    "nemo-id-map.json": "f417b589689401dd5741da7b8555a1364ebb3ff3d389b13497d92ba17e2e72e7",
+    "script-policy.json": "8ce7ee0e7f80ac1f719040cd7069b8d4ccafa8b9d7bddcbbef7b181dc9d92328",
+    "tokenizer.model": "368143b5b661eecf1865798ff1cc4e2763932613864e7928df44a42059631e1a",
+    "vocabulary.json": "9d8cf99afbb40d6111fa57260e0aa79023f71ebb8fa5046e39effc4bdd4e7277"
+  },
+  "full_native_vocabulary_size": 20550,
+  "full_pieces_removed": 9978,
+  "full_tokenizer_sha256": "f987a99ce9448ca72bb2da11f36744254f9f9b12f5596fcb742ddedf950886a8",
+  "native_blank_id": 10572,
+  "native_prefix_preserved": false,
+  "native_vocabulary_size": 10572,
+  "normal_score_range": [
+    -253.0,
+    0.0
+  ],
+  "normalizer_sha256": "fca0e7752aef7e68c02391ae85821eeb71e1b299cd72f91ebd0b4e7bf020bc42",
+  "original_native_pieces_retained": 3109,
+  "original_native_vocabulary_size": 13087,
+  "profile": "latin-indic",
+  "public_blank_id": 10573,
+  "public_pad_id": 10572,
+  "public_vocabulary_size": 10574,
+  "schema_version": 1,
+  "special_pieces_retained": 2,
+  "status": "tokenizer_subset_candidate",
+  "structural_passed": true,
+  "tokenizer_sha256": "368143b5b661eecf1865798ff1cc4e2763932613864e7928df44a42059631e1a"
+}

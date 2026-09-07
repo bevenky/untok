@@ -1,0 +1,33 @@
+{
+  "allowed_scripts": [
+    "Latin"
+  ],
+  "mixed_script_pieces": "Keep a NORMAL piece only when every character is allowed",
+  "non_normal_pieces": "Retain all special piece messages without filtering their spellings",
+  "normalizer": "Exact copy of the source; no text cleaning added",
+  "policy": "unicode-script-and-extensions-common-punctuation-v1",
+  "profile": "latin",
+  "schema_version": 1,
+  "scope": "Finite source vocabulary subset; no assertion of ASR accuracy or universal script coverage",
+  "script_table_sha256": "b78a232a8bc3984840af36eaf1136a168ddb9f772fce4154d041fbb904fdc3a1",
+  "shared_characters": "Common punctuation; Common/Inherited with no restricted Script_Extensions or an allowed extension",
+  "unicode_sources": {
+    "PropertyValueAliases.txt": {
+      "sha256": "64e9a5f76f7a1e8b5a47d6a1f9a26522a251208f5276bdfa1559dac7cf2e827a",
+      "url": "https://www.unicode.org/Public/17.0.0/ucd/PropertyValueAliases.txt"
+    },
+    "ScriptExtensions.txt": {
+      "sha256": "ec2107e58825a1586acee8e0911ce18260394ac8b87e535ca325f1ccbeb06bc6",
+      "url": "https://www.unicode.org/Public/17.0.0/ucd/ScriptExtensions.txt"
+    },
+    "Scripts.txt": {
+      "sha256": "9f5e50d3abaee7d6ce09480f325c706f485ae3240912527e651954d2d6b035bf",
+      "url": "https://www.unicode.org/Public/17.0.0/ucd/Scripts.txt"
+    },
+    "UnicodeData.txt": {
+      "sha256": "2e1efc1dcb59c575eedf5ccae60f95229f706ee6d031835247d843c11d96470c",
+      "url": "https://www.unicode.org/Public/17.0.0/ucd/UnicodeData.txt"
+    }
+  },
+  "unicode_version": "17.0.0"
+}

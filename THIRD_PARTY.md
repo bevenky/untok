@@ -8,7 +8,7 @@ project does not assert NVIDIA, AI4Bharat or Meta endorsement.
 | Input | Source and published license information |
 | --- | --- |
 | Base tokenizer/configuration | [NVIDIA Nemotron 3.5 ASR 0.6B pinned release](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b/tree/1c8deaecc64b91f034d73e08dd8b64625eb3395d), Open Model Definition and Weights License 1.1 |
-| 22 BPE donors | [AI4Bharat IndicVoices tokenizer artifacts](https://github.com/AI4Bharat/IndicVoices/tree/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers); [IndicConformer model card](https://huggingface.co/ai4bharat/indicconformer_stt_multi), MIT |
+| 22 BPE donors | [AI4Bharat IndicVoices tokenizer artifacts](https://github.com/AI4Bharat/IndicVoices/tree/d50726d3123bc5066994b94bf6c0cfbc5ab961d8/artifacts/tokenizers); [IndicConformer model card](https://huggingface.co/ai4bharat/indic-conformer-600m-multilingual/blob/e9b71b369c048e2c6b634d4c131061c34e441179/README.md), MIT |
 | Selected rare Latin character inventory | Meta `omniASR_tokenizer_written_v2.model`; [Omnilingual ASR documentation](https://github.com/facebookresearch/omnilingual-asr/blob/main/src/omnilingual_asr/models/README.md), [Apache 2.0 license](https://github.com/facebookresearch/omnilingual-asr/blob/main/LICENSE) |
 | Assigned codepoints, script properties and standard exemplars | [Unicode 17 UCD](https://www.unicode.org/Public/17.0.0/ucd/), [CLDR48 pinned sources](https://github.com/unicode-org/cldr/tree/acd6d88ae493633240e19a87a721076a8a75c310/common/main), [Unicode License V3](https://www.unicode.org/license.txt) |
 | Public primary audit | [Bhasha-Abhijnaanam v1.0](https://github.com/AI4Bharat/IndicLID/releases/tag/v1.0); source-specific provenance retained in records |
@@ -20,12 +20,24 @@ project does not assert NVIDIA, AI4Bharat or Meta endorsement.
 | Additional Urdu transcripts | [UrduSpeech](https://huggingface.co/datasets/ASLP-lab/UrduSpeech/tree/16dd380cfd9049a3db7f06a98e878086916bf833), publisher-declared CC-BY-4.0 |
 | Additional SPRING R1 transcripts | [Primary author release](https://github.com/Speech-Lab-IITM/SPRING_INX_ESPnet_Recipe/blob/6e30c6ab949211bb573ac9bc034f61eb5114db28/README.md) describes the original audio and manually transcribed text as public domain; the recipe's MIT license is not treated as the data license |
 
-Before distribution, carry the applicable upstream license/notice files with
-derived artifacts and set the distribution metadata accordingly. The source
-code's license and the derived model/data terms are separate decisions. No
-project-wide license is inferred merely from a donor's license.
+The Python package includes the three native tokenizer bundles and these
+upstream license and attribution texts:
 
-No upstream model weights or third-party corpus text are committed here.
+- [OpenMDW 1.1](licenses/OpenMDW-1.1.txt), from the [agreement linked by NVIDIA](https://openmdw.ai/license/1-1/).
+- [AI4Bharat MIT notice](licenses/IndicBART-MIT.txt), from the [IndicBART repository](https://github.com/AI4Bharat/indic-bart/blob/0256f8ed1f73fa2716464f96de137d1fcf692641/LICENSE).
+- [Meta notice](licenses/Meta-notice.txt), from [Omnilingual ASR](https://github.com/facebookresearch/omnilingual-asr/blob/81f51e224ce9e74b02cc2a3eaf21b2d91d743455/LICENSE), and the [Apache 2.0 license](licenses/Apache-2.0.txt).
+- [Unicode License V3](licenses/Unicode-3.0.txt), from [Unicode](https://www.unicode.org/license.txt).
+
+The full tokenizer extends NVIDIA's original model. The smaller bundles filter
+that vocabulary and remap IDs; none is an unmodified upstream release. The
+source code's license and the derived model/data terms are separate decisions.
+No project-wide license is inferred merely from a donor's license.
+
+In the packaged selection metadata, `study/` replaces the original study
+workspace prefix. Source content hashes, piece selections, scores and tokenizer
+models are unchanged; the metadata has its own updated integrity hash.
+
+No acoustic checkpoint weights or third-party corpus text are included here.
 The selected 190-character list is a finite repertoire; it is not universal
 Unicode fallback. The IndicConformer donor normalizers are not imported into
 the final tokenizer. The BPE variant retains the published JSON normalizer;
