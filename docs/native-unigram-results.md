@@ -5,8 +5,10 @@ and **20,552 public IDs**, including public padding and blank. It extends the
 actual SentencePiece Unigram tokenizer embedded in the pinned Nemotron 3.5 ASR
 streaming 0.6B checkpoint. It does not replace the separate BPE artifact.
 
-This is a validated tokenizer candidate. Native checkpoint migration,
-fine-tuning and speech accuracy evaluation remain pending.
+This is a validated tokenizer candidate. Native checkpoint migration and
+bounded speech compatibility checks are documented in
+[native compatibility results](native-compatibility-results.md).
+Acoustic fine-tuning and broad accuracy evaluation are separate tasks.
 
 ## Inventory
 
@@ -33,7 +35,7 @@ Unicode fallback were needed. No new Latin multi-character pieces were added.
 
 Original native IDs remain `0..13086`. New native text IDs start at `13087`.
 Public padding and blank remain `13087` and `13088`, so new public IDs start at
-`13089`. An expanded native RNNT checkpoint would use blank `20550` and 20,551
+`13089`. The migrated Full native RNNT checkpoint uses blank `20550` and 20,551
 output classes. Public IDs are not native training labels.
 
 ## Selection and data
@@ -168,11 +170,11 @@ tokens, with identical decoded text. New Devanagari pieces are shared across
 Hindi, Marathi, Bodo, Dogri, Konkani, Maithili, Nepali, Sanskrit and Devanagari
 Sindhi. Such changes require fine-tuning and speech regression tests.
 
-This evidence does not establish unchanged recognition accuracy across the
-original 40 locales. Using new IDs requires vocabulary tensor expansion;
-learning their acoustic behavior requires fine-tuning. The earlier BPE Runpod
-results do not validate this native variant. The remaining native integration
-steps are listed in [native Unigram details](native-unigram.md).
+Text evidence alone does not establish unchanged recognition accuracy across
+the original 40 locales. The later [native compatibility checks](native-compatibility-results.md)
+verify migrated weights and paired audio behavior on explicitly bounded
+recordings. New-language acoustic learning remains a separate task. No acoustic
+training was performed in that compatibility phase.
 
 Model SHA256:
 `f987a99ce9448ca72bb2da11f36744254f9f9b12f5596fcb742ddedf950886a8`.

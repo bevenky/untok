@@ -56,7 +56,7 @@ def test_build_and_alias_use_native_builder(monkeypatch, capsys, command):
 
 @pytest.mark.parametrize("command", ["check", "check-unigram"])
 def test_check_and_alias_verify_native_bundle(monkeypatch, capsys, command):
-    import sttok.unigram as native
+    import sttok.bundles as native
 
     calls = []
 
@@ -64,7 +64,7 @@ def test_check_and_alias_verify_native_bundle(monkeypatch, capsys, command):
         calls.append(bundle)
         return SimpleNamespace(vocab_size=20, blank_id=20, id_map=SimpleNamespace(tokenizer_sha256="verified"))
 
-    monkeypatch.setattr(native, "NativeTokenizerAdapter", adapter)
+    monkeypatch.setattr(native, "load_tokenizer_bundle", adapter)
     assert main([command, "--bundle", "candidate"]) == 0
     assert calls == ["candidate"]
     assert json.loads(capsys.readouterr().out) == {
@@ -122,14 +122,50 @@ def test_native_build_failure_never_falls_back_to_bpe(monkeypatch, capsys, comma
 
 
 def test_invalid_native_bundle_returns_error(monkeypatch, capsys):
-    import sttok.unigram as native
+    import sttok.bundles as native
 
     def reject(bundle):
         raise ValueError("Native bundle file hash mismatch")
 
-    monkeypatch.setattr(native, "NativeTokenizerAdapter", reject)
+    monkeypatch.setattr(native, "load_tokenizer_bundle", reject)
     assert main(["check", "--bundle", "changed-bundle"]) == 1
     assert "hash mismatch" in capsys.readouterr().err
+
+
+def test_package_dispatches_all_three_profiles(monkeypatch, capsys):
+    import sttok.bundles as bundles
+
+    calls = []
+
+    def package(*args, **kwargs):
+        calls.append((args, kwargs))
+        return {"packaged": True}
+
+    monkeypatch.setattr(bundles, "package_tokenizer_bundles", package)
+    assert main(["package", "--bundle", "candidate", "--output", "dist"]) == 0
+    assert calls == [(("candidate", "dist"), {"profiles": ("latin", "latin-indic", "full")})]
+    assert json.loads(capsys.readouterr().out)["packaged"]
+
+
+def test_native_migration_requires_source_pin_and_dispatches_native(monkeypatch, capsys):
+    import sttok.native_checkpoint as native
+    import sttok.checkpoint as legacy
+
+    calls = []
+
+    def migrate(*args, **kwargs):
+        calls.append((args, kwargs))
+        return {"status": "migrated_weights_verified"}
+
+    monkeypatch.setattr(native, "migrate_native_checkpoint", migrate)
+    monkeypatch.setattr(legacy, "migrate_nemo_checkpoint", unexpected_dispatch)
+    flags = ["migrate", "--source", "source.nemo", "--bundle", "native", "--output", "new.nemo"]
+    with pytest.raises(SystemExit) as error:
+        main(flags)
+    assert error.value.code == 2
+    assert not calls
+    assert main(flags + ["--source-sha256", "a" * 64]) == 0
+    assert calls == [(("source.nemo", "native", "new.nemo"), {"expected_source_sha256": "a" * 64, "seed": 0})]
 
 
 @pytest.mark.parametrize("command", ["fetch", "fetch-corpora", "scope-corpora", "preflight", "id-map",
@@ -211,7 +247,7 @@ def test_help_explains_native_default_legacy_scope_and_migration(capsys):
     assert error.value.code == 0
     text = " ".join(capsys.readouterr().out.split())
     assert "native SentencePiece Unigram" in text
-    assert "Native checkpoint migration is pending" in text
+    assert "Checkpoint migration requires a compatible NVIDIA NeMo runtime" in text
     assert "legacy-bpe" in text
     assert "build-unigram" in text
     with pytest.raises(SystemExit) as error:

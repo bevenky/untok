@@ -137,21 +137,13 @@ pieces match, particularly in Hindi and Arabic-script text. An expanded
 checkpoint must copy and remap its existing rows and add trainable rows for
 new tokens. The tokenizer bundle alone does not perform that migration.
 
-Use a matching tokenizer and checkpoint variant. Existing BPE migration and
-speech results do not validate the native Unigram candidate. Native checkpoint
-migration, fine-tuning and speech accuracy require separate evidence.
+Use a matching tokenizer and checkpoint variant. Native migration now verifies
+the source pin, native tokenizer, retained weights, relocated blank and complete
+save/reload behavior. See [checkpoint usage](native-checkpoint.md) and
+[compatibility results](native-compatibility-results.md) for the Full, Latin and
+Latin-plus-Indic variants and their paired offline/streaming controls.
 
-For native checkpoint integration, the remaining checks are:
-
-1. Restore the pinned original checkpoint and replace its tokenizer through a
-   native adapter. Copy all existing tensors exactly, expand only the vocabulary
-   rows, and move both predictor and output blank rows to the new last index.
-2. Save and restore the expanded checkpoint. Verify every copied value and its
-   ID mapping, then compare old logits with identical features and prefixes.
-3. Compare paired audio with new outputs masked, then with every output enabled.
-   Test offline and streaming separately. Masked parity only verifies migration.
-4. Run a real RNNT training step with each new profile and valid prompt indices.
-   Check target lengths, finite loss and gradients on the relevant new rows.
-5. Fine-tune and measure held-out WER/CER for the original locales and all new
-   profiles, including conversational and mixed-language speech. Report missing
-   audio coverage explicitly. Tokenizer coverage is not recognition accuracy.
+The current validation scope excludes acoustic training. A future trained
+release would need a separately scoped speech corpus, training recipe and
+held-out WER/CER evaluation. Text coverage and migration compatibility do not
+establish learned recognition accuracy for newly added languages.

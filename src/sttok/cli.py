@@ -18,7 +18,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(
         prog="sttok",
         description="Build and validate native SentencePiece Unigram tokenizer bundles for Nemotron.",
-        epilog=("Native checkpoint migration is pending. Use 'sttok legacy-bpe --help' "
+        epilog=("Checkpoint migration requires a compatible NVIDIA NeMo runtime. Use 'sttok legacy-bpe --help' "
                 "to reproduce the earlier BPE experiment with its original arguments and defaults."),
     )
     commands = parser.add_subparsers(dest="command", required=True)
@@ -32,13 +32,26 @@ def main(argv=None):
     build.add_argument("--output", required=True, help="Empty directory for a separate native candidate bundle")
     check = commands.add_parser(
         "check", aliases=["check-unigram"],
-        help="Verify native bundle hashes, prefix and ID mapping on CPU",
+        help="Verify native bundle hashes, vocabulary and ID mapping on CPU",
     )
     check.set_defaults(operation="check")
     check.add_argument("--bundle", required=True)
+    package = commands.add_parser("package", help="Create Latin, Latin plus Indic and full Unigram bundles")
+    package.set_defaults(operation="package")
+    package.add_argument("--bundle", required=True, help="Validated full native Unigram bundle")
+    package.add_argument("--output", required=True, help="New destination for bundles and reproducible ZIPs")
+    package.add_argument("--profiles", nargs="+", choices=["latin", "latin-indic", "full"],
+                         default=["latin", "latin-indic", "full"])
+    migrate = commands.add_parser("migrate", help="Create and verify a matching native NeMo checkpoint")
+    migrate.set_defaults(operation="migrate")
+    migrate.add_argument("--source", required=True, help="Original native .nemo checkpoint")
+    migrate.add_argument("--bundle", required=True, help="Full or reduced Unigram bundle")
+    migrate.add_argument("--source-sha256", required=True, help="Expected original checkpoint SHA256")
+    migrate.add_argument("--output", required=True, help="New .nemo destination")
+    migrate.add_argument("--seed", type=int, default=0)
     validate = commands.add_parser(
         "validate", aliases=["validate-unigram"],
-        help="Validate native structure and pinned text corpora on CPU",
+        help="Validate the full native candidate and pinned text corpora on CPU",
     )
     validate.set_defaults(operation="validate")
     validate.add_argument("--bundle", required=True)
@@ -64,12 +77,21 @@ def main(argv=None):
 
             result = build_native_tokenizer(args.base, args.selection, args.output)
         elif args.operation == "check":
-            from .unigram import NativeTokenizerAdapter
+            from .bundles import load_tokenizer_bundle
 
-            adapter = NativeTokenizerAdapter(args.bundle)
+            adapter = load_tokenizer_bundle(args.bundle)
             result = {"structural_passed": True, "native_vocabulary_size": adapter.vocab_size,
                       "native_blank_id": adapter.blank_id, "tokenizer_sha256": adapter.id_map.tokenizer_sha256,
                       "checkpoint_validated": False, "asr_validated": False}
+        elif args.operation == "package":
+            from .bundles import package_tokenizer_bundles
+
+            result = package_tokenizer_bundles(args.bundle, args.output, profiles=tuple(args.profiles))
+        elif args.operation == "migrate":
+            from .native_checkpoint import migrate_native_checkpoint
+
+            result = migrate_native_checkpoint(args.source, args.bundle, args.output,
+                                               expected_source_sha256=args.source_sha256, seed=args.seed)
         elif args.operation == "validate":
             from .unigram_validation import validate_native_tokenizer
 

@@ -1,22 +1,13 @@
 # sttok
 
-Extend the native SentencePiece Unigram tokenizer in
+Extend the native SentencePiece Unigram tokenizer from
 [NVIDIA Nemotron 3.5 ASR streaming 0.6B](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b)
-with Indic characters and subwords.
-
-The current candidate has **20,550 native text IDs**, including **7,463
-additions**. It preserves all 13,087 original entries, their scores and the
-native normalizer. Public padding and blank bring the public inventory to
-20,552 IDs.
-
-Tokenizer validation is complete. Native checkpoint migration, fine-tuning
-and speech accuracy tests are still pending. New pieces can change Hindi
-segmentation; preserved IDs alone do not guarantee unchanged recognition.
-See [validation results](docs/native-unigram-results.md).
+with Indic characters and subwords. Keep the original normalizer and package
+the vocabulary you need.
 
 ## Install
 
-Use Python 3.11 or later, from the repository root:
+Use Python 3.11 or later:
 
 ```sh
 python3 -m venv .venv
@@ -24,86 +15,54 @@ source .venv/bin/activate
 python -m pip install -e .
 ```
 
-## Use the tokenizer
+## Choose a bundle
 
-Generated tokenizer files are excluded from Git. A clean clone needs the
-candidate bundle separately. Copy the six files from its `tokenizer/` folder
-into `artifacts/nemotron-indic-unigram-v1/`, then verify them:
+| Bundle | Text IDs | Includes |
+| --- | ---: | --- |
+| `latin` | 2,916 | Latin pieces, shared punctuation and special tokens |
+| `latin-indic` | 10,572 | Latin plus all 22 target Indic profiles |
+| `full` | 20,550 | Original Nemotron vocabulary plus all approved additions |
+
+The full bundle preserves all 13,087 original entries and their IDs and scores.
+Reduced bundles use compact IDs and explicit checkpoint row maps. For ASR,
+each needs a matching migrated checkpoint with one additional RNNT blank output.
+New Indic pieces require speech fine-tuning before recognition quality can be
+claimed for the added languages.
+
+Extract the separately supplied `full.zip`, then create all three bundles and
+ZIP archives:
 
 ```sh
-sttok check --bundle artifacts/nemotron-indic-unigram-v1
+unzip full.zip -d artifacts/nemotron-indic-unigram-v1
+sttok package --bundle artifacts/nemotron-indic-unigram-v1 --output dist
 ```
 
-```python
-from sttok.unigram import NativeTokenizerAdapter
+To package just one, add `--profiles latin-indic`. Generated tokenizer bundles
+are distributed separately from the Git repository.
 
-tokenizer = NativeTokenizerAdapter("artifacts/nemotron-indic-unigram-v1")
+## Use the tokenizer
+
+```python
+from sttok.bundles import load_tokenizer
+
+tokenizer = load_tokenizer("dist/latin-indic")
 ids = tokenizer.text_to_ids("நான் office போகிறேன்")
 print(ids)
 print(tokenizer.ids_to_text(ids))
 ```
 
-These are native text IDs. Use `text_to_public_ids()` and
-`public_ids_to_text()` for the public layout, which reserves padding and blank
-at 13,087 and 13,088. New public IDs start at 13,089.
+These are native text IDs for the matching model. Public padding and blank IDs
+have a separate mapping; use the adapter's explicit public-ID methods when needed.
 
-Rebuild the same tokenizer from the bundle's original model and scored
-selection, writing to a new directory:
+## Indic coverage
 
-```sh
-sttok build \
-  --base artifacts/nemotron-indic-unigram-v1/base-tokenizer.model \
-  --selection artifacts/nemotron-indic-unigram-v1/selection.json \
-  --output artifacts/rebuilt-native
-```
+Assamese, Bengali, Bodo, Dogri, Gujarati, Hindi, Kannada, Konkani, Kashmiri
+(Arabic), Maithili, Malayalam, Manipuri (Meetei Mayek), Marathi, Nepali, Odia,
+Punjabi (Gurmukhi), Sanskrit, Santali (Ol Chiki), Sindhi (Devanagari), Tamil,
+Telugu and Urdu.
 
-This packages the selected pieces and scores. It does not repeat corpus
-selection or train an acoustic model.
+Devanagari is shared across its languages, and Bengali and Assamese share a
+bank. Text coverage does not imply support for every alternate script or dialect.
 
-## Language coverage
-
-The 22 target text profiles are Assamese, Bengali, Bodo, Dogri, Gujarati,
-Hindi, Kannada, Konkani, Kashmiri (Arabic), Maithili, Malayalam, Manipuri
-(Meetei Mayek), Marathi, Nepali, Odia, Punjabi (Gurmukhi), Sanskrit, Santali
-(Ol Chiki), Sindhi (Devanagari), Tamil, Telugu and Urdu.
-
-The selected banks use 1,400 memberships for shared Devanagari, 500 for shared
-Bengali/Assamese and 500 for each remaining language, including separate
-Kashmiri and Urdu quotas. Shared strings and native overlap reduce new IDs.
-Text coverage does not imply trained speech support or every alternate script.
-
-## Files and folders
-
-| Path | Contents |
-| --- | --- |
-| `src/sttok/unigram*.py` | Native builder, fitter, adapter and validator |
-| `configs/` | Pinned inputs, approved pieces and validation policy |
-| `tests/` | Native tests and retained legacy regression checks |
-| `docs/` | Methods, measured results and checkpoint work still pending |
-| `artifacts/` | Generated bundles, excluded from Git |
-| `.cache/` | Local source snapshots, excluded from Git |
-| `reports/` | Generated validation reports, excluded from Git |
-| `scripts/` | Legacy BPE audio probes |
-
-See [native usage and validation](docs/native-unigram.md),
-[data preparation](docs/native-unigram-data.md) and
+See [checkpoint usage](docs/native-checkpoint.md) and
 [source provenance](THIRD_PARTY.md).
-
-## Tests
-
-```sh
-python -m pip install -e '.[test]'
-python -m pytest tests/test_unigram.py tests/test_unigram_fit.py tests/test_unigram_validation.py -q
-```
-
-`sttok validate` runs the native checks against an explicit policy and corpus
-manifest. Missing corpus evidence is reported as incomplete. Reserved text
-requires a receipt binding the finalized model and evaluation inputs.
-
-## Earlier BPE work
-
-Unigram is the active workflow. Earlier BPE code remains in this repository
-for reproducing past experiments and reusing tested checkpoint utilities.
-Its commands require `sttok legacy-bpe`; see [legacy BPE notes](docs/legacy-bpe.md).
-BPE and Unigram must each use a matching checkpoint, not an interchangeable
-runtime setting.
