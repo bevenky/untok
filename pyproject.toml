@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "sttok"
 version = "0.1.0"
-description = "Auditable Indic vocabulary extension for the NVIDIA Nemotron ASR HF BPE tokenizer"
+description = "Auditable Indic vocabulary extension for the NVIDIA Nemotron ASR BPE tokenizer"
 requires-python = ">=3.11"
 dependencies = ["tokenizers==0.22.2", "sentencepiece==0.2.1", "protobuf>=4.25,<7"]
 

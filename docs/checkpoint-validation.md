@@ -72,10 +72,19 @@ report = validate_checkpoint_pair(
 
 The runner requires the checkpoints' actual greedy strategy to match the
 manifest. It compares encoder, preprocessor, decoder, joint, prompt-dimension
-and decoding configuration, excluding only approved vocabulary fields. Explicit
-graph/compiled decoding settings are rejected because Python forward hooks
-cannot be assumed to run during graph replay. If the actual joint hook does not
-execute, validation stops rather than claiming success.
+and decoding configuration, excluding only approved vocabulary fields. It then
+explicitly disables decoder CUDA graphs on both models and verifies the actual
+runtime flags, since the pinned runtime can enable graphs through defaults
+absent from the saved configuration. Serialized and effective settings are both
+recorded. Python hooks must execute on the actual joint layer during decoding;
+a missing hook stops validation.
+
+Audio is decoded with SoundFile and passed as a waveform tensor. The pinned
+NeMo file-path loader can choose an automatic prompt despite a requested
+language; the tensor path uses the explicit target. The runner verifies the
+actual one-hot vector entering the learned prompt projection and records the
+observed prompt ID for each call. Audio must already be finite mono audio at
+the model's sample rate. It is neither resampled nor padded to a minimum duration.
 
 ## Checks performed
 
@@ -102,7 +111,10 @@ execute, validation stops rather than claiming success.
 
 `passed=true` means that the migration checks passed **on this supplied offline
 corpus**. It does not mean unchanged ASR accuracy with the new outputs active,
-and it never sets `release_ready=true`. The report leaves real RNNT
+and it never sets `release_ready=true`. Separately,
+`initialization_preservation_passed` requires those checks and zero transcript
+or token changes with all outputs enabled, on the same supplied corpus.
+The report leaves real RNNT
 forward/backward with new labels, streaming regression, multilingual speech
 fine-tuning and held-out accuracy evaluation pending.
 

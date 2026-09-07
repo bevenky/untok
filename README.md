@@ -1,18 +1,21 @@
 # sttok
 
-Build an Indic extension of the Hugging Face BPE tokenizer from
+Extend the BPE tokenizer from
 [NVIDIA Nemotron 3.5 ASR streaming 0.6B](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b)
-using selected AI4Bharat IndicConformer pieces. The repository also includes
-NeMo checkpoint migration and speech validation tools.
+with selected AI4Bharat IndicConformer pieces. The repository also includes
+NeMo checkpoint migration and speech validation tools. The output is a
+`tokenizer.json` file for the Hugging Face `tokenizers` library.
 
 The current tokenizer has **16,481 IDs**. Original IDs `0` through `13,088`
 are preserved, and additions start at `13,089`. It keeps NVIDIA's normalizer
 and original merge rules, with 103 additional Hindi pieces and 190 rare Latin
 characters. No Latin subword merges are added.
 
-The tokenizer is built and text-tested. Full checkpoint migration, training
-and speech accuracy checks are still pending. Adding tokens alone does not
-teach the model to recognize new languages.
+The tokenizer is built and text-tested. Real checkpoint migration, 12 paired
+audio checks, a small streaming check and seven-language gradient checks pass.
+See [measured results](docs/runtime-results.md). Fine-tuning and multilingual
+speech accuracy validation remain pending. Adding tokens alone does not teach
+the model to recognize new languages.
 
 ## Build
 
@@ -60,6 +63,7 @@ languages. Preserving old IDs does not guarantee unchanged recognition accuracy.
 | `src/sttok/` | Tokenizer builder, CLI, checkpoint adapter and validation code |
 | `configs/` | Source hashes, build settings, character lists and corpus manifests |
 | `tests/` | Tokenizer, migration and evaluation tests |
+| `scripts/` | Small real-audio training and streaming checks |
 | `docs/` | Validation results, data formats and checkpoint instructions |
 | `.github/workflows/` | Automated CPU tests |
 | `artifacts/nemotron-indic-v1/` | Generated tokenizer and integration files |
@@ -68,7 +72,7 @@ languages. Preserving old IDs does not guarantee unchanged recognition accuracy.
 
 The generated artifact folder contains:
 
-- `tokenizer.json`: the Hugging Face BPE tokenizer used in the example above.
+- `tokenizer.json`: the extended NVIDIA BPE tokenizer used in the example above.
 - `manifest.json`: source hashes, token provenance and build checks.
 - `nemo-id-map.json`: mapping from tokenizer IDs to NeMo model IDs.
 - `prompts.json`: existing and added language prompt assignments.
@@ -86,8 +90,9 @@ python -m pip install -e '.[test,checkpoint]'
 python -m pytest -q
 ```
 
-The recorded build passed 136 tests and the standard-alphabet checks for all
-22 profiles. See [build evidence](docs/build-evidence.md) for corpus counts,
+The recorded build passes standard-alphabet checks for all 22 profiles. The
+latest complete test run passed 171 tests, including the optional check against
+the actual native tokenizer artifact. See [build evidence](docs/build-evidence.md) for corpus counts,
 exclusions and remaining work, and [text validation](docs/validation.md)
 for corpus commands and checks before extending a previous release.
 
@@ -100,5 +105,11 @@ and small inference checks can run on CPU; substantial training should use GPU.
 
 [Checkpoint verification](docs/checkpoint-validation.md) compares weights and
 real audio outputs. [Speech evaluation](docs/evaluation.md) describes
-per-language accuracy checks. Current inference tooling is offline; streaming
-integration and real model validation remain pending.
+per-language accuracy checks. See [real runtime checks](docs/runtime-validation.md)
+for the development audio, training and streaming probes. The general inference
+command is offline.
+
+NVIDIA's published JSON uses BPE; the native `.nemo` embeds a SentencePiece
+Unigram tokenizer. They share old piece IDs but can produce different training
+labels. This project keeps BPE encoding and preserves native text decoding in
+the migrated checkpoint. Continued training must account for that difference.

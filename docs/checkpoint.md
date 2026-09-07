@@ -26,10 +26,20 @@ the source. A direct HF training call may receive the tokenizer's blank outside
 the model's embedding range. HF load/inference success alone is not a training
 compatibility test.
 
-The native checkpoint's cached SentencePiece artifact and the approved HF BPE
-also encode some text differently despite matching old piece IDs. The adapter
-intentionally uses the approved HF BPE. Exact old ID-to-text decoding and tensor
-preservation do not assert native/HF training-label segmentation equivalence.
+The actual native checkpoint embeds a SentencePiece **Unigram** model
+(`model_type=1`); the published `tokenizer.json` uses **BPE**. They share old
+piece IDs but encode some text differently, including English. The adapter
+intentionally uses the approved BPE for encoding. On one real English clip,
+native labels used 53 tokens and both the original and extended BPE used the
+same 46 tokens, with zero additions. This difference must be evaluated before
+continued training. Exact old weights and decoded speech do not establish
+training-label equivalence.
+
+Migrated checkpoints also contain the original native decoder artifact.
+The runtime copies its vocabulary in memory and appends new ordinary pieces
+solely to decode token strings, preserving native unknown-token rendering,
+spacing and existing piece types. This decoder never segments text or uses
+the appended scores. The canonical BPE file and encoding remain unchanged.
 
 Sources: [pinned HF configuration](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b/blob/1c8deaecc64b91f034d73e08dd8b64625eb3395d/config.json),
 [HF processor's decoder-input construction](https://github.com/huggingface/transformers/blob/main/src/transformers/models/nemotron3_5_asr/processing_nemotron3_5_asr.py),
@@ -50,6 +60,10 @@ Sources: [pinned HF configuration](https://huggingface.co/nvidia/nemotron-3.5-as
   again. It produces `<output>.migration.json`. It never downloads weights or
   overwrites a checkpoint. The installed `sttok` package is needed for restoring
   the custom `sttok.runtime.ExtendedNemotronRNNTModel` class.
+  The pinned NeMo runtime rejects external target namespaces by default.
+  `get_nemo_model_class()` permits only this exact installed class, verifies its
+  identity and NeMo base class, and leaves validation of all other targets
+  unchanged. It does not allow arbitrary targets under the `sttok` namespace.
 - `inspect_nemo_layout`, `transfer_state_dict` and `verify_state_transfer`
   separate live module discovery, copying, and independent verification. All
   unaffected tensors and buffers must have unchanged names, shapes and dtype.
@@ -62,9 +76,15 @@ Sources: [pinned HF configuration](https://huggingface.co/nvidia/nemotron-3.5-as
 
 The migration refuses hybrid/CTC heads, duration/extra-output layouts, tied
 vocabulary parameters, different source token inventories and unexpected tensor
-changes. It does not migrate optimizer state. New rows retain deterministic
-constructor initialization. All old encoder, predictor recurrent, prompt and
-joint-projection weights are copied from the source.
+changes. It does not migrate optimizer state. New prediction embeddings use
+the mean of old nonblank embeddings. New joint-output weights copy the old
+blank row, with a lower bias so additions do not dominate before training.
+For 3,392 additions the bias margin is about 21.945, targeting a combined
+new-to-old softmax mass ratio of at most 1e-6 in exact arithmetic. Actual
+floating-point decoding still requires validation. Rows remain independently
+trainable. All old encoder, predictor recurrent, prompt and joint-projection
+weights are copied exactly from the source. Migration verifies the added rows
+and native decoder artifact before saving and after reloading.
 
 ## CPU tests
 

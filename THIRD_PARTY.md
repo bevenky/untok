@@ -13,6 +13,7 @@ Meta endorsement.
 | Assigned codepoints, script properties and standard exemplars | [Unicode 17 UCD](https://www.unicode.org/Public/17.0.0/ucd/), [CLDR48 pinned sources](https://github.com/unicode-org/cldr/tree/acd6d88ae493633240e19a87a721076a8a75c310/common/main), [Unicode License V3](https://www.unicode.org/license.txt) |
 | Public primary audit | [Bhasha-Abhijnaanam v1.0](https://github.com/AI4Bharat/IndicLID/releases/tag/v1.0); source-specific provenance retained in records |
 | Independent text samples | Wikimedia revision links, Unicode UDHR and author-published Devanagari Sindhi prose; raw snapshots remain local and are not redistributed in the candidate bundle |
+| Development speech checks | [Google FLEURS pinned revision](https://huggingface.co/datasets/google/fleurs/blob/70bb2e84b976b7e960aa89f1c648e09c59f894dd/README.md), CC-BY-4.0; per-clip hashes and source transcripts remain in local run evidence |
 
 Before distribution, carry the applicable upstream license/notice files with
 derived artifacts and set the distribution metadata accordingly. The source
