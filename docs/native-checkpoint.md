@@ -10,13 +10,15 @@ The embedded SentencePiece model is Unigram. NeMo's class names use `BPE`
 for this SentencePiece integration, but that does not determine the model's
 actual segmentation algorithm.
 
-## Package and migrate
+## Migrate
 
-Tokenizer packaging runs on CPU with the normal installation:
+After installing `untok` in your NeMo environment, select the installed bundle's
+directory. Migration takes a directory path; the short names accepted by
+`load_tokenizer()` are for text tokenization.
 
 ```sh
-untok package --bundle artifacts/nemotron-indic-unigram-v1 --output dist
-untok check --bundle dist/latin-indic
+BUNDLE=$(python -c 'from importlib.resources import files; print(files("untok").joinpath("data", "latin-indic"))')
+untok check --bundle "$BUNDLE"
 ```
 
 Migration requires the compatible NVIDIA NeMo Speech runtime. The verified
@@ -28,11 +30,11 @@ The `checkpoint` extra supplies tensor utilities, not the complete NeMo stack.
 untok migrate \
   --source nemotron-3.5-asr-streaming-0.6b.nemo \
   --source-sha256 210214ed94039bf6bfbb9a047c7fa289628db75b103e2bf6381fa78285436a74 \
-  --bundle dist/latin-indic \
+  --bundle "$BUNDLE" \
   --output nemotron-latin-indic.nemo
 ```
 
-Choose `dist/full` or `dist/latin` to migrate the other bundles. The destination
+Choose `full` or `latin` in the path command to migrate the other bundles. The destination
 and migration report must not exist. The source checkpoint is never overwritten.
 
 Migration verifies the source hash, actual native tokenizer bytes, every
